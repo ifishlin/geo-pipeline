@@ -1,0 +1,10 @@
+# 產物不進版控：影片、音檔、抓回來的來源全文、送給模型的那幾份。
+# 進版控的是**程式、prompt、共用資料、和每一步的結構化產物**
+# —— 那幾個小、看得懂 diff，而且是「這支片長什麼樣」的真正紀錄。
+stories/*/0-sources/
+stories/*/4-voice/*.wav
+stories/*/4-voice/*.m4a
+stories/*/_ask/
+stories/*/*.mp4
+stories/*/*.png
+stories/_probe/

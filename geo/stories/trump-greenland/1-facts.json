@@ -1,0 +1,618 @@
+[
+ {
+  "said": "格陵蘭是世界最大的島",
+  "quote": "It is the world's largest island",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "格陵蘭是丹麥王國轄下的自治領土，也是王國三塊組成部分裡土地面積最大的一塊",
+  "quote": "and is the largest of the kingdom's three constituent parts by land area, the others being Denmark proper and the Faroe Islands",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "法羅群島"
+  ]
+ },
+ {
+  "said": "格陵蘭在漢斯島上跟加拿大有一條 1.2 公里的邊界",
+  "quote": "It shares a small 1.2-kilometre (0.75 mi) border with Canada on Hans Island",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭",
+   "加拿大",
+   "漢斯島"
+  ]
+ },
+ {
+  "said": "格陵蘭是全世界人口密度最低的地方",
+  "quote": "Greenland is the least densely populated country in the world",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "至少四千五百年來陸續有環極地民族住在格陵蘭，他們的祖先是從今天的加拿大遷過去的",
+  "quote": "Greenland has been inhabited at intervals over at least the last 4,500 years by circumpolar peoples whose forebears migrated there from what is now Canada",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭",
+   "加拿大"
+  ]
+ },
+ {
+  "said": "最早的古因紐特人大約在西元前 2500 年進入格陵蘭",
+  "quote": "The earliest entry of the Palaeo-Inuit into Greenland is thought to have occurred about 2500 BC",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "西元 986 年，來自今日挪威和冰島的北歐人登陸格陵蘭定居",
+  "quote": "beginning in 986 AD when Norse settlers from what is now Norway and Iceland settled Greenland",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "挪威",
+   "冰島"
+  ]
+ },
+ {
+  "said": "「格陵蘭」這個名字是取的好聽，為了吸引人來住",
+  "quote": "supposedly in the hope that the pleasant name would attract settlers",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "北歐移民的後代在格陵蘭住了四百年，十五世紀後期消失",
+  "quote": "their descendants lived in Greenland for 400 years until disappearing in the late 15th century",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "1261 年格陵蘭的北歐居民向挪威國王臣服，格陵蘭正式成為挪威王國的一部分",
+  "quote": "Greenland formally became part of the Kingdom of Norway in 1261, when the Norse inhabitants submitted to the King of Norway",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "挪威"
+  ]
+ },
+ {
+  "said": "挪威王國在 1380 年跟丹麥結成共主聯邦",
+  "quote": "The Kingdom of Norway entered a personal union with Denmark in 1380",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "挪威",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "1605 年丹麥國王克里斯蒂安四世派遠征隊去格陵蘭找失聯的東聚落、重申主權",
+  "quote": "This prompted King Christian IV to send an expedition to Greenland in 1605 to locate the lost Eastern Norse Settlement and reassert sovereignty over Greenland",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "1721 年挪威傳教士 Hans Egede 重建丹挪在格陵蘭的常駐據點，創立了今天的努克",
+  "quote": "Norwegian priest Hans Egede reestablished a permanent Dano-Norwegian presence in 1721",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "努克"
+  ]
+ },
+ {
+  "said": "1814 年基爾條約把格陵蘭留在丹麥王室手上，那是拿破崙戰爭後跟瑞典的清算",
+  "quote": "Greenland remained with the Danish Crown as part of the settlement with Sweden following the Napoleonic Wars",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "瑞典"
+  ]
+ },
+ {
+  "said": "1814 年丹麥和挪威分家時，格陵蘭從挪威王室轉到丹麥王室",
+  "quote": "When Denmark and Norway separated in 1814, Greenland was transferred from the Norwegian to the Danish crown",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "挪威"
+  ]
+ },
+ {
+  "said": "1826 年美國在跟丹麥國王簽的通商航海公約裡承認格陵蘭是國王的北方屬地",
+  "quote": "In the 1826 General Convention of Friendship, Commerce and Navigation with the king of Denmark, the United States recognised Greenland as a northern possession of the king",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "美國",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "1916 年美國在丹屬西印度群島條約裡明文承認丹麥對整個格陵蘭的主權",
+  "quote": "signed in 1916, the US government explicitly recognised Danish sovereignty over all of Greenland",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "美國"
+  ]
+ },
+ {
+  "said": "1921 年丹麥宣告對整個格陵蘭（包含無人區）擁有完整主權",
+  "quote": "Denmark declared full sovereignty over all of Greenland, including the uninhabited parts, in 1921, in the aftermath of the Treaty of Versailles",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "1933 年常設國際法院判丹麥對整個格陵蘭有主權，占著東格陵蘭一部分的挪威接受並放棄主張",
+  "quote": "accepted a ruling of the Permanent Court of International Justice affirming Danish sovereignty over all of Greenland and renounced its claim",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "挪威",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "1941 年美丹協定裡，美國重申承認並尊重丹麥王國對格陵蘭的主權",
+  "quote": "its recognition of and respect for the sovereignty of the Kingdom of Denmark over Greenland",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "美國"
+  ]
+ },
+ {
+  "said": "二戰期間丹麥本土被納粹占領，美國應丹麥與格陵蘭官員之請防衛格陵蘭，那些官員沒有得到中央政府批准",
+  "quote": "During World War II, the United States defended Greenland at the request of Danish and Greenlandic officials acting without approval from the central government of Denmark, while it was under Nazi occupation",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "美國"
+  ]
+ },
+ {
+  "said": "丹麥是北約十二個創始會員國之一，1951 年跟美國簽格陵蘭防衛協定，美軍才能在丹麥同意下於格陵蘭運作",
+  "quote": "signed the Greenland Defense Agreement with the United States in 1951, allowing the American military to operate in Greenland with Danish consent under a NATO framework",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "美國"
+  ]
+ },
+ {
+  "said": "美軍在格陵蘭最多時有大約一萬人駐紮",
+  "quote": "At its peak, approximately 10,000 American military personnel were stationed in Greenland",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "美國"
+  ]
+ },
+ {
+  "said": "冷戰結束後美國把格陵蘭的駐軍縮到 2026 年的約 150 人",
+  "quote": "which gradually reduced its presence to roughly 150 personnel by 2026",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "美國"
+  ]
+ },
+ {
+  "said": "1945 年以來美軍在格陵蘭從 17 個基地、數千人縮到皮圖菲克基地約 200 人",
+  "quote": "Since 1945, the US military presence in Greenland shrank from thousands of troops across 17 bases to about 200 stationed at the remote Pituffik base.",
+  "where": 4,
+  "url": "https://www.aljazeera.com/news/2026/9/22/us-signs-tremendous-arctic-security-deal-with-denmark-greenland",
+  "entity": [
+   "格陵蘭",
+   "美國",
+   "皮圖菲克"
+  ]
+ },
+ {
+  "said": "1953 年修憲終結了格陵蘭的殖民地身分，把它完整併進丹麥",
+  "quote": "Greenland's colonial status from Denmark officially ended in 1953 through an amendment of the Danish Constitution",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "1953 年之後格陵蘭被編成丹麥王國的一個郡",
+  "quote": "Subsequently, Greenland was integrated as a county in the Realm of Denmark",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "這個身分讓格陵蘭人拿到丹麥公民身分",
+  "quote": "This status granted Greenlanders the Danish citizenship",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "丹麥有「出生地條款」，同樣的工作丹麥來的員工薪水比格陵蘭本地人高",
+  "quote": "which granted non-Greenlandic, but Danish workers higher salaries than local Greenlandic workers",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "法羅群島 1948 年就拿到自治，所以可以不參加丹麥那場歐體公投",
+  "quote": "The Faroe Islands attained home rule status in 1948",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "法羅群島",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "1972 年公投時格陵蘭有 70.8% 的選民反對加入歐洲共同體",
+  "quote": "in Greenland, however, the referendum resulted in a clear rejection of the EC by 70.8% of the voters",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "儘管格陵蘭反對，1973 年 1 月 1 日它還是跟著丹麥一起加入歐洲共同體",
+  "quote": "the island joined the European Communities as part of Denmark on 1 January 1973",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "1979 年 1 月 17 日自治法交付格陵蘭選民表決，70.1% 贊成通過",
+  "quote": "on 17 January 1979, the Home Rule Act was submitted to Greenlandic voters and adopted with a majority of 70.1% of the votes cast",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "1979 年丹麥給了格陵蘭自治",
+  "quote": "Denmark granted home rule to Greenland",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "自治之後國防和外交仍然由哥本哈根的中央政府一手掌握",
+  "quote": "with the central government in Copenhagen solely responsible for defence and foreign policy",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "哥本哈根",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "1982 年 2 月 23 日格陵蘭舉行去留歐洲共同體的公投",
+  "quote": "The referendum on Greenland's staying in or withdrawal from the European Communities took place on 23 February 1982.",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "那場公投 52% 的格陵蘭選民投票退出歐洲共同體",
+  "quote": "At this second EC referendum within ten years, 52% of the Greenlandic electorate voted for a withdrawal from the European Communities.",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "1984 年 3 月 13 日歐洲共同體十個會員國簽署格陵蘭條約",
+  "quote": "On 13 March 1984, the ten member states of the European Communities signed the Greenland Treaty.",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭",
+   "布魯塞爾"
+  ]
+ },
+ {
+  "said": "格陵蘭條約 1985 年 2 月 1 日生效，那天就是格陵蘭正式退出歐洲共同體的日子",
+  "quote": "the Greenland Treaty entered into force on 1 February 1985, which also marks the formal date of withdrawal of Greenland from the European Communities",
+  "where": 3,
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "2008 年公投後格陵蘭人通過自治法，把更多權力從丹麥政府轉給格陵蘭政府",
+  "quote": "Greenlanders voted for the Self-Government Act which transferred more power from the Danish government",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "丹麥政府仍然掌握公民身分、貨幣政策、安全政策和外交",
+  "quote": "The Danish government retains control of citizenship, monetary policy, security policies, and foreign affairs.",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "2009 年格陵蘭被丹麥王國和國際法承認為有對外自決權的民族",
+  "quote": "In 2009, Greenland was recognised by the Kingdom of Denmark and under international law as a people entitled to external self-determination.",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "格陵蘭經濟高度倚賴丹麥的補助，那筆錢超過它 GDP 的兩成",
+  "quote": "amounting to more than 20% of the territory's gross domestic product",
+  "where": 2,
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "多數格陵蘭人支持將來從丹麥王國獨立",
+  "quote": "A majority of Greenlanders support independence from the Kingdom of Denmark at some point",
+  "where": 5,
+  "url": "https://www.atlanticcouncil.org/dispatches/three-things-to-know-about-trumps-greenland-deal/",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "川普第一任期就說美國應該買下格陵蘭",
+  "quote": "US president Donald Trump said that the United States should buy Greenland",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "美國"
+  ]
+ },
+ {
+  "said": "丹麥和格陵蘭政府回答，格陵蘭不賣，依丹麥憲法也賣不掉",
+  "quote": "The governments of Denmark and Greenland clarified that Greenland is not for sale and cannot be sold under the Danish constitution",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "2024 年 12 月川普說，基於國家安全，美國擁有並控制格陵蘭是絕對必要",
+  "quote": "the United States of America feels that the ownership and control of Greenland is an absolute necessity",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "美國"
+  ]
+ },
+ {
+  "said": "川普威脅對幾個歐洲國家的商品課 25% 進口稅，除非丹麥把格陵蘭割讓給美國",
+  "quote": "threatened a 25% import tax on goods from several European nations unless Denmark ceded the territory to the United States",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "美國"
+  ]
+ },
+ {
+  "said": "丹麥國防情報局的報告史上第一次把美國列為國家安全的潛在威脅",
+  "quote": "A report by the Danish Defence Intelligence Service mentioned the United States as a potential threat to national security for the first time in its history",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "丹麥",
+   "美國"
+  ]
+ },
+ {
+  "said": "丹麥和八個北約盟國派兵去防守格陵蘭",
+  "quote": "Denmark and eight NATO allies deployed forces to defend the territory",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥"
+  ]
+ },
+ {
+  "said": "YouGov 民調顯示只有 8% 的美國人支持入侵格陵蘭，73% 反對",
+  "quote": "A YouGov poll found that only 8% of Americans supported an invasion of Greenland, with 73% opposed.",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "美國"
+  ]
+ },
+ {
+  "said": "2026 年 1 月 21 日川普先排除動武、再放棄關稅威脅",
+  "quote": "first ruling out military force and then abandoning tariff threats after talks with NATO secretary-general Mark Rutte",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "美國"
+  ]
+ },
+ {
+  "said": "2026 年 9 月 18 日美國、丹麥、格陵蘭達成協議，美國取得擴大的駐軍規模和更大的安全控制權",
+  "quote": "the United States, Denmark, and Greenland reached an agreement in which the United States would receive the rights to an expanded military footprint in Greenland with greater security control",
+  "where": 1,
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "美國"
+  ]
+ },
+ {
+  "said": "協議在 2026 年 9 月 22 日聯合國大會場邊於紐約簽署",
+  "quote": "The United States, Denmark and Greenland have signed a deal on the sidelines of the UN General Assembly in New York",
+  "where": 4,
+  "url": "https://www.aljazeera.com/news/2026/9/22/us-signs-tremendous-arctic-security-deal-with-denmark-greenland",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "美國",
+   "紐約"
+  ]
+ },
+ {
+  "said": "新協議讓美國得以擴建格陵蘭西北部的皮圖菲克太空基地",
+  "quote": "its activities at the Pituffik Space Base in northwest Greenland",
+  "where": 4,
+  "url": "https://www.aljazeera.com/news/2026/9/22/us-signs-tremendous-arctic-security-deal-with-denmark-greenland",
+  "entity": [
+   "格陵蘭",
+   "皮圖菲克"
+  ]
+ },
+ {
+  "said": "新基地將設在南部的 Narsarsuaq 和東部的 Mestersvig",
+  "quote": "Bases will be established at Narsarsuaq in the south and Mestersvig in the east",
+  "where": 4,
+  "url": "https://www.aljazeera.com/news/2026/9/22/us-signs-tremendous-arctic-security-deal-with-denmark-greenland",
+  "entity": [
+   "格陵蘭",
+   "納薩蘇克",
+   "Mestersvig"
+  ]
+ },
+ {
+  "said": "協議允許美國飛機飛越格陵蘭任何地方並降落，包含其領海",
+  "quote": "It also permits US aircraft to fly over and land anywhere in Greenland, including its territorial waters",
+  "where": 4,
+  "url": "https://www.aljazeera.com/news/2026/9/22/us-signs-tremendous-arctic-security-deal-with-denmark-greenland",
+  "entity": [
+   "格陵蘭",
+   "美國"
+  ]
+ },
+ {
+  "said": "這份協議沒有終止日期",
+  "quote": "The accord does not have an end date.",
+  "where": 4,
+  "url": "https://www.aljazeera.com/news/2026/9/22/us-signs-tremendous-arctic-security-deal-with-denmark-greenland",
+  "entity": [
+   "格陵蘭"
+  ]
+ },
+ {
+  "said": "新協議大體上重申 1951 年那份防衛協定的條件",
+  "quote": "The agreement largely reiterates the conditions of the existing 1951 defense agreement",
+  "where": 5,
+  "url": "https://www.atlanticcouncil.org/dispatches/three-things-to-know-about-trumps-greenland-deal/",
+  "entity": [
+   "格陵蘭",
+   "美國"
+  ]
+ },
+ {
+  "said": "非北約國家要在格陵蘭設軍事存在，須三方一致同意；敏感產業的投資也要三方都點頭",
+  "quote": "The agreement establishes that the United States, Denmark, and Greenland must unanimously approve any investments in sensitive sectors like mining and infrastructure",
+  "where": 5,
+  "url": "https://www.atlanticcouncil.org/dispatches/three-things-to-know-about-trumps-greenland-deal/",
+  "entity": [
+   "格陵蘭",
+   "丹麥",
+   "美國"
+  ]
+ },
+ {
+  "said": "實際上格陵蘭附近的對手國活動幾乎不存在",
+  "quote": "At present, adversary activity near Greenland is nearly nonexistent",
+  "where": 5,
+  "url": "https://www.atlanticcouncil.org/dispatches/three-things-to-know-about-trumps-greenland-deal/",
+  "entity": [
+   "格陵蘭"
+  ]
+ }
+]

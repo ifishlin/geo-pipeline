@@ -1,0 +1,37 @@
+[
+ {
+  "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+  "kind": "wiki",
+  "why": "2025–2026 這兩年的來龍去脈",
+  "file": "0-sources/wiki-2eeac743f1.txt",
+  "chars": 193954
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Greenland",
+  "kind": "wiki",
+  "why": "身分變遷：1953 郡、1979 自治、2009 自治法",
+  "file": "0-sources/wiki-3db8706bf1.txt",
+  "chars": 172316
+ },
+ {
+  "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+  "kind": "wiki",
+  "why": "1982 公投、1985 退出",
+  "file": "0-sources/wiki-3a1b3b4f1e.txt",
+  "chars": 36289
+ },
+ {
+  "url": "https://www.aljazeera.com/news/2026/9/22/us-signs-tremendous-arctic-security-deal-with-denmark-greenland",
+  "kind": "news",
+  "why": "簽約當天：誰簽的、給了什麼",
+  "file": "0-sources/news-21cddeba35.txt",
+  "chars": 4282
+ },
+ {
+  "url": "https://www.atlanticcouncil.org/dispatches/three-things-to-know-about-trumps-greenland-deal/",
+  "kind": "official",
+  "why": "分析：跟 1951 年那份的關係",
+  "file": "0-sources/official-0ac7f7f00c.txt",
+  "chars": 5556
+ }
+]

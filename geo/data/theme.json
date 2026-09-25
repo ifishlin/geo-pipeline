@@ -1,0 +1,10 @@
+{
+  "_comment": "畫面長什麼樣。**數字只留一份**：程式從這裡讀，故事檔可以覆蓋其中幾格。顏色寫死在程式裡的話，改一次要改五個地方，而漏掉的那個不會報錯 —— 它只是畫成另一個顏色。\n\n【subject / other】主角和配角的填色。主角是這一格在講的那塊地，配角是同一格裡一起塗色的其他塊。分兩種是因為「都塗紅色」等於沒有強調。\n\n【faint】小到只靠填色看不出來的那塊，改用這個顏色的標記去指。判準在 camera.TINY（120 像素），是量出來的：丹麥在「格陵蘭＋丹麥」那一格只有 66×27。\n\n【subtitle】字幕。y 是從畫面頂端算的比例，0.715 是參考片的位置。per_row 是一行最多幾個字 —— 74 級的字在 1080 寬的畫面上一行放得下約 12 個漢字，超過就折，而折出來的第三行會撞到人偶的位置。\n\n【label】地名。refZoom 讓字跟著地圖縮放一起變大變小，像印在地圖上一樣；不給的話字級固定，拉遠的時候一個小國會被自己的名字蓋住。",
+  "subject": { "fill": "#E15A63", "opacity": 0.88, "stroke": "#FFFFFF", "strokeWidth": 1.5 },
+  "other": { "fill": "#2E57A8", "opacity": 0.72, "stroke": "#FFFFFF", "strokeWidth": 1.2 },
+  "faint": { "color": "#E15A63", "type": "pin", "size": 46 },
+  "mark": { "color": "#F7B82F", "type": "pin", "size": 40 },
+  "subtitle": { "y": 0.715, "box": true, "fontSize": 74, "per_row": 12, "rows_most": 2 },
+  "label": { "fontSize": 46, "style": "tag" },
+  "motion_blur": 0
+}

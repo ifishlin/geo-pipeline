@@ -1,0 +1,40 @@
+{
+  "title": "川普買格陵蘭",
+  "ask": "為什麼歐洲的小國丹麥擁有地球上最大的島，而美國一直想要它？",
+  "turn": "1946 沒人問格陵蘭、1951 沒人問格陵蘭、2026 格陵蘭自己簽了名",
+  "cast": {
+    "旁白": "narrator",
+    "格陵蘭": "male-a",
+    "丹麥": "female-low",
+    "美國": "male-low"
+  },
+  "map_style": "clean",
+  "seconds": 116,
+  "sources": [
+    {
+      "url": "https://en.wikipedia.org/wiki/Greenland_crisis",
+      "kind": "wiki",
+      "why": "2025–2026 這兩年的來龍去脈"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Greenland",
+      "kind": "wiki",
+      "why": "身分變遷：1953 郡、1979 自治、2009 自治法"
+    },
+    {
+      "url": "https://en.wikipedia.org/wiki/Withdrawal_of_Greenland_from_the_European_Communities",
+      "kind": "wiki",
+      "why": "1982 公投、1985 退出"
+    },
+    {
+      "url": "https://www.aljazeera.com/news/2026/9/22/us-signs-tremendous-arctic-security-deal-with-denmark-greenland",
+      "kind": "news",
+      "why": "簽約當天：誰簽的、給了什麼"
+    },
+    {
+      "url": "https://www.atlanticcouncil.org/dispatches/three-things-to-know-about-trumps-greenland-deal/",
+      "kind": "official",
+      "why": "分析：跟 1951 年那份的關係"
+    }
+  ]
+}
