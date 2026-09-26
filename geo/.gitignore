@@ -8,3 +8,4 @@ stories/*/_ask/
 stories/*/*.mp4
 stories/*/*.png
 stories/_probe/
+stories/*/look.html

@@ -72,7 +72,7 @@ def listing() -> None:
 
 
 def run(story: str, only: str = "", again: bool = False,
-        draft: bool = False) -> None:
+        draft: bool = False, plain: bool = False) -> None:
     if story not in paths.stories():
         raise SystemExit(f"沒有這個題目：{story}。"
                          f"有的是：{'、'.join(paths.stories()) or '（一個都沒有）'}")
@@ -102,6 +102,9 @@ def run(story: str, only: str = "", again: bool = False,
         kinds: dict[str, dict[str, Any]] = {"film": {"draft": draft}}
         for one in ("facts", "spine", "script", "storyboard"):
             kinds[one] = {"again": again}
+        # `--plain` 只給寫台詞那一步：停在旁白稿，不配角色。
+        # 想先確認「故事本身站不站得住」的時候用。
+        kinds["script"] = {"again": again, "plain": plain}
         call(story, **kinds.get(name, {}))
         print(f"（{time.time() - began:.0f} 秒）")
     print(f"\n{status(story)}　{story}")
@@ -113,4 +116,5 @@ if __name__ == "__main__":
         listing()
     else:
         run(args[0], args[1] if len(args) > 1 else "",
-            again="--again" in sys.argv, draft="--draft" in sys.argv)
+            again="--again" in sys.argv, draft="--draft" in sys.argv,
+            plain="--plain" in sys.argv)
