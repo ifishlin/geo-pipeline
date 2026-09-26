@@ -35,6 +35,42 @@ BREAKS = "。！？；，、：…"
 # 而判斷應該讓人改得到，不是寫死在程式裡。每一格的理由寫在那份的說明裡。
 
 
+# 兩個標籤在畫面上靠得比這麼近（像素），就會疊在一起看不懂。
+#
+# **量出來的**：丹麥（9.02, 55.97）和哥本哈根（12.57, 55.68）在 zoom 3 的
+# 畫面上只差 47 像素，兩張白底名牌直接互相蓋掉，畫出來是「丹麥根」。
+# 而它畫得出來、不會報錯 —— 只有人看的時候才存在。
+#
+# 120 是名牌的大約寬度（46 級的字、三四個漢字）加一點餘裕。
+APART = 120.0
+
+
+def _unstack(labels: list[dict[str, Any]], shot: dict[str, Any],
+             wide: int, high: int) -> None:
+    """靠太近的標籤往上疊開。就地改 `offset`。
+
+    往上不往下：名牌底下就是它指的那個點，往下會蓋住標記本身。
+    """
+    if len(labels) < 2:
+        return
+    scale = camera_module.WORLD * 2 ** float(shot["zoom"])
+    lon0, lat0 = (float(x) for x in shot["center"])
+    def where(one: dict[str, Any]) -> tuple[float, float]:
+        lon, lat = (float(x) for x in one["coordinates"])
+        return ((lon - lon0) / 360 * scale + wide / 2,
+                (camera_module.merc_y(lat) - camera_module.merc_y(lat0))
+                * scale + high / 2)
+    placed: list[tuple[float, float]] = []
+    for one in sorted(labels, key=lambda x: where(x)[1]):
+        x, y = where(one)
+        lift = float((one.get("offset") or [0, 0])[1])
+        while any(abs(x - a) < APART and abs(y + lift - b) < 52
+                  for a, b in placed):
+            lift -= 52
+        one["offset"] = [float((one.get("offset") or [0, 0])[0]), lift]
+        placed.append((x, y + lift))
+
+
 def _legs(one: dict[str, Any], nxt: dict[str, Any] | None, span: float,
           wide: int, high: int, knobs: dict[str, Any]
           ) -> tuple[str, list[tuple[float, dict[str, Any], dict[str, Any]]]]:
@@ -328,6 +364,7 @@ def run(story: str, say=print) -> dict[str, Any]:
             markers.append({"coordinates": spot, **look["faint"]})
             labels.append({"text": name, "coordinates": spot,
                            "offset": [0, -56], **look["label"]})
+        _unstack(labels, one["camera"], wide, high)
         body = {"highlights": highlights, "markers": markers, "labels": labels}
         nxt = cuts[at + 1] if at + 1 < len(cuts) else None
         kind, legs = _legs(one, nxt, until - one["at"], wide, high,
