@@ -14,6 +14,36 @@ python3 -m geo.pipe.make trump-greenland film --draft   # 草稿畫質，快四�
 
 ---
 
+## 東西放在哪
+
+**屬於這一套的全部在 `geo/` 底下**，一個都不散在外面：
+
+```
+geo/pipe/        九步的程式，一步一個檔
+geo/prompts/     送給模型的那幾份 md
+geo/data/        rules.json（門檻）、theme.json（外觀）、voices.json（音色）
+geo/checks/      故意種錯、看門會不會叫的那幾支
+geo/stories/     一個題目一個資料夾，產物和 _ask/ 都在裡面
+geo/reference/   參考片和字幕（54M，不進版控，只有 README 進）
+geo/refs/        參考片拆解和規格（三份 md）
+
+geo/README.md    這一份：整條路怎麼跑
+geo/MISTAKES.md  踩過的坑，29 條
+geo/HANDOVER.md  交接：現在停在哪、下一步做什麼
+                 （跟 `docs/HANDOVER.md` 同名不同目錄 —— 那是原本管線的）
+```
+
+**根目錄那幾個看起來像的，不是這一套的**，別搬進來：
+
+```
+open_amination/      片頭動畫規格 —— `core/intro.py` 在用它做擦出動畫。
+                     素材取自地理參考片，但**誰在用它就屬於誰**
+animation_feedback/  卡片動畫的設計稿（漢堡／拉麵、Split 分岔），原本管線的
+docs/MISTAKES.md     原本管線的那一份，跟 `geo/MISTAKES.md` 是兩回事
+```
+
+---
+
 ## 九步
 
 ```

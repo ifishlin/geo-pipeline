@@ -21,6 +21,7 @@
 """
 from __future__ import annotations
 
+import difflib
 import html
 import json
 import re
@@ -37,8 +38,9 @@ from geo.pipe import paths
 ABOUT: dict[str, tuple[str, str]] = {
     "sources": ("來源", "抓回來的網頁全文"),
     "facts": ("事實", "每一則帶 quote（逐字抄原文）和 entity（牽涉哪些地方）"),
-    "spine": ("骨幹", "時間線的節點、轉在哪、會回來的那句話"),
-    "script": ("台詞", "旁白稿，再挑幾句改成角色講"),
+    "spine": ("骨幹", "一句一筆：每一句宣告它在幹嘛（role）、轉在哪、"
+                      "會回來的那句話"),
+    "script": ("台詞", "旁白稿寫完就不動；角色只在句子之間插反應"),
     "voice": ("配音", "一次合成，拿回每句起訖和每個字的毫秒"),
     "atlas": ("地理", "稿子裡掃到的地名 → 外框 → 相機"),
     "storyboard": ("分鏡", "哪一段看哪裡、哪個接縫是斷點"),
@@ -62,9 +64,13 @@ USES: dict[str, list[tuple[str, str]]] = {
                 "寫旁白稿。**只有旁白，沒有對白** —— 一個聲音把故事講完，"
                 "就算一句都不改也要講得通"),
                ("parts.md",
-                "挑幾句改成角色講。**取代，不是追加** —— 回的是「第 12 句"
-                "改成丹麥講、改寫成這樣」，句子總數不變，所以重複在結構上"
-                "不可能發生")],
+                "角色在句子之間插反應。**追加，不是取代** —— 旁白稿一個字"
+                "都不會被動到（程式只會插入，不會指派），所以拿掉全部的角色"
+                "句，故事還是完整的。四種反應：附和、吐槽、自嘲、重申"),
+               ("narrate.md",
+                "把單句接成一段話：加接詞、加語助詞、調口氣。**剩下的字數"
+                "額度留給這一趟花** —— 前兩趟只用 82%，不先留的話這一步"
+                "每次都撞長度的門")],
     "storyboard": [("storyboard.md",
                     "哪一段看哪裡、哪個接縫是斷點。只給地名和句子裡的詞，"
                     "座標和秒數是程式算的")],
@@ -132,6 +138,13 @@ pre.said{background:var(--said)}
            font-size:12.5px}
 .tries{padding:2px 18px 10px;color:var(--dim);font-size:12.5px}
 .now{background:#e9f3ea;color:#2f6b39}
+table.three td{font-size:14px;line-height:1.6}
+table.three td:nth-child(3){color:#6b7280}
+table.three th{width:26%}
+table.three th:first-child,table.three th:nth-child(2){width:auto}
+mark{background:#fdf0c8;color:inherit;border-radius:2px;padding:0 1px}
+del{color:#c0392b;opacity:.55;text-decoration-thickness:1px}
+tr.hold td{border-bottom:0;padding:1px 8px}
 @media(max-width:820px){.pair{grid-template-columns:1fr}
   .pair>div+div{border-left:0;border-top:1px solid var(--line)}}
 """
@@ -148,7 +161,7 @@ def _when(one: Path) -> str:
 # 一趟問答屬於哪一步。**檔名不等於步驟名** —— 台詞那一步問三次
 # （script／parts／narrate），而只有第一個跟步驟同名，另外兩趟就從
 # 畫面上消失了。漏掉的正是「這一句為什麼變成這樣」最關鍵的兩趟。
-BELONGS = {"parts": "script", "narrate": "script"}
+BELONGS = {"parts": "script", "narrate": "script", "cast": "script"}
 
 
 def _asks(story: str) -> dict[str, list[tuple[Path, Path, str]]]:
@@ -172,22 +185,138 @@ def _table(rows: list[tuple[str, Any]]) -> str:
         + "</table>")
 
 
-def _script(story: str) -> str:
-    one = paths.at(story, "script")
+def _rows(one: Path) -> list[tuple[str, str]]:
+    """一份 tsv → [(誰, 說什麼)]。`停` 那種的第二欄是秒數。"""
     if not one.is_file():
-        return ""
+        return []
     out = []
     for row in one.read_text(encoding="utf-8").splitlines():
-        if not row.strip():
-            continue
-        who, _, text = row.partition("\t")
-        if who == "停":
-            out.append(f'<div class="line hold">┄ 停 {esc(text)} 秒</div>')
-        else:
-            kind = "" if who == "旁白" else " role"
-            out.append(f'<div class="line"><span class="who{kind}">'
-                       f"{esc(who)}</span><span>{esc(text)}</span></div>")
+        if row.strip():
+            who, _, text = row.partition("\t")
+            out.append((who, text))
+    return out
+
+
+def _mark(before: str, after: str) -> str:
+    """`after` 相對 `before` 改了哪裡。
+
+    **逐字比，而且刪掉的也要看得到** —— 只標新增的話，「把一句話砍短」
+    在畫面上跟「完全沒動」長得一樣，而那正是 narrate 最常做的事之一。
+    """
+    if before == after:
+        return f'<span style="color:#9aa1a9">{esc(after)}</span>'
+    out = []
+    for how, a1, a2, b1, b2 in difflib.SequenceMatcher(
+            None, before, after, autojunk=False).get_opcodes():
+        if how in ("delete", "replace"):
+            out.append(f"<del>{esc(before[a1:a2])}</del>")
+        if how in ("insert", "replace"):
+            out.append(f"<mark>{esc(after[b1:b2])}</mark>")
+        if how == "equal":
+            out.append(esc(after[b1:b2]))
     return "".join(out)
+
+
+def _script(story: str) -> str:
+    """三趟並排，一句一列。
+
+    **一句話的最終樣子是三個模型接力改出來的**，而只看最後那一份的話，
+    「這個字是誰加的」「這句為什麼從旁白變成丹麥講」全部看不到 —— 於是
+    改 prompt 的時候只能猜是哪一趟的功勞。三份都留著，就擺在一起。
+    """
+    final = _rows(paths.at(story, "script"))
+    if not final:
+        return ""
+    home = paths.home(story)
+    plain = _rows(home / "3-script.plain.tsv")
+    parts = _rows(home / "3-script.parts.tsv")
+
+    # **第二趟是插入，所以句數本來就會變。** 對齊的方式是「parts 裡有、
+    # plain 裡沒有的那幾列，就是插進去的」—— 照順序走一遍，對得上的配成
+    # 一組，對不上的自成一列。
+    #
+    # 上一版寫死「三份長度要一樣」，那是照「取代」那套架構寫的；改成追加
+    # 之後它每次都喊「對不起來」，而真正的情況是完全正常。**架構改了，
+    # 讀它的那一支也要改** —— 不改的話畫面上只剩一行紅字。
+    grew: list[tuple[str, str | None, str, str]] = []
+    at = 0
+    for (who1, b), (_, c) in zip(parts, final):
+        if at < len(plain) and plain[at][1] == b:
+            grew.append((who1, plain[at][1], b, c))
+            at += 1
+        else:
+            grew.append((who1, None, b, c))       # 這一列是插進來的
+    if at != len(plain):
+        lone = "".join(
+            f'<div class="line hold">┄ 停 {esc(text)} 秒</div>' if who == "停"
+            else f'<div class=line><span class="who'
+                 f'{"" if who == "旁白" else " role"}">{esc(who)}</span>'
+                 f"<span>{esc(text)}</span></div>"
+            for who, text in final)
+        return (f'<p class="note warn">對不齊：旁白 {len(plain)} 列裡只認出'
+                f' {at} 列 —— 有人改了旁白稿的字，而這一趟只該插入</p>'
+                + lone)
+
+    # 每一列在幹嘛。**兩種 role，不同的來源**：旁白那幾句的是骨幹排的
+    # （反常／起點／事件／翻面…），反應那幾句的是這一趟標的（附和／吐槽／
+    # 自嘲／重申）。混在一欄裡看，才看得出「事件」底下都掛著什麼反應。
+    try:
+        roles = [str(one.get("role") or "")
+                 for one in (paths.load(story, "spine").get("lines") or [])]
+    except (FileNotFoundError, json.JSONDecodeError):
+        roles = []
+    kinds: dict[int, str] = {}
+    one = home / "3-parts.raw.json"
+    if one.is_file():
+        try:
+            kinds = {int(x["after"]): str(x.get("kind") or "")
+                     for x in (json.loads(one.read_text(encoding="utf-8"))
+                               .get("parts") or [])}
+        except (json.JSONDecodeError, KeyError, ValueError):
+            kinds = {}
+
+    added = [one for one in grew if one[1] is None and one[0] != "停"]
+    reworded = sum(1 for _, _, b, c in grew if b != c)
+    said = [x for x in final if x[0] != "停"]
+    out = [f"<p class=note>"
+           f"旁白 {len(said) - len(added)} 句"
+           f"　<b>parts</b> 插了 {len(added)} 句反應（旁白一字未動）"
+           f"　<b>narrate</b> 動了 {reworded} 句的字　"
+           f'<span class=tag>底線＝拿掉的　黃底＝加上的　灰＝沒動</span>'
+           f"</p>",
+           "<table class=three><tr><th>#</th><th>誰</th><th>在幹嘛</th>"
+           "<th>① script.md<br><span style='font-weight:400'>純旁白</span></th>"
+           "<th>② parts.md<br><span style='font-weight:400'>插反應</span></th>"
+           "<th>③ narrate.md<br><span style='font-weight:400'>接成一段話</span>"
+           "</th></tr>"]
+    at = said_at = 0
+    for who1, a, b, c in grew:
+        if who1 == "停":
+            out.append(f'<tr class=hold><td></td><td colspan=5 '
+                       f'style="color:#b6bcc4">┄ 停 {esc(c)} 秒</td></tr>')
+            continue
+        at += 1
+        if a is None:                  # 這一列是 parts 插進來的
+            # 插在第幾句後面 ＝ 前面已經走過幾句旁白，減一
+            kind = kinds.get(said_at - 1, "")
+            out.append(
+                f'<tr style="background:#fbf7ef"><td class=num>{at}</td>'
+                f'<td class="who role">{esc(who1)}</td>'
+                f'<td class="who role">{esc(kind)}</td>'
+                f'<td style="color:#c3c8ce">（原本沒有這一句）</td>'
+                f"<td><mark>{esc(b)}</mark></td>"
+                f"<td>{_mark(b, c)}</td></tr>")
+            continue
+        role = roles[said_at] if said_at < len(roles) else ""
+        said_at += 1
+        out.append(
+            f"<tr><td class=num>{at}</td>"
+            f'<td class="who">{esc(who1)}</td>'
+            f'<td style="color:#6b7280;white-space:nowrap">{esc(role)}</td>'
+            f'<td>{esc(a)}</td>'
+            f"<td>{_mark(a, b)}</td>"
+            f"<td>{_mark(b, c)}</td></tr>")
+    return "".join(out) + "</table>"
 
 
 def _facts(story: str) -> str:
@@ -206,6 +335,14 @@ def _facts(story: str) -> str:
 
 
 def _spine(story: str) -> str:
+    """骨幹：一句一筆，每一句宣告它在幹嘛。
+
+    **這一節讀 `lines`，不是 `nodes`。** 骨幹從「時間線節點」改排到「句」
+    的那天，這裡沒跟著改 —— 於是它照舊去拿一個已經不存在的欄位，拿到空的
+    清單，畫出一張只有表頭的表。沒有例外、沒有錯誤訊息，頁面上只是少一塊。
+    **「一句都沒有」和「我找錯地方」在畫面上長得一模一樣**，所以現在真的
+    空的時候要用紅字說出來。
+    """
     try:
         got = paths.load(story, "spine")
     except (FileNotFoundError, json.JSONDecodeError):
@@ -213,12 +350,42 @@ def _spine(story: str) -> str:
     head = _table([("轉", esc(got.get("turn", ""))),
                    ("會回來的那句", esc(got.get("refrain", "（沒有）"))),
                    ("收", esc(got.get("ending", "")))])
-    rows = ["<table><tr><th>時間</th><th>beat</th><th>發生什麼</th></tr>"]
-    for one in got.get("nodes", []):
-        rows.append(f"<tr><td>{esc(one.get('when',''))}</td>"
-                    f"<td>{esc(one.get('beat',''))}</td>"
-                    f"<td>{esc(one.get('what',''))}</td></tr>")
-    return head + "".join(rows) + "</table>"
+    lines = got.get("lines") or []
+    if not lines:
+        return head + ('<p class="note warn">骨幹裡一句都沒有 —— '
+                       '不是模型沒排，是這一頁找錯欄位了（要的是 lines）'
+                       '</p>')
+
+    # 各種 role 用了幾句。**詞彙先分細再併，而「該併哪幾種」要拿數據決定**
+    # —— 這張圖就是那份數據，所以它要在畫面上，不是只在終端機捲過去。
+    tally: dict[str, int] = {}
+    for one in lines:
+        key = str(one.get("role") or "？")
+        tally[key] = tally.get(key, 0) + 1
+    dated = [one for one in lines
+             if re.search(r"(西元前\s*)?\d{3,4}\s*年|\b\d{4}\b",
+                          str(one.get("point") or ""))]
+    bar = ("<table><tr><th>role</th><th>幾句</th><th></th></tr>" + "".join(
+        f"<tr><td>{esc(k)}</td><td class=num>{v}</td>"
+        f"<td style='color:#b4530f'>{'▮' * v}</td></tr>"
+        for k, v in sorted(tally.items(), key=lambda x: -x[1])) + "</table>")
+
+    rows = [f"<p class=note>{len(lines)} 句，其中 {len(dated)} 句的 point "
+            f"綁著一個年份（{len(dated) / len(lines):.0%}）"
+            f"　<span class=tag>年份那幾句標成橘色</span></p>",
+            "<table><tr><th>#</th><th>role</th><th>這一句要讓觀眾知道什麼</th>"
+            "<th>引哪則</th></tr>"]
+    for at, one in enumerate(lines, 1):
+        point = str(one.get("point") or "")
+        hit = one in dated
+        rows.append(
+            f"<tr><td class=num>{at}</td>"
+            f"<td class='who role'>{esc(one.get('role', ''))}</td>"
+            f"<td{' class=warn' if hit else ''}>{esc(point)}</td>"
+            f"<td class=num style='color:#6b7280'>"
+            f"{esc('、'.join(str(x) for x in (one.get('from') or [])))}</td>"
+            f"</tr>")
+    return head + bar + "".join(rows) + "</table>"
 
 
 def _board(story: str) -> str:
@@ -379,6 +546,17 @@ def build(story: str) -> Path:
            "'details').forEach(d=>d.open=false);return false\">"
            '全部收起</a></p>',
            _arch()]
+
+    # **對不上步驟的問答要出聲。** `_asks()` 照 task 名分組，而底下只走
+    # `paths.STEPS` —— 分組的 key 不在那張表裡的話，那幾趟就從頁面上安靜
+    # 消失。這已經發生過一次（parts 和 narrate 漏在 `BELONGS` 外面，
+    # 而那正是「這一句為什麼變成這樣」最關鍵的兩趟）。
+    astray = [k for k in asks if k not in paths.STEPS]
+    if astray:
+        out.append(
+            f'<p class="note warn">這幾趟問答對不到任何步驟，'
+            f'所以沒有顯示：{esc("、".join(astray))}'
+            f'　—— 在 <code>look.BELONGS</code> 補一行</p>')
 
     for at, name in enumerate(paths.STEPS):
         done = paths.done(story, name)

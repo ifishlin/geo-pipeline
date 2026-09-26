@@ -1,43 +1,40 @@
-"""骨幹 → 台詞。**兩支 prompt，兩件事。**
+"""骨幹 → 台詞。**三支 prompt，三件事。**
 
     python3 -m geo.pipe.make <題目> script
     python3 -m geo.pipe.make <題目> script --plain    只寫旁白，不配角色
 
 ```
-script.md   寫旁白稿。一個聲音從頭講到尾，故事要完整
-parts.md    挑幾句改成角色講。**取代，不是追加**
+script.md    寫旁白稿。一個聲音從頭講到尾，故事本身要完整
+parts.md     角色插進反應。**追加，不是取代** —— 旁白一個字都不動
+narrate.md   接成一段話：接詞、語助詞，把插進去那幾個接縫磨順
 ```
 
-## 為什麼分開
+## 角色不准碰劇情
 
-第一版一支 prompt 同時要「講好故事」和「有對白」，寫出來是這樣：
+第一版一支 prompt 同時要「講好故事」和「有對白」，旁白先把事實講完、
+角色再用第一人稱複述一次 —— 那是註解，不是對話。所以第二版改成**取代**：
+角色要講話就從旁白手上拿走那一句，句數不變，重複在結構上不可能發生。
 
-```
-旁白    1814 年，挪威被劃給瑞典。
-丹麥    格陵蘭歸我。
-格陵蘭  一場跟我無關的敗仗，我換了主人。
-```
+而取代治的其實是另一個病：「把插話拿掉，剩下的故事就不成立」。那個病
+現在由第一支治了 —— 它被要求寫出一份「一句都不改也講得通」的旁白稿，
+而且真的寫得出來。**同一個病治兩次，第二道就只是在拆第一道的成果。**
 
-**旁白先把事實講完，角色再用第一人稱複述一次。** 資訊已經到了，然後有
-個聲音進來把同一件事再說一遍 —— 那就是「突兀」的來源：對白不是事件，
-是註解。
+量出來的證據：11 句角色台詞跟被它取代的那句旁白，字面相似度中位數 84%，
+八句只是把「它」換成「我」。角色沒帶進任何旁白說不出來的東西，只是換了
+名牌的旁白；而故事那條線被切了八刀（使用者的說法：破碎感）。
 
-分開之後，第二支回的是「第 12 句改成丹麥講、內容改寫成這樣」，程式做
-替換。句子總數不變，所以**重複在結構上不可能發生**。
+所以現在角色只做四件事 —— 附和、吐槽、自嘲、用自己的語氣重申一次
+（`rules.json` 的 `parts.kinds`），**每一種都是反應，沒有一種推進劇情**。
 
-## 四道門是拿參考片量出來的
+「旁白稿一個字都沒被動到」不是一道門，是這段程式做不到的事：
+`says` 那一列只會被插入，不會被指派。**做不到比擋得住可靠。**
 
-```
-                參考片   訂的範圍
-角色佔比         0.39    0.25–0.45
-群數             6       3–8
-最長一群         4       ≤4
-最長旁白連續     6       ≥4
-```
+## 反應句的秒數是預付的
 
-參考片四道全過，我們第一版三道不過（0.64／14 群／最長旁白 2 句）。
-
-**訂一組連要模仿的東西都過不了的門，是沒有意義的。**
+一句反應要 0.50（行）＋ 0.425（句號）＋ 字數/8.22，八句大約 17 秒。
+不先從旁白那邊扣掉的話，第三趟必撞長度門，而撞的時候分不出是內容太多
+還是反應太多。所以 `rows_for()` 先扣 `react_cost()` 再算旁白排幾句 ——
+**骨幹排幾句、旁白寫幾個字、插幾句反應，是同一條算式的三個出口。**
 """
 from __future__ import annotations
 
@@ -74,7 +71,25 @@ PER_END = 0.425
 
 # 一行幾個字、幾個句號。**一行一句** —— 多一個句號就多 0.425 秒，
 # 而那些秒數本來可以拿去講話。
-PER_ROW = 21
+#
+# **21 寫出來是五言絕句。** 2026-09-26 使用者逐句指出九種破法，全部是
+# 省字省出來的：
+#
+#     島也能用買的？那上面的人呢。      問題沒問完
+#     管它叫綠地，騙人來。              騙誰？來幹嘛？
+#     這島四千五百年前就有人。          哪種人？觀眾以為是外星人
+#     他們向挪威國王低頭                「他們」沒有先行詞
+#     它沒動，主人換了                  「沒動」不是話，是壓縮出來的詞
+#     三百年後丹麥來找他們，留下努克      努克是什麼？第一次出現就當已知
+#
+# 一句 20 個字塞得下「誰做了什麼」，塞不下「對誰做、為什麼、結果怎樣」。
+# 而省字的時候最容易挑到最文的那個詞（「頭一次歸別人」），所以連文言腔
+# 都是這一格造成的。
+#
+# 改成 30。**句數和內容都不動，讓片子變長** —— 拿句數去換字數等於少講
+# 故事，而使用者說「時間長短不是重點，故事講好才是重點」。
+# 26 句 × 20 字（116 秒）→ 26 句 × 29 字（148 秒）。
+PER_ROW = 30
 PER_ROW_ENDS = 1
 
 HOLDS = 10.0
@@ -90,11 +105,21 @@ HERO_LEAST = 0.35
 # 主角最多連續幾行不出現。比例是弱的代理，「整段消失」才是要擋的。
 HERO_GONE_MOST = 5
 
-# 角色對白的形狀，四個數字都拿參考片驗過（見模組說明）。
-SHARE = (0.25, 0.45)
-RUNS = (3, 8)
-RUN_MOST = 4
-NARRATION_RUN = 4
+# 反應句的秒數要**先付**。
+#
+# 一句反應不是免費的：它有自己的行開銷（0.50）、自己的句號（0.425），
+# 再加上它自己的字。八句大約十七秒 —— 那是 116 秒裡的 15%，不先從旁白
+# 那邊扣掉的話，narrate 那一趟必撞長度門，而撞的時候分不出是內容太多
+# 還是反應太多（`talk.room` 當初就是為了這件事才存在的）。
+#
+# 反應句一句幾個字是估的（上限 14，實際多半八到十二），估錯的方向是
+# 「旁白少寫幾個字」，不是「片子超長」。
+REACT_WORDS = 14
+
+
+def react_cost(many: int) -> float:
+    """這麼多句反應吃掉幾秒。字、行、句號都算。"""
+    return many * (REACT_WORDS / RATE + PER_LINE + PER_END)
 
 DATE = re.compile(r"\d+\s*年(\s*\d+\s*月)?(\s*\d+\s*日)?")
 
@@ -131,8 +156,18 @@ def _ends(text: str) -> int:
     return len(re.findall(r"[。！？：；]", text))
 
 
+def reacts_for() -> int:
+    """預計會插進幾句反應。
+
+    **取上下限的中間。** 拿上限算的話實際少插幾句，片子就偏短；拿下限
+    算就偏長。中間值兩邊的誤差一樣大，而秒數的門容許 ±6%。
+    """
+    got = _rules()["parts"]
+    return round((got["least"] + got["most"]) / 2)
+
+
 def rows_for(aim: float) -> int:
-    """這麼多秒放得下幾句。
+    """這麼多秒放得下幾句**旁白**。
 
     **只有這一支算得出這個數字。** 骨幹排幾句和台詞的字數額度是同一件事
     的兩面：`秒 = 字/RATE + 句×PER_LINE + 停`，而 `字 = 句×PER_ROW`。
@@ -140,7 +175,7 @@ def rows_for(aim: float) -> int:
     而那個句數在字數額度下根本放不下，多出 13 秒。
     """
     per = PER_ROW / RATE + PER_LINE + PER_ROW_ENDS * PER_END
-    return max(6, round((aim - HOLDS) / per))
+    return max(6, round((aim - HOLDS - react_cost(reacts_for())) / per))
 
 
 def budget(aim: float, rows: int | None = None) -> int:
@@ -151,8 +186,95 @@ def budget(aim: float, rows: int | None = None) -> int:
     多出四秒。差不多，但沒有理由差。
     """
     many = rows_for(aim) if rows is None else rows
-    cost = many * (PER_LINE + PER_ROW_ENDS * PER_END)
+    cost = (many * (PER_LINE + PER_ROW_ENDS * PER_END)
+            + react_cost(reacts_for()))
     return max(50, round((aim - HOLDS - cost) * RATE))
+
+
+# 角色講話的樣子。**這一條沒寫進 prompt，所以它沒發生** —— 量出來
+# 八句只有兩句有「我」。角色不用第一人稱，就只是換了嗓子的旁白。
+SELF = re.compile(r"我|咱|俺")
+
+# 專有名詞長什麼樣：兩個字以上的人名地名國名。**用來擋反應句夾帶新東西**
+# —— 放寬字數上限之後，「不准推劇情」不能再靠短來保證了。
+NAMED = re.compile(r"[一-鿿]{2,}(?:國|島|群島|王國|洲|市|灣|海|山|"
+                   r"共同體|聯邦|王室)|[A-Z][a-z]+")
+
+
+def check_parts(where: dict[int, tuple[str, str, str]],
+                react: dict[str, Any],
+                said: list[str] | None = None) -> list[str]:
+    """反應句的形狀。回一串說得出口的問題。
+
+    **抽成一支是為了餵得進違規。** 這幾道門一條都還沒被真的觸發過，而
+    這個專案有過一道門自己就帶著它要擋的錯、靜默放行了一整輪 —— 抓到是
+    因為真的去製造一次違規。`_parts.py` 就是那件事。
+    """
+    bad: list[str] = []
+    if not react["least"] <= len(where) <= react["most"]:
+        bad.append(f"插了 {len(where)} 句反應"
+                   f"（要 {react['least']}–{react['most']} 句）")
+    # **反應句不准帶阿拉伯數字。** 新事實幾乎都是靠數字進來的，而角色
+    # 一旦負責交代一件旁白沒講過的事，故事那條線就斷在它那裡。
+    # 中文數字（「四百年」）放行 —— 那多半是在複述旁白剛講過的。
+    digits = [(at, x[1]) for at, x in where.items() if re.search(r"\d", x[1])]
+    if digits:
+        bad.append("這幾句反應裡有數字，那是在講新的事實，不是在反應：\n    "
+                   + "\n    ".join(f"{at}　{one}" for at, one in digits[:4]))
+    # **短是結構保證，不是風格要求。** 十四個字塞不進一個年份加一個因果。
+    longs = [(at, x[1]) for at, x in where.items()
+             if _han(x[1]) > react["words_most"]]
+    if longs:
+        bad.append(f"這幾句反應超過 {react['words_most']} 個字：\n    "
+                   + "\n    ".join(f"{at}　{one}（{_han(one)} 字）"
+                                   for at, one in longs[:4]))
+    spots = sorted(where)
+    tight = [(a, b) for a, b in zip(spots, spots[1:])
+             if b - a < react["gap_least"]]
+    if tight:
+        bad.append(
+            f"這幾對插入點隔太近（至少要隔 {react['gap_least']} 句旁白）："
+            + "　".join(f"{a}→{b}" for a, b in tight[:4]))
+
+    # **角色講話要用第一人稱。** 量出來 8 句只有 2 句有「我」—— 而
+    # `parts.md` 根本沒寫這一條。沒說的事不會發生。
+    flat = [(at, x[1]) for at, x in where.items() if not SELF.search(x[1])]
+    if flat:
+        bad.append("這幾句沒有第一人稱（我／咱），聽起來還是旁白：\n    "
+                   + "\n    ".join(f"{at}　{one}" for at, one in flat[:4]))
+
+    # **一個角色不能包辦。** 主角是受害的那一個，而受害者複述自己被害
+    # 不可能好笑；有意思的那兩句都是加害者若無其事講出自己的邏輯。
+    tally: dict[str, int] = {}
+    for name, _, _ in where.values():
+        tally[name] = tally.get(name, 0) + 1
+    cap = react.get("one_share_most", 0.5)
+    hog = [(k, v) for k, v in tally.items() if v > len(where) * cap]
+    if hog:
+        bad.append(
+            "、".join(f"「{k}」講了 {v}/{len(where)} 句" for k, v in hog)
+            + f"（一個角色最多 {cap:.0%}）—— 一個人講完就變成訴苦，"
+              "而落差要靠別人講出來")
+    if len(tally) < 1 + int(react.get("self_least", 1)):
+        bad.append(f"只有 {len(tally)} 個角色開口"
+                   f"（至少要 {1 + int(react.get('self_least', 1))} 個）")
+
+    # **放寬字數之後，「不推劇情」改用這一道守。** 原本靠 14 字的上限保證
+    # 塞不進新東西，而那也讓笑話塞不進鋪陳。改成：反應句提到的專有名詞，
+    # 旁白必須已經講過。
+    if said is not None:
+        whole = "".join(said)
+        smuggled = []
+        for at, (_, text, _) in where.items():
+            fresh = [x for x in NAMED.findall(text) if x not in whole]
+            if fresh:
+                smuggled.append((at, text, fresh))
+        if smuggled:
+            bad.append(
+                "這幾句反應帶進了旁白沒講過的名字，那是在推劇情：\n    "
+                + "\n    ".join(f"{at}　{one}　（{'、'.join(x)}）"
+                                for at, one, x in smuggled[:4]))
+    return bad
 
 
 def shape_of(who: list[str], narrator: str) -> dict[str, Any]:
@@ -203,13 +325,22 @@ def run(story: str, say=print, again: bool = False, plain: bool = False,
     寫得好、只是某一句改成角色講的時候寫壞了，沒有理由把好的那一份丟掉。
     """
     paths.insist(story, "script")
+    # **誰可以講話，先問過。** 沒有 cast 就讓模型從事實清單挑（`cast.py`）；
+    # 已經有了就原樣用 —— 檔案說了算，改 story.json 就算數。
+    #
+    # 不做成獨立一步，是因為那會把 `2-spine` 之後的檔名全部往後推，而
+    # 改檔名是動到「身分」，每一個讀取點都要重新確認。它產出的是
+    # story.json 的一個欄位，不是一份新的產物。
+    from geo.pipe import cast as cast_module
+    cast_module.settle(story, say)
     spec = story_module.load(story)
     bones = paths.load(story, "spine")
     facts = paths.load(story, "facts")
     cast = story_module.cast_of(spec)
     aim = float(spec.get("seconds") or 116)
     plan = bones["lines"]
-    talk = _rules()["talk"]
+    got_rules = _rules()
+    talk, react = got_rules["talk"], got_rules["parts"]
     # **字數額度先留一塊給「接起來」那一步。** 不先留的話它每次都會撞
     # 長度的門，而撞的時候分不出是內容太多還是接詞太多。
     full = budget(aim, len(plan))
@@ -375,49 +506,90 @@ def run(story: str, say=print, again: bool = False, plain: bool = False,
              or parts_at.stat().st_mtime < raw_at.stat().st_mtime)
     if again or parts or stale:
         listing = "\n".join(f"{at:>3}　{one}" for at, one in enumerate(says))
-        folk = "\n".join(f"- **{name}**" for name in cast if name != narrator)
+        # **把每個角色的立場一起送過去。** `cast` 那一步已經寫出來了
+        # （「它不覺得自己在搶，它覺得自己只是把一件早該屬於它的東西辦好
+        # 手續」），而上一版只送名字 —— 於是寫反應的時候沒有任何東西告訴
+        # 模型這個角色該用什麼口氣。**產出來的東西沒有被下游讀到，等於
+        # 沒有產出。**
+        stance = spec.get("cast_why") or {}
+        folk = "\n".join(
+            f"- **{name}**" + (f"　{stance[name]}" if name in stance else "")
+            for name in cast if name != narrator)
+        kinds = "\n".join(f"**{name}** —— {one['what']}\n  例：{one['eg']}"
+                          for name, one in react["kinds"].items())
         got2 = ask.as_json(ask.send(story, "parts", ask.prompt_of(
             "parts.md", cast=folk, lines=listing, rows=len(says),
-            least_lines=round(len(says) * SHARE[0]),
-            most_lines=round(len(says) * SHARE[1]),
-            least_runs=RUNS[0], most_runs=RUNS[1]), say))
+            kinds=kinds, least=react["least"], most=react["most"],
+            words_most=react["words_most"], gap=react["gap_least"],
+            one_most=int(react["most"] * react.get("one_share_most", .5))),
+            say))
         parts_at.write_text(json.dumps(got2, ensure_ascii=False, indent=1),
                             encoding="utf-8")
     else:
         say(f"沿用 {parts_at.name}")
         got2 = json.loads(parts_at.read_text(encoding="utf-8"))
 
+    # **插進去，不是蓋掉。** 旁白那一列從頭到尾沒有被指派過，所以
+    # 「旁白稿一個字都沒被動到」不是一道門，是這段程式做不到的事 ——
+    # 而做不到比擋得住可靠。
+    #
+    # 上一版是 `who[at], says[at] = name, text`：角色要講話就得從旁白
+    # 手上拿走一句，於是那一句的劇情跟著換了嘴。量出來 11 句裡 8 句只是
+    # 「它」換成「我」—— 角色沒帶進任何東西，而故事那條線被切了八刀。
+    where: dict[int, tuple[str, str, str]] = {}
     for one in (got2.get("parts") or []):
-        at = int(one.get("at", -1))
+        at = int(one.get("after", -1))
         name = str(one.get("who") or "")
+        kind = str(one.get("kind") or "")
         text = str(one.get("say") or "").strip()
         if not 0 <= at < len(says):
-            raise SystemExit(f"要改第 {at} 句，而只有 {len(says)} 句")
+            raise SystemExit(
+                f"要插在第 {at} 句後面，而旁白只有 {len(says)} 句")
+        if at in where:
+            raise SystemExit(
+                f"第 {at} 句後面插了兩句（「{where[at][1]}」和「{text}」）"
+                f"—— 一個位置只能插一句，連兩句就變成兩人對談，"
+                f"旁白那條線被切斷。加 --parts 重問")
         if name not in cast or name == narrator:
             raise SystemExit(
-                f"第 {at} 句要交給「{name}」，而可以講話的只有："
+                f"「{name}」不是可以講話的角色，可以的有："
                 + "、".join(x for x in cast if x != narrator))
+        if kind not in react["kinds"]:
+            raise SystemExit(
+                f"不認得的反應：「{kind}」。可以用的是 "
+                + "、".join(react["kinds"]))
         if not text:
-            raise SystemExit(f"第 {at} 句沒有改寫後的內容")
-        who[at], says[at] = name, text
+            raise SystemExit(f"第 {at} 句後面那句是空的")
+        where[at] = (name, text, kind)
 
-    shape = shape_of(who, narrator)
-    bad = []
-    if not SHARE[0] <= shape["share"] <= SHARE[1]:
-        bad.append(f"角色佔 {shape['share']:.0%}"
-                   f"（要 {SHARE[0]:.0%}–{SHARE[1]:.0%}）")
-    if not RUNS[0] <= shape["runs"] <= RUNS[1]:
-        bad.append(f"分成 {shape['runs']} 群（要 {RUNS[0]}–{RUNS[1]} 群）")
-    if shape["run_most"] > RUN_MOST:
-        bad.append(f"最長一群 {shape['run_most']} 句（最多 {RUN_MOST}）")
-    if shape["narration_run"] < NARRATION_RUN:
-        bad.append(f"最長旁白連續只有 {shape['narration_run']} 句"
-                   f"（至少 {NARRATION_RUN}）—— 沒有一段是純粹在講故事的")
+    bad = check_parts(where, react, says)
     if bad:
-        raise SystemExit(
-            "對白的形狀不對：\n  " + "\n  ".join(bad)
-            + "\n\n（參考片：佔 39%、6 群、最長一群 4 句、最長旁白連續 6 句）"
-              "\n加 --again 重問")
+        raise SystemExit("反應句的形狀不對：\n  " + "\n  ".join(bad)
+                         + "\n加 --parts 重問")
+
+    # 插進去。停頓跟著那一群走 —— 反應講完才停，不是旁白講完就停。
+    grown_says: list[str] = []
+    grown_who: list[str] = []
+    grown_holds: dict[int, float] = {}
+    if -1 in holds_after:
+        grown_holds[-1] = holds_after[-1]
+    for at, (name, text) in enumerate(zip(who, says)):
+        grown_says.append(text)
+        grown_who.append(name)
+        if at in where:
+            grown_who.append(where[at][0])
+            grown_says.append(where[at][1])
+        if at in holds_after:
+            grown_holds[len(grown_says) - 1] = holds_after[at]
+    react_said = sum(_han(x[1]) for x in where.values())
+    before_parts = says
+    who, says, holds_after = grown_who, grown_says, grown_holds
+    # **基準要跟著插入一起動。** `ends` 原本數的是 26 句旁白的句號，而
+    # 插完之後有 33 句 —— 第三趟那道「不該多切出句號」的門拿 33 去比 26，
+    # 多出來的七個其實是七句反應自己的句號，它一個都沒多切。
+    # 誤報的門會叫人去修沒有壞的東西，而它退回去重問一次要三分鐘。
+    ends = sum(_ends(one) for one in says)
+    shape = shape_of(who, narrator)
 
     # **中文稿裡不要有拉丁字母。** 「我讓 Hans Egede 回島上」——
     # zh-TW 的合成器唸外文人名會唸成一串音節，而它照樣唸得出來、
@@ -429,31 +601,44 @@ def run(story: str, say=print, again: bool = False, plain: bool = False,
             + "\n  ".join(latin[:5])
             + "\n\n人名用中譯，或者不提名字。加 --again")
 
-    fresh = sum(_han(one) for one in says)
-    if abs(fresh - said) > said * 0.15:
+    # **反應句的字數額度是先付過的**（`react_cost`），所以這裡比的是
+    # 「有沒有超支」，不是「有沒有改長度」—— 上一版那道門量的是改寫，
+    # 而現在旁白根本不會被改寫，它永遠不會叫。不會叫的門跟沒有門一樣。
+    paid = reacts_for() * REACT_WORDS
+    if react_said > paid * 1.35:
         raise SystemExit(
-            f"改寫之後從 {said} 字變成 {fresh} 字 —— 改的是說法，"
-            f"不是長度。加 --again")
+            f"{len(where)} 句反應共 {react_said} 個字，預付的額度是 {paid}"
+            f"（{reacts_for()} 句 × {REACT_WORDS} 字，容許到 "
+            f"{round(paid * 1.35)}）—— 超出的部分會讓片子變長。\n"
+            f"  反應句是應一聲，不是再講一段。加 --parts 重問")
 
+    fresh = sum(_han(one) for one in says)
     (paths.home(story) / "3-script.parts.tsv").write_text(
         "\n".join(_rows(who, says, holds_after)) + "\n", encoding="utf-8")
-    say(f"\n角色 {sum(1 for x in who if x != narrator)} 句／{len(says)} 句"
-        f"（{shape['share']:.0%}）　{shape['runs']} 群　"
-        f"最長一群 {shape['run_most']}　最長旁白連續 {shape['narration_run']}")
+    say(f"\n插了 {len(where)} 句反應　旁白 {len(before_parts)} 句不動　"
+        f"共 {len(says)} 句（角色佔 {shape['share']:.0%}）")
+    for name, one in react["kinds"].items():
+        got_ = sum(1 for x in where.values() if x[2] == name)
+        say(f"  {name:<4}{got_:>3}　{'▮' * got_ if got_ else '—'}")
     for name in cast:
-        say(f"  {name:<5}{sum(1 for x in who if x == name):>3} 句")
-    say(f"  改寫後 {fresh} 字（原本 {said}）")
+        if name != narrator:
+            say(f"  {name:<5}{sum(1 for x in who if x == name):>3} 句")
+    say(f"  反應 {react_said} 字（預付 {paid}）　"
+        f"合計 {fresh} 字（旁白 {said}）")
 
     # —— 第三支：接成一段話 ————————————————————————————
     talk_at = paths.home(story) / "3-narrate.raw.json"
     stale = (paths.raw_stale(story, talk_at, "script", ("narrate.md",))
              or talk_at.stat().st_mtime < parts_at.stat().st_mtime)
+    # 這一趟的上限要含反應句已經花掉的字 —— `full` 是旁白那條線的額度，
+    # 反應句的秒數是另外預付的。不加回來的話它會被自己沒花的錢擋下來。
+    ceiling = full + react_said
     if again or narrate or stale:
         listing = "\n".join(f"{at:>3}　{w}　{s}"
                              for at, (w, s) in enumerate(zip(who, says)))
         got3 = ask.as_json(ask.send(story, "narrate", ask.prompt_of(
-            "narrate.md", lines=listing, now=fresh, most=full,
-            room=full - fresh, fillers="、".join(talk["fillers"]),
+            "narrate.md", lines=listing, now=fresh, most=ceiling,
+            room=ceiling - fresh, fillers="、".join(talk["fillers"]),
             every=talk["every"],
             most_per_line=talk["most_per_line"]), say))
         talk_at.write_text(json.dumps(got3, ensure_ascii=False, indent=1),
@@ -509,9 +694,9 @@ def run(story: str, say=print, again: bool = False, plain: bool = False,
             f"三趟做完唸出來 {whole:.0f} 秒，目標 {aim:.0f}"
             f"（容許 {aim * (1 - SLACK):.0f}–{aim * (1 + SLACK):.0f}）"
             f"　{grown} 字、{len(says)} 行、{grown_ends} 個句號")
-    if grown > full * 1.06:
-        bad.append(f"接完之後 {grown} 字，上限 {full}"
-                   f"（原本 {fresh}，額度 {full - fresh}）"
+    if grown > ceiling * 1.06:
+        bad.append(f"接完之後 {grown} 字，上限 {ceiling}"
+                   f"（原本 {fresh}，額度 {ceiling - fresh}）"
                    f"—— 接詞和語助詞的字，不是新內容的字")
     if bad:
         raise SystemExit("接起來那一步不合規矩：\n  " + "\n  ".join(bad)
@@ -520,7 +705,7 @@ def run(story: str, say=print, again: bool = False, plain: bool = False,
     paths.save(story, "script", "\n".join(_rows(who, says, holds_after)) + "\n")
     changed = sum(1 for a, b in zip(before, says) if a != b)
     say(f"\n接起來　改寫 {changed}/{len(says)} 句　"
-        f"{grown} 字（原本 {fresh}，上限 {full}）")
+        f"{grown} 字（原本 {fresh}，上限 {ceiling}）")
     say(f"  語助詞 {with_}/{len(says)} 句（至少 {need}）　"
         f"句號 {grown_ends} 個　"
         f"估計 {guess(grown, len(says), total_hold, grown_ends):.0f} 秒")

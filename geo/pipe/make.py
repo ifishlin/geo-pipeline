@@ -76,6 +76,26 @@ def run(story: str, only: str = "", again: bool = False,
     if story not in paths.stories():
         raise SystemExit(f"沒有這個題目：{story}。"
                          f"有的是：{'、'.join(paths.stories()) or '（一個都沒有）'}")
+    try:
+        _walk(story, only, again, draft, plain)
+    finally:
+        # **過程頁是流程的一步，不是事後想起來才去產的東西。**
+        #
+        # 這一頁的用途就是「這一趟到底送出什麼、收回什麼」，而那正好是
+        # **跑掛的時候最想看的東西** —— 所以放在 finally，門擋下來也要產。
+        # 靠人記得去跑 `look` 的話，最需要它的那幾次剛好都沒有。
+        from geo.pipe import look
+        try:
+            page = look.build(story)
+            print(f"　過程頁：{page.relative_to(paths.ROOT)}")
+        except Exception as bad:  # noqa: BLE001
+            # **不要安靜吞掉。** 這裡吞掉的話，頁面停在上一版而畫面上
+            # 什麼都沒說，看的人會拿舊的當新的。
+            print(f"⚠ 過程頁產不出來（{type(bad).__name__}：{bad}）")
+
+
+def _walk(story: str, only: str, again: bool, draft: bool,
+          plain: bool) -> None:
     steps = [only] if only else list(paths.STEPS)
     for name in steps:
         if not only and paths.done(story, name):
@@ -104,6 +124,15 @@ def run(story: str, only: str = "", again: bool = False,
             if bad:
                 raise SystemExit("程式裡有不存在的名字，先修再跑：\n  "
                                  + "\n  ".join(bad[:8]))
+            # **門自己也要被檢查。** 反應句那組門是拿種進去的違規驗的
+            # （`geo/checks/_parts.py`），毫秒的事；不接在這裡的話，改壞
+            # 一道門的下一趟會花十分鐘問模型，然後安靜地放行。
+            from geo.checks import _parts
+            import contextlib, io
+            with contextlib.redirect_stdout(io.StringIO()) as quiet:
+                if _parts.main():
+                    raise SystemExit("反應句那組門壞了：\n"
+                                     + quiet.getvalue())
         print(f"\n{'─' * 8} {name} {'─' * 8}")
         began = time.time()
         call = _step(name)

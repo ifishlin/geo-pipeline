@@ -30,6 +30,7 @@
 from __future__ import annotations
 
 import json
+import math
 import re
 import sys
 from typing import Any
@@ -116,8 +117,23 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
     # **句數問寫台詞那一支，不要自己算。** 第一版這裡寫 `aim / 2.8`，
     # 排出 43 句 —— 而那個句數在字數額度下放不下，寫出來 129 秒（目標 116）。
     # 同一個數字兩個地方各算一次，就會有一個是錯的。
-    from geo.pipe.script import rows_for
+    from geo.pipe.script import budget as script_budget, rows_for
     rows = rows_for(aim)
+    # **上下限算一次，門和 prompt 用同一份。** 只跟模型說「大約 30 句」而
+    # 門在 27–33，等於罰它不知道的規矩 —— 它排 34 句被退，退回去的訊息
+    # 才第一次告訴它真正的界線。
+    #
+    # **範圍從 ±12% 收到 ±6%，因為超排的代價不是「片子變長」。**
+    # 秒數是固定的，所以多排的那幾句是從**每一句的字數**裡出的：
+    #
+    #   26 句 → 一句寫得下 16.8 字
+    #   28 句 → 15.2 字      ← 落在舊範圍內，門不會叫
+    #   29 句 → 14.4 字
+    #
+    # 上一趟就是這樣：門容許 23–29，它排 28，於是寫台詞那一步要把 29 個
+    # 字的 point 壓成 15.2 字 —— 跑了四十分鐘沒寫出來。**門看得到句數，
+    # 看不到每一句被壓得多扁**，而那才是真正壞掉的東西。
+    fewest, most = math.ceil(rows * 0.94), math.floor(rows * 1.06)
 
     raw_at = paths.home(story) / "2-spine.raw.json"
     if again or paths.raw_stale(story, raw_at, "spine", ("spine.md",)):
@@ -129,6 +145,11 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
             "spine.md", title=spec["title"], ask=spec.get("ask", ""),
             hero=spec.get("hero", ""), roles=roles_table(roles),
             facts=listing, count=len(facts), rows=rows,
+            fewest=fewest, most=most,
+            per_row=f"{script_budget(aim, rows) * 0.82 / rows:.1f}",
+            per_row_most=f"{script_budget(aim, most) * 0.82 / most:.1f}",
+            aside_gone=int(got_shape.get("aside_gone_most", 5)),
+            refrain_most=int(got_shape.get("refrain_most", 10)),
             dated_most=f"{got_shape.get('dated_most', 0.3):.0%}",
             dated_rows=round(rows * got_shape.get("dated_most", 0.3))), say))
         raw_at.write_text(json.dumps(got, ensure_ascii=False, indent=1),
@@ -152,13 +173,33 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
         if not str(got.get(key) or "").strip():
             raise SystemExit(f"沒有寫 {key} —— {why}")
 
+    # **refrain 要是「幾個字」，不是一整句。** 寫台詞那一步要把它原封不動
+    # 用兩次，而**要模型把一整句話一字不差講兩次是機率，不是必然** ——
+    # 17 字那一份就只出現了一次，整趟（406 秒、$1.06）被退回。
+    #
+    # 前兩份能過是因為剛好短（「沒有人問過它」6 字、「沒有人問過格陵蘭」
+    # 8 字）。規則寫著「核心那幾個字」而沒有上限，靠的是運氣。
+    refrain_len = len(re.sub(r"[，。！？、：；…—\s]", "",
+                             str(got["refrain"])))
+    cap_refrain = int(got_shape.get("refrain_most", 10))
+    if refrain_len > cap_refrain:
+        raise SystemExit(
+            f"會回來的那句話有 {refrain_len} 個字（最多 {cap_refrain}）：\n"
+            f"  「{got['refrain']}」\n"
+            f"  這句話下一步要原封不動出現兩次，太長就複述不準。"
+            f"留核心那幾個字就好。加 --again 重排")
+
     # **句數是有代價的，不是隨意的。** 一句話的固定開銷是 1.06 秒，
     # 所以多排四句就少四秒可以講話 —— 而字數額度是照句數反推的，句子
     # 越多每一句越短，短到裝不下主角＋內容（量過：12 字的時候主角被擠掉）。
-    if not rows * 0.88 <= len(lines) <= rows * 1.12:
+    #
+    # **上下限算一次。** 第一版比的是 `rows*1.12`、印的是 `round(rows*1.12)`
+    # —— 30 句的片擋掉 34 句，然後告訴你「容許 26–34」。照著那句話改是改不
+    # 過的，而錯的是那句話不是那個門。成品對、報告錯也是錯。
+    if not fewest <= len(lines) <= most:
         raise SystemExit(
             f"排了 {len(lines)} 句，而 {aim:.0f} 秒放得下大約 {rows} 句"
-            f"（容許 {round(rows * 0.88)}–{round(rows * 1.12)}）。\n"
+            f"（容許 {fewest}–{most}）。\n"
             f"  一句話光是換氣就吃 1.06 秒，多排四句就少四秒可以講話，"
             f"而每一句會被壓到裝不下主角。加 --again 重排")
 
@@ -178,6 +219,25 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
             f"  把幾件事合併成一句，或者用「後來」「同一年」「三年後」"
             f"這種接得上上一句的說法。加 --again 重排")
 
+    # **下限擋不住「集中在前半段」。** 這一份三句吐槽落在第 4、11、14，
+    # 而第 15–26 句 —— 最後十二句，也就是川普、關稅、簽約那一整段，觀眾
+    # 最有感的地方 —— 一句態度都沒有。門數到 3 ≥ 2 就放行了。
+    #
+    # 數量和分布是兩件事，跟主角那道門（`HERO_GONE_MOST`）同一個形狀：
+    # 「整篇提到幾次」和「有沒有一整段消失」要分開問。結尾之後不算，
+    # 因為收尾本來就不吐槽。
+    gone = most_gone = 0
+    for one in lines:
+        gone = 0 if one["role"] == "吐槽" else gone + 1
+        most_gone = max(most_gone, gone)
+    cap_gone = int(got_shape.get("aside_gone_most", 5))
+    if most_gone > cap_gone:
+        raise SystemExit(
+            f"有一段連續 {most_gone} 句沒有「吐槽」（最多 {cap_gone}）"
+            f" —— 那一段整段沒有態度，只是在推進劇情。\n"
+            f"  吐槽總共 {sum(1 for x in lines if x['role'] == '吐槽')} 句，"
+            f"數量夠了，問題是**它們擠在一起**。加 --again 重排")
+
     bad = check(lines, roles)
     if bad:
         raise SystemExit("骨幹的形狀不對：\n  " + "\n  ".join(bad)
@@ -190,9 +250,14 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
     kinds = [str(one["role"]) for one in lines]
     say(f"\n{len(lines)} 句　{len(dated)} 句綁年份"
         f"（{len(dated) / len(lines):.0%}，上限 {cap:.0%}）")
-    say(f"  轉：{body['turn'][:60]}")
+    # 截斷要看得出是截斷。沒有那三個點的話，「…到了今天，」讀起來像模型
+    # 寫到一半停了 —— 而報告看起來壞掉，跟東西真的壞掉一樣會浪費人去查。
+    def _cut(text: str, most: int) -> str:
+        return text if len(text) <= most else text[:most] + "…"
+
+    say(f"  轉：{_cut(body['turn'], 60)}")
     say(f"  會回來的那句：{body['refrain']}")
-    say(f"  收：{body['ending'][:56]}")
+    say(f"  收：{_cut(body['ending'], 56)}")
     say("")
     # **每次都印各種用了幾句。** 詞彙先分細再併，而「該併哪幾種」要拿
     # 數據決定 —— 一次都沒被用過的那幾種，累積幾支片就看得出來。
