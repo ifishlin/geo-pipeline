@@ -1,29 +1,29 @@
 {
-  "_comment": "可以用的聲音。一個題目的 cast 從這裡挑，不自己寫音色名字 —— 寫在故事裡的話，四支片就有四份，而改了一份其他三份不會跟著動。\n\nzh-TW 總共只有三個音色（HsiaoChen 女、HsiaoYu 女、YunJhe 男），四個以上的角色就得借 zh-CN，腔調聽得出來。借的那幾個標了 borrowed，`cast` 用到的時候會在報告裡說一聲 —— 不是錯，是要知道。\n\npitch 不是挑的，是量出來的。HsiaoChen 和 HsiaoYu 都是 198~202 Hz，同一個音域，不調的話在耳朵裡是同一個人，而 Azure 回成功、書籤全回來、每一格都對。`voice.py` 的 spread 門每次合成完重量一次，兩兩差不到 1.15 倍就叫。\n\nf0 那一格是實測的中位基頻（zh-TW-HsiaoChenNeural 唸 25 句量出來 198 Hz），加了 pitch 之後的值。換音色或改 pitch 之後要重量，門會告訴你對不對得上。",
-  "slots": {
-    "narrator": {
-      "voice": "zh-TW-HsiaoChenNeural",
-      "note": "頻道本來的旁白，女，台灣",
-      "f0": 198
-    },
-    "male-a": {
-      "voice": "zh-TW-YunJheNeural",
-      "pitch": "+8%",
-      "note": "男，台灣",
-      "f0": 131
-    },
-    "female-low": {
-      "voice": "zh-TW-HsiaoYuNeural",
-      "pitch": "-20%",
-      "note": "女，台灣，壓低才跟旁白分得開",
-      "f0": 159
-    },
-    "male-low": {
-      "voice": "zh-CN-YunjianNeural",
-      "pitch": "-20%",
-      "note": "男，大陸腔，借的。−8% 的時候量到 114 Hz，跟 male-a 的 130 只差 1.14 倍，門擋下來；−20% 拉到約 104",
-      "borrowed": true,
-      "f0": 104
-    }
+ "_comment": "可以用的聲音。一個題目的 cast 從這裡挑，不自己寫音色名字 —— 寫在故事裡的話，四支片就有四份，而改了一份其他三份不會跟著動。\n\nzh-TW 總共只有三個音色（HsiaoChen 女、HsiaoYu 女、YunJhe 男），四個以上的角色就得借 zh-CN，腔調聽得出來。借的那幾個標了 borrowed，`cast` 用到的時候會在報告裡說一聲 —— 不是錯，是要知道。\n\npitch 不是挑的，是量出來的。HsiaoChen 和 HsiaoYu 都是 198~202 Hz，同一個音域，不調的話在耳朵裡是同一個人，而 Azure 回成功、書籤全回來、每一格都對。`voice.py` 的 spread 門每次合成完重量一次，兩兩差不到 1.15 倍就叫。\n\nf0 那一格是實測的中位基頻（zh-TW-HsiaoChenNeural 唸 25 句量出來 198 Hz），加了 pitch 之後的值。換音色或改 pitch 之後要重量，門會告訴你對不對得上。",
+ "slots": {
+  "narrator": {
+   "voice": "zh-TW-HsiaoChenNeural",
+   "note": "頻道本來的旁白，女，台灣",
+   "f0": 198
+  },
+  "male-a": {
+   "voice": "zh-TW-YunJheNeural",
+   "pitch": "+12%",
+   "note": "男，台灣。**四個聲音要在一條線上排開，相鄰都差 1.15 倍以上** —— 調一格會擠到隔壁：+8% 量到 125，跟 male-low 的 109 只差 1.15；拉到 +20% 變 146，又跟 female-low 的 151 撞在一起。目標排法 194 / 160 / 132 / 108。",
+   "f0": 131
+  },
+  "female-low": {
+   "voice": "zh-TW-HsiaoYuNeural",
+   "pitch": "-15%",
+   "note": "女，台灣，壓低才跟旁白分得開。-20% 量到 151，跟拉高後的 male-a 太近，放寬到 -15% 往上讓一點。",
+   "f0": 159
+  },
+  "male-low": {
+   "voice": "zh-CN-YunjianNeural",
+   "pitch": "-20%",
+   "note": "男，大陸腔，借的。−8% 的時候量到 114 Hz，跟 male-a 的 130 只差 1.14 倍，門擋下來；−20% 拉到約 104",
+   "borrowed": true,
+   "f0": 104
   }
+ }
 }

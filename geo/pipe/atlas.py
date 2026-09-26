@@ -74,6 +74,18 @@ def run(story: str, say=print) -> dict[str, Any]:
     rows = voice_module.read_script(story)
     said = "　".join(text for who, text in rows if who != "停")
 
+    # **說話的人也是地方。**
+    #
+    # 掃的是台詞（第二欄），而「格陵蘭」三個字只出現在說話者那一欄 ——
+    # 於是整支片的主角在地圖上一次都不會出現，而且不報錯、不出聲。
+    # 這一支片就是這樣：掃到 7 個地方，沒有主角。
+    #
+    # 主角同理：它在稿子裡叫「它」「這島」（`hero_as`），全名可能一次都
+    # 沒寫。**它是這支片的主角，不該靠「稿子有沒有剛好寫到全名」。**
+    folk = [who for who, _ in rows if who not in ("停", "旁白")]
+    must = [one for one in ([str(spec.get("hero") or "")] + folk) if one]
+    said = "　".join([said, *dict.fromkeys(must)])
+
     seen = found_in(said, named, spots)
     extra = [one for one in (spec.get("places") or []) if one not in seen]
     unknown = [one for one in extra if one not in named and one not in spots]

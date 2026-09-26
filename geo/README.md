@@ -29,8 +29,9 @@ geo/refs/        參考片拆解和規格（三份 md）
 
 geo/README.md    這一份：整條路怎麼跑
 geo/MISTAKES.md  踩過的坑，29 條
-geo/HANDOVER.md  交接：現在停在哪、下一步做什麼
+geo/HANDOVER.md  交接：現在停在哪（快照，每次收工整份改寫）
                  （跟 `docs/HANDOVER.md` 同名不同目錄 —— 那是原本管線的）
+geo/TODO.md      待辦（累積的，做完劃掉不刪）
 ```
 
 **根目錄那幾個看起來像的，不是這一套的**，別搬進來：

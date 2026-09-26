@@ -32,6 +32,8 @@ from geo.pipe import paths
 # 隔壁的圖資在哪。**只有這一支用得到它**，而且只在建索引的時候。
 MAPS = paths.ROOT.parent / "Map_Animation" / "public" / "data"
 RAW = MAPS / "ne_50m_admin_0_countries.geojson"
+# 一級行政區（州、省、邦）。俄 85、美 56、印 36、印尼 33、中 31、巴西 27…
+STATES = MAPS / "ne_50m_admin_1_states_provinces.geojson"
 OUT = paths.GEO / "data" / "places.json"
 
 # 資料裡沒有、或叫法不一樣的別名。**一個一行，看得見**。
@@ -44,6 +46,22 @@ ALSO: dict[str, str] = {
     "歐盟": "_EU",
     "歐洲共同體": "_EEC",
     "北歐": "_NORDIC",
+    # 州省的簡稱。資料裡只有全名（「加利福尼亞州」），而稿子會寫「加州」。
+    # **代碼是查出來的，不是我記的** —— 第一版六個猜了三個錯，
+    # 而 ALSO 那道門（指向索引裡沒有的 id 就 raise）當場抓到。
+    "加州": "USA-3521",
+    "德州": "USA-3536",
+    "佛州": "USA-3542",
+    "阿拉斯加": "USA-3563",
+    "夏威夷": "USA-3517",
+    "西伯利亞": "_SIBERIA",
+    "斯堪地那維亞": "_SCANDINAVIA",
+    "斯堪的納維亞": "_SCANDINAVIA",
+    "巴爾幹": "_BALKANS",
+    "北約": "_NATO",
+    "東協": "_ASEAN",
+    "中東": "_MIDEAST",
+    "歐洲": "_EUROPE",
 }
 
 # 幾個「不是一個國家」的集合。列出成員，外框由成員合併算出來。
@@ -64,6 +82,49 @@ GROUPS: dict[str, dict[str, Any]] = {
     "_NORDIC": {
         "name": "北歐",
         "of": ["DNK", "NOR", "SWE", "FIN", "ISL"],
+    },
+    "_SCANDINAVIA": {
+        "name": "斯堪地那維亞",
+        "of": ["DNK", "NOR", "SWE"],
+    },
+    "_NATO": {
+        "name": "北約",
+        "of": ["ALB", "BEL", "BGR", "CAN", "HRV", "CZE", "DNK", "EST", "FIN",
+               "FRA", "DEU", "GRC", "HUN", "ISL", "ITA", "LVA", "LTU", "LUX",
+               "MNE", "NLD", "MKD", "NOR", "POL", "PRT", "ROU", "SVK", "SVN",
+               "ESP", "SWE", "TUR", "GBR", "USA"],
+    },
+    "_ASEAN": {
+        "name": "東協",
+        "of": ["BRN", "KHM", "IDN", "LAO", "MYS", "MMR", "PHL", "SGP",
+               "THA", "VNM"],
+    },
+    "_BALKANS": {
+        "name": "巴爾幹",
+        "of": ["ALB", "BIH", "BGR", "HRV", "GRC", "MNE", "MKD", "ROU",
+               "SRB", "SVN"],
+    },
+    "_MIDEAST": {
+        "name": "中東",
+        "of": ["BHR", "CYP", "EGY", "IRN", "IRQ", "ISR", "JOR", "KWT", "LBN",
+               "OMN", "PSX", "QAT", "SAU", "SYR", "TUR", "ARE", "YEM"],
+    },
+    # **「歐洲」不是一個國家，而稿子一定會寫到它。** 沒有這一筆的話它
+    # 安靜地不出現在畫面上 —— 這一支片就是這樣（掃到 6 個地名，漏掉歐洲）。
+    "_EUROPE": {
+        "name": "歐洲",
+        "of": ["ALB", "AND", "AUT", "BLR", "BEL", "BIH", "BGR", "HRV", "CYP",
+               "CZE", "DNK", "EST", "FIN", "FRA", "DEU", "GRC", "HUN", "ISL",
+               "IRL", "ITA", "LVA", "LIE", "LTU", "LUX", "MLT", "MDA", "MCO",
+               "MNE", "NLD", "MKD", "NOR", "POL", "PRT", "ROU", "SMR", "SRB",
+               "SVK", "SVN", "ESP", "SWE", "CHE", "UKR", "GBR"],
+    },
+    # 俄羅斯的亞洲部分。整個俄羅斯橫跨換日線，而「西伯利亞」指的是
+    # 烏拉山以東那一片 —— 用它自己的幾個聯邦區合併，不要用整個俄羅斯。
+    "_SIBERIA": {
+        "name": "西伯利亞",
+        "of": ["RUS"],
+        "box": [60.0, 50.0, 140.0, 73.0],
     },
 }
 
@@ -222,12 +283,53 @@ def main() -> None:
             "label": spot,
         }
 
+    # —— 州、省、邦 ——————————————————————————————————
+    #
+    # **隔壁本來就有這一份，我們一直沒接。** 後果是「加州」「西西里」
+    # 「西伯利亞的某個州」查不到，而查不到的下場是那個地方**安靜地不會
+    # 出現在畫面上** —— 不報錯、不出聲，只是地圖上少一塊。
+    #
+    # 一級行政區的外框直接用整塊（不挑主體、不長大）：它們沒有海外領土
+    # 的問題，而阿拉斯加、夏威夷這種本來就該是它自己。
+    if STATES.is_file():
+        many = 0
+        for one in json.loads(STATES.read_text(encoding="utf-8"))["features"]:
+            got = one["properties"]
+            key = str(got.get("adm1_code") or "")
+            said = str(got.get("name_zht") or "")
+            if not key or not said:
+                continue
+            try:
+                box = _bbox(one["geometry"])
+            except ValueError:
+                continue
+            out[key] = {
+                "name": said,
+                "name_en": str(got.get("name_en") or got.get("name") or ""),
+                "bbox": [round(x, 4) for x in box],
+                "bbox_all": [round(x, 4) for x in box],
+                "label": ([round(float(got["longitude"]), 4),
+                           round(float(got["latitude"]), 4)]
+                          if got.get("longitude") is not None else None),
+                "in": str(got.get("adm0_a3") or ""),
+            }
+            many += 1
+        print(f"州省 {many} 筆")
+    else:
+        print(f"⚠ 沒有州省那一份（{STATES.name}），只建到國家層級")
+
     for key, spec in GROUPS.items():
         boxes = [tuple(out[one]["bbox"]) for one in spec["of"] if one in out]
         if len(boxes) != len(spec["of"]):
             missing = [one for one in spec["of"] if one not in out]
             raise SystemExit(f"{key} 的成員查不到：{'、'.join(missing)}")
-        west, south, east, north = _merge(boxes)          # type: ignore[arg-type]
+        if spec.get("box"):
+            # **有些地區合併不出來。**「西伯利亞」是俄羅斯的一部分，而
+            # 俄羅斯橫跨換日線 —— 合併整個俄羅斯會得到「從歐洲到阿拉斯加」。
+            # 這種就寫死一個框，而且要寫得出理由（見那一筆的註解）。
+            west, south, east, north = spec["box"]
+        else:
+            west, south, east, north = _merge(boxes)      # type: ignore[arg-type]
         out[key] = {"name": spec["name"], "name_en": key.lstrip("_"),
                     "bbox": [west, south, east, north],
                     "bbox_all": [west, south, east, north],
@@ -237,17 +339,39 @@ def main() -> None:
 
     # 中文名 → geoId。**一個中文名對到兩個 id 就 raise** —— 安靜地挑一個
     # 的話，畫面上會亮錯一塊地，而那不會報錯。
+    # **國家撞名要 raise，州省撞名只是丟掉那個名字。**
+    #
+    # 國家的中文名撞了，表示資料或處理有問題，該停下來看。州省不一樣：
+    # 294 個一級行政區裡就是會有同名的（俄羅斯有兩個「阿爾泰」），那是
+    # 世界本來的樣子，不是錯。
+    #
+    # 但**撞了的不能安靜挑一個** —— 挑錯會讓畫面亮錯一塊地，而那不報錯。
+    # 所以撞的兩個都不進名字索引：查不到會出聲，亮錯不會。
+    #
+    # 州省跟國家撞名的話國家贏（稿子寫「盧森堡」指的幾乎一定是那個國家，
+    # 不是比利時的盧森堡省）。
     named: dict[str, str] = {}
     clash: list[str] = []
+    states = {k for k, v in out.items() if "in" in v}
+    seen: dict[str, str] = {}
     for key, got in out.items():
         said = got["name"]
         if not said:
             continue
-        if said in named and named[said] != key:
-            clash.append(f"{said}（{named[said]} / {key}）")
+        if said in seen and seen[said] != key:
+            both = (key in states, seen[said] in states)
+            if not any(both):
+                clash.append(f"{said}（{seen[said]} / {key}）")
+                continue
+            if all(both):
+                named.pop(said, None)          # 兩個都是州省 → 誰都不要
+                continue
+            if key in states:
+                continue                       # 已經是國家的，不要被州省蓋掉
+        seen[said] = key
         named[said] = key
     if clash:
-        raise SystemExit("中文名撞了：" + "、".join(clash))
+        raise SystemExit("國家的中文名撞了：" + "、".join(clash))
     for said, key in ALSO.items():
         if key not in out:
             raise SystemExit(f"ALSO 裡的「{said}」指向 {key}，而索引裡沒有這一個")

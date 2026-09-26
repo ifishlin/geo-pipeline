@@ -144,6 +144,12 @@ table.three th{width:26%}
 table.three th:first-child,table.three th:nth-child(2){width:auto}
 mark{background:#fdf0c8;color:inherit;border-radius:2px;padding:0 1px}
 del{color:#c0392b;opacity:.55;text-decoration-thickness:1px}
+/* **預設把刪掉的字藏起來。** 那一欄標著「narrate 之後」，它要能被直接
+   讀 —— 刪掉的字混在裡面的話，照著唸會唸出一句不存在的話。 */
+table.three.plain del{display:none}
+table.three td:nth-child(2),table.three td:nth-child(3){white-space:nowrap}
+.flip{border:1px solid var(--line);background:#fff;border-radius:999px;
+      padding:3px 11px;font-size:12.5px;cursor:pointer;color:var(--hit)}
 tr.hold td{border-bottom:0;padding:1px 8px}
 @media(max-width:820px){.pair{grid-template-columns:1fr}
   .pair>div+div{border-left:0;border-top:1px solid var(--line)}}
@@ -282,9 +288,15 @@ def _script(story: str) -> str:
            f"旁白 {len(said) - len(added)} 句"
            f"　<b>parts</b> 插了 {len(added)} 句反應（旁白一字未動）"
            f"　<b>narrate</b> 動了 {reworded} 句的字　"
-           f'<span class=tag>底線＝拿掉的　黃底＝加上的　灰＝沒動</span>'
+           f'<span class=tag>黃底＝加上的　灰＝那一趟沒動</span>'
+           f'　<button class=flip onclick="'
+           f"var t=this.closest('div').querySelector('table.three');"
+           f"t.classList.toggle('plain');"
+           f'this.textContent=t.classList.contains(\'plain\')'
+           f"?'也顯示拿掉的字':'只看最後的字'"
+           f'">也顯示拿掉的字</button>'
            f"</p>",
-           "<table class=three><tr><th>#</th><th>誰</th><th>在幹嘛</th>"
+           "<table class='three plain'><tr><th>#</th><th>誰</th><th>在幹嘛</th>"
            "<th>① script.md<br><span style='font-weight:400'>純旁白</span></th>"
            "<th>② parts.md<br><span style='font-weight:400'>插反應</span></th>"
            "<th>③ narrate.md<br><span style='font-weight:400'>接成一段話</span>"

@@ -43,7 +43,7 @@ import re
 import sys
 from typing import Any
 
-from geo.pipe import ask, paths, story as story_module
+from geo.pipe import ask, marks, paths, story as story_module
 from geo.pipe.spine import rules as _rules
 
 # 唸多久 ＝ 字數 / RATE ＋ 句數 × PER_LINE ＋ 宣告的停頓。
@@ -136,11 +136,18 @@ def _numbers(text: str) -> int:
     **只數阿拉伯數字。** 中文數字（「八個盟國」）抓不到 —— 要抓就得分辨
     「三個主人」和「八個盟國」，那條界線我畫不出來。寧可漏也不要亂叫。
     """
-    return len(re.findall(r"\d+(?:[.,]\d+)*", DATE.sub("〇", text)))
+    return len(re.findall(r"\d+(?:[.,]\d+)*",
+                          DATE.sub("〇", marks.strip(text))))
 
 
 def _han(text: str) -> int:
-    """唸得出來的字數：漢字加數字，不算標點。"""
+    """唸得出來的字數：漢字加數字，不算標點。
+
+    **先脫掉就地標記。** `⏸0.3` 和 `⟪-10 …⟫` 的符號跟數字一個字都不會唸
+    出來，照原字串算的話「⏸0.3」會被當成一個字加三位數字 —— 而字數是
+    整條路的預算來源，錯在這裡每一道門都跟著錯。
+    """
+    text = marks.strip(text)
     return len(re.findall(r"[一-鿿]", text)) + \
         sum(len(one) for one in re.findall(r"\d+", text))
 
@@ -151,9 +158,23 @@ def guess(said: int, rows: int, holds: float, ends: int | None = None) -> float:
             + (rows if ends is None else ends) * PER_END + holds)
 
 
+def _closed(text: str) -> str:
+    """句尾沒有標點就補一個句號。
+
+    **這是機械的事，不該靠模型記得。** 換過範例之後有一趟它 26 句全部不加
+    句號，而句號決定秒數（一個 0.425 秒，26 個就是 11 秒）—— 那一趟估出來
+    134 秒、目標 148，被門擋掉，訊息還說「不該多切出句號」（narrate 只是
+    把它們補回去而已）。**報告指錯地方，比沒有報告更糟。**
+
+    補句號不改變意思，所以程式做得起；漏了句號會改變長度，所以不能不做。
+    """
+    text = text.rstrip()
+    return text if text and text[-1] in "。！？…」』》）" else text + "。"
+
+
 def _ends(text: str) -> int:
-    """這一行有幾個句尾標點。每一個都要 0.425 秒。"""
-    return len(re.findall(r"[。！？：；]", text))
+    """這一行有幾個句尾標點。每一個都要 0.425 秒。標記先脫掉。"""
+    return len(re.findall(r"[。！？：；]", marks.strip(text)))
 
 
 def reacts_for() -> int:
@@ -199,6 +220,33 @@ SELF = re.compile(r"我|咱|俺")
 # —— 放寬字數上限之後，「不准推劇情」不能再靠短來保證了。
 NAMED = re.compile(r"[一-鿿]{2,}(?:國|島|群島|王國|洲|市|灣|海|山|"
                    r"共同體|聯邦|王室)|[A-Z][a-z]+")
+
+
+def skeleton(text: str, most: int = 10) -> str:
+    """把句子開頭「自己重複的那一段」換成 ◯，留下骨架。
+
+    **為了抓「同一個句型用兩次」，而那查字面查不到** ——「好聽歸好聽」和
+    「照顧歸照顧」一個字都不重疊，可是骨架都是 `◯歸◯`。
+
+    這樣寫的好處是不用一種一種列（`A歸A`、`A就A`、`A是A`、`越A越A`…）。
+    **列清單就會變成打地鼠**，而下一次模型找到的會是還沒列進去的那一種。
+    """
+    head = text[:most]
+    # 只認「兩次出現靠得很近」的那種（中間隔 0–2 個字）。隔遠了就不是句型，
+    # 只是同一個詞在一句話裡出現兩次。**而且只留骨架本身，不留後面的內容**
+    # —— 留了的話「◯歸◯，那批北歐」跟「◯歸◯，法羅群島」就不會撞。
+    for size in range(4, 0, -1):
+        for at in range(len(head) - size * 2 + 1):
+            bit = head[at:at + size]
+            if re.search(r"[，。！？、：；…—\s]", bit):
+                continue
+            # **疊字不算句型。**「偏偏」「漸漸」「剛剛」是正常的中文詞，
+            # 不是「A 歸 A」那種套用的模板。中間要隔至少一個字才算。
+            for gap in range(1, 3):
+                later = at + size + gap
+                if head[later:later + size] == bit:
+                    return "◯" + head[at + size:later] + "◯"
+    return ""
 
 
 def check_parts(where: dict[int, tuple[str, str, str]],
@@ -313,8 +361,13 @@ def _rows(who: list[str], says: list[str],
 
 
 def _numbers_in(text: str) -> list[str]:
-    """這句話裡的數字，照原樣。改說法不准改數字，靠這個比。"""
-    return sorted(re.findall(r"\d+(?:[.,]\d+)*", text))
+    """這句話裡的數字，照原樣。改說法不准改數字，靠這個比。
+
+    **先脫掉就地標記。** `⏸0.3` 的 0.3 是標記的參數，不是台詞裡的數字。
+    不脫的話，narrate 標一個停頓就會被判成「把數字改掉了」，而那句台詞
+    一個數字都沒動 —— 這是誤報，而誤報會叫人去修沒有壞的東西。
+    """
+    return sorted(re.findall(r"\d+(?:[.,]\d+)*", marks.strip(text)))
 
 
 def run(story: str, say=print, again: bool = False, plain: bool = False,
@@ -639,6 +692,10 @@ def run(story: str, say=print, again: bool = False, plain: bool = False,
         got3 = ask.as_json(ask.send(story, "narrate", ask.prompt_of(
             "narrate.md", lines=listing, now=fresh, most=ceiling,
             room=ceiling - fresh, fillers="、".join(talk["fillers"]),
+            pauses="、".join(str(x) for x
+                            in (got_rules.get("voice") or {}).get("pauses", [])),
+            rates="、".join(f"{int(x):+d}" for x
+                            in (got_rules.get("voice") or {}).get("rates", [])),
             every=talk["every"],
             most_per_line=talk["most_per_line"]), say))
         talk_at.write_text(json.dumps(got3, ensure_ascii=False, indent=1),
@@ -669,26 +726,88 @@ def run(story: str, say=print, again: bool = False, plain: bool = False,
     if missing:
         say(f"⚠ 這 {len(missing)} 句沒有改寫，照原樣：{missing[:8]}")
 
-    marks = [sum(one.count(f) for f in talk["fillers"]) for one in says]
-    with_ = sum(1 for one in marks if one)
+    # **不要叫 `marks`** —— 那是模組名（就地標記那一支），在這個函式裡
+    # 蓋掉它的話 `marks.check()` 會變成對 list 取屬性，而 `geo.check`
+    # 掃不到：那個名字存在，只是指向別的東西。
+    fills = [sum(one.count(f) for f in talk["fillers"]) for one in says]
+    with_ = sum(1 for one in fills if one)
     need = len(says) // talk["every"]
     bad = []
     if with_ < need:
         bad.append(f"只有 {with_}/{len(says)} 句有語助詞，"
                    f"每 {talk['every']} 句要有一句（至少 {need} 句）"
                    f"—— 沒有語助詞的中文旁白聽起來像在唸稿")
-    thickest = [one for one, n in zip(says, marks)
+    thickest = [one for one, n in zip(says, fills)
                 if n > talk["most_per_line"]]
     if thickest:
         bad.append(f"{len(thickest)} 句的語助詞超過 "
                    f"{talk['most_per_line']} 個："
                    + "　".join(one[:16] for one in thickest[:3]))
+    # **同一個句型不准用兩次。** 八個接縫裡有六個用回聲接（把角色剛說的
+    # 詞拿來當開頭），而其中兩個是同一個模板：「好聽歸好聽」「照顧歸照顧」。
+    #
+    # 根因在 prompt：我只給了**一個**接縫的範例，而它就是回聲 —— 範例會被
+    # 當成答案。prompt 現在給四種接法，這道門擋的是它又找到一招套滿全場。
+    #
+    # 查字面查不到（那兩句一個字都不重疊），所以比的是骨架。
+    shapes: dict[str, list[str]] = {}
+    for one in says:
+        key = skeleton(one)
+        if key:
+            shapes.setdefault(key, []).append(one)
+    twice = {k: v for k, v in shapes.items() if len(v) > 1}
+    if twice:
+        bad.append(
+            "同一個句型用了不只一次：\n    "
+            + "\n    ".join(
+                f"{k}　×{len(v)}　" + "／".join(one[:14] for one in v)
+                for k, v in twice.items()))
+
+    # **就地標記要被檢查，而且它停的秒數要算進長度。**
+    # 不檢查的話 `⏸2.5` 會安靜地在片子中間開一個兩秒半的洞 —— 那是合法的
+    # SSML，壓得出片，只有看的人知道不對。
+    how = got_rules.get("voice") or {}
+    pauses = [float(x) for x in (how.get("pauses") or [])]
+    speeds = [int(x) for x in (how.get("rates") or [])]
+    marked = []
+    for at, one in enumerate(says):
+        marked += [f"第 {at} 句：{x}" for x in marks.check(one, pauses, speeds)]
+    if marked:
+        bad.append("標記不合規矩：\n    " + "\n    ".join(marked[:5]))
+    held = sum(marks.held(one) for one in says)
+
+    # **結尾不准開新的東西。** 觀眾只聽一次，而比喻要他當場翻譯 —— 翻不
+    # 出來，全片最後一句就空了，沒有第二次機會。
+    #
+    # 量出來的：那一版的最後一句「第一個開口問的，是來要它天空的人」，
+    # 「空」這個字整篇第一次出現，而前面鋪的都是「飛機」。觀眾要在最後
+    # 半秒自己把兩個詞接起來。
+    #
+    # 只對最後一句生效 —— 前面幾句每一句都有 5–12 個新字（新的人名、新的
+    # 事件），那是正常的推進。**收尾是唯一一句不該有新東西的。**
+    tail = [one for one, who in zip(says, who) if who == narrator]
+    if tail:
+        last = marks.strip(tail[-1])
+        before = "".join(marks.strip(one) for one in says[:says.index(tail[-1])])
+        fresh = [c for c in dict.fromkeys(re.findall(r"[一-鿿]", last))
+                 if c not in before]
+        if fresh:
+            bad.append(
+                f"最後一句出現了整篇沒有過的字：{'、'.join(fresh)}\n"
+                f"    {last}\n"
+                f"    收尾只能用前面出現過的東西 —— 新的名詞或比喻，"
+                f"觀眾來不及接")
+
     grown = sum(_han(one) for one in says)
     grown_ends = sum(_ends(one) for one in says)
+    # **句號由寫的人寫，程式不補。** 補了會把「兩個短句連著講」變成
+    # 「兩句各自收尾」，而一個句號是 0.425 秒 —— 26 行就是 11 秒憑空多出
+    # 來的空白。這道門擋的是 narrate 多切，不是擋沒有句號。
     if grown_ends > ends * 1.25:
-        bad.append(f"接完之後句號從 {ends} 個變成 {grown_ends} 個 —— "
-                   f"每一個 {PER_END} 秒，接句子不該多切出句號")
-    whole = guess(grown, len(says), total_hold, grown_ends)
+        bad.append(f"接完之後句尾標點從 {ends} 個變成 {grown_ends} 個 —— "
+                   f"接句子不該多切出句號，每一個 {PER_END} 秒")
+    # 句子中間那些 `⏸` 也是真的秒數，要一起算進去。
+    whole = guess(grown, len(says), total_hold + held, grown_ends)
     if abs(whole - aim) > aim * SLACK:
         bad.append(
             f"三趟做完唸出來 {whole:.0f} 秒，目標 {aim:.0f}"

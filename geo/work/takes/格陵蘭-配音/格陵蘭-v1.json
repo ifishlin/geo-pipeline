@@ -1,0 +1,2418 @@
+{
+ "file": "格陵蘭-v1.wav",
+ "seconds": 116.74,
+ "who": [
+  "旁白",
+  "旁白",
+  "格陵蘭",
+  "旁白",
+  "丹麥",
+  "旁白",
+  "旁白",
+  "旁白",
+  "格陵蘭",
+  "旁白",
+  "旁白",
+  "旁白",
+  "旁白",
+  "格陵蘭",
+  "旁白",
+  "旁白",
+  "旁白",
+  "旁白",
+  "格陵蘭",
+  "旁白",
+  "旁白",
+  "旁白",
+  "格陵蘭",
+  "旁白",
+  "旁白",
+  "旁白",
+  "旁白",
+  "旁白",
+  "旁白",
+  "旁白",
+  "旁白",
+  "格陵蘭",
+  "丹麥",
+  "格陵蘭",
+  "美國",
+  "格陵蘭"
+ ],
+ "lines": [
+  "2026 年 9 月 22 日，川普在紐約簽下一份協議，美國要在格陵蘭蓋兩座新的軍事基地。",
+  "聽起來像是美國終於進去了。",
+  "呃，你們 1951 年就在了。",
+  "1946 年，杜魯門派人去問丹麥：格陵蘭賣不賣？一億美元，黃金付。",
+  "不賣。",
+  "這件事丹麥藏了四十五年，1991 年才被報紙挖出來。",
+  "買不成就用租的。1951 年，美國和丹麥簽了防禦協議，美軍進駐圖勒基地。",
+  "注意，這時候沒有人問過格陵蘭。",
+  "我那時候還是殖民地。",
+  "1953 年，丹麥修憲，格陵蘭從殖民地變成丹麥的一個郡。",
+  "1979 年拿到自治，有了自己的議會。",
+  "但外交和國防，留在哥本哈根。",
+  "1982 年，格陵蘭公投，決定退出歐洲共同體。",
+  "那個漁業政策我受不了。我退出。",
+  "1985 年正式離開。到今天，它還是唯一退出過歐洲共同體的地方。",
+  "而丹麥留著。",
+  "2009 年，自治法上路。格陵蘭人被承認為國際法上的一個民族，",
+  "而且寫明了，可以宣布獨立。",
+  "但外交和國防，還是在哥本哈根。",
+  "然後是 2025 年。川普說要買，丹麥說不賣，他就威脅課關稅。",
+  "副總統沒被邀請就飛去了基地。",
+  "2026 年 1 月，他說不排除動武。",
+  "欸。",
+  "九個月後，聯合國大會場邊，美國、丹麥、格陵蘭，三方簽字。",
+  "美國拿到兩座新基地、原本那座擴建、全境飛越和海底通行，",
+  "還有一票否決權——非北約國家想在這裡駐軍，三方都點頭才行。",
+  "但分析說，這份協議大部分，只是把 1951 年那一份重講一次。",
+  "真正新的那一樣，在簽名欄上。",
+  "1946 年，沒人問格陵蘭。1951 年，沒人問格陵蘭。",
+  "2026 年，格陵蘭自己簽了名。",
+  "協議沒有到期日。而且寫明：就算格陵蘭將來獨立，它照樣有效。",
+  "所以我可以獨立？",
+  "可以啊。",
+  "那基地呢？",
+  "留著。",
+  "……喔。"
+ ],
+ "bounds": [
+  [
+   0.0,
+   5.804
+  ],
+  [
+   5.804,
+   8.153
+  ],
+  [
+   8.153,
+   11.521
+  ],
+  [
+   11.521,
+   16.876
+  ],
+  [
+   16.876,
+   17.929
+  ],
+  [
+   17.929,
+   22.443
+  ],
+  [
+   22.443,
+   27.613
+  ],
+  [
+   27.613,
+   30.408
+  ],
+  [
+   30.408,
+   33.313
+  ],
+  [
+   33.313,
+   37.206
+  ],
+  [
+   37.206,
+   39.867
+  ],
+  [
+   39.867,
+   42.663
+  ],
+  [
+   42.663,
+   46.467
+  ],
+  [
+   46.467,
+   49.2
+  ],
+  [
+   49.2,
+   53.78
+  ],
+  [
+   53.78,
+   55.545
+  ],
+  [
+   55.545,
+   59.741
+  ],
+  [
+   59.741,
+   62.323
+  ],
+  [
+   62.323,
+   65.905
+  ],
+  [
+   65.905,
+   70.423
+  ],
+  [
+   70.423,
+   72.459
+  ],
+  [
+   72.459,
+   75.29
+  ],
+  [
+   75.29,
+   77.466
+  ],
+  [
+   77.466,
+   82.252
+  ],
+  [
+   82.252,
+   86.145
+  ],
+  [
+   86.145,
+   91.311
+  ],
+  [
+   91.311,
+   95.489
+  ],
+  [
+   95.489,
+   98.659
+  ],
+  [
+   98.659,
+   102.668
+  ],
+  [
+   102.668,
+   105.754
+  ],
+  [
+   105.754,
+   110.722
+  ],
+  [
+   110.722,
+   112.332
+  ],
+  [
+   112.332,
+   113.577
+  ],
+  [
+   113.577,
+   114.767
+  ],
+  [
+   114.767,
+   115.753
+  ],
+  [
+   115.753,
+   116.737
+  ]
+ ],
+ "words": [
+  {
+   "at": 0.036,
+   "text": "2026",
+   "kind": "Word"
+  },
+  {
+   "at": 0.554,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 0.714,
+   "text": "9",
+   "kind": "Word"
+  },
+  {
+   "at": 0.857,
+   "text": "月",
+   "kind": "Word"
+  },
+  {
+   "at": 0.964,
+   "text": "22",
+   "kind": "Word"
+  },
+  {
+   "at": 1.402,
+   "text": "日",
+   "kind": "Word"
+  },
+  {
+   "at": 1.661,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 1.839,
+   "text": "川",
+   "kind": "Word"
+  },
+  {
+   "at": 1.991,
+   "text": "普",
+   "kind": "Word"
+  },
+  {
+   "at": 2.116,
+   "text": "在",
+   "kind": "Word"
+  },
+  {
+   "at": 2.223,
+   "text": "紐約",
+   "kind": "Word"
+  },
+  {
+   "at": 2.455,
+   "text": "簽",
+   "kind": "Word"
+  },
+  {
+   "at": 2.607,
+   "text": "下",
+   "kind": "Word"
+  },
+  {
+   "at": 2.759,
+   "text": "一份",
+   "kind": "Word"
+  },
+  {
+   "at": 2.964,
+   "text": "協議",
+   "kind": "Word"
+  },
+  {
+   "at": 3.411,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 3.545,
+   "text": "美國",
+   "kind": "Word"
+  },
+  {
+   "at": 3.786,
+   "text": "要",
+   "kind": "Word"
+  },
+  {
+   "at": 3.893,
+   "text": "在",
+   "kind": "Word"
+  },
+  {
+   "at": 4.045,
+   "text": "格",
+   "kind": "Word"
+  },
+  {
+   "at": 4.134,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 4.241,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 4.411,
+   "text": "蓋",
+   "kind": "Word"
+  },
+  {
+   "at": 4.509,
+   "text": "兩",
+   "kind": "Word"
+  },
+  {
+   "at": 4.661,
+   "text": "座",
+   "kind": "Word"
+  },
+  {
+   "at": 4.768,
+   "text": "新的",
+   "kind": "Word"
+  },
+  {
+   "at": 5.0,
+   "text": "軍事",
+   "kind": "Word"
+  },
+  {
+   "at": 5.232,
+   "text": "基地",
+   "kind": "Word"
+  },
+  {
+   "at": 5.616,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 5.839,
+   "text": "聽起來",
+   "kind": "Word"
+  },
+  {
+   "at": 6.241,
+   "text": "像是",
+   "kind": "Word"
+  },
+  {
+   "at": 6.527,
+   "text": "美國",
+   "kind": "Word"
+  },
+  {
+   "at": 6.804,
+   "text": "終於",
+   "kind": "Word"
+  },
+  {
+   "at": 7.054,
+   "text": "進去",
+   "kind": "Word"
+  },
+  {
+   "at": 7.321,
+   "text": "了",
+   "kind": "Word"
+  },
+  {
+   "at": 7.536,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 8.153,
+   "text": "呃",
+   "kind": "Word"
+  },
+  {
+   "at": 8.68,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 8.743,
+   "text": "你們",
+   "kind": "Word"
+  },
+  {
+   "at": 8.993,
+   "text": "1951",
+   "kind": "Word"
+  },
+  {
+   "at": 9.359,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 9.493,
+   "text": "就",
+   "kind": "Word"
+  },
+  {
+   "at": 9.573,
+   "text": "在",
+   "kind": "Word"
+  },
+  {
+   "at": 9.698,
+   "text": "了",
+   "kind": "Word"
+  },
+  {
+   "at": 9.975,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 11.557,
+   "text": "1946",
+   "kind": "Word"
+  },
+  {
+   "at": 12.102,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 12.414,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 12.548,
+   "text": "杜",
+   "kind": "Word"
+  },
+  {
+   "at": 12.646,
+   "text": "魯",
+   "kind": "Word"
+  },
+  {
+   "at": 12.718,
+   "text": "門",
+   "kind": "Word"
+  },
+  {
+   "at": 12.86,
+   "text": "派",
+   "kind": "Word"
+  },
+  {
+   "at": 13.021,
+   "text": "人",
+   "kind": "Word"
+  },
+  {
+   "at": 13.155,
+   "text": "去",
+   "kind": "Word"
+  },
+  {
+   "at": 13.289,
+   "text": "問",
+   "kind": "Word"
+  },
+  {
+   "at": 13.414,
+   "text": "丹麥",
+   "kind": "Word"
+  },
+  {
+   "at": 13.807,
+   "text": "：",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 13.994,
+   "text": "格",
+   "kind": "Word"
+  },
+  {
+   "at": 14.102,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 14.209,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 14.325,
+   "text": "賣",
+   "kind": "Word"
+  },
+  {
+   "at": 14.468,
+   "text": "不",
+   "kind": "Word"
+  },
+  {
+   "at": 14.539,
+   "text": "賣",
+   "kind": "Word"
+  },
+  {
+   "at": 14.798,
+   "text": "？",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 15.003,
+   "text": "一億",
+   "kind": "Word"
+  },
+  {
+   "at": 15.235,
+   "text": "美元",
+   "kind": "Word"
+  },
+  {
+   "at": 15.7,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 15.807,
+   "text": "黃金",
+   "kind": "Word"
+  },
+  {
+   "at": 16.11,
+   "text": "付",
+   "kind": "Word"
+  },
+  {
+   "at": 16.36,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 16.912,
+   "text": "不",
+   "kind": "Word"
+  },
+  {
+   "at": 17.028,
+   "text": "賣",
+   "kind": "Word"
+  },
+  {
+   "at": 17.278,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 17.965,
+   "text": "這",
+   "kind": "Word"
+  },
+  {
+   "at": 18.098,
+   "text": "件",
+   "kind": "Word"
+  },
+  {
+   "at": 18.223,
+   "text": "事",
+   "kind": "Word"
+  },
+  {
+   "at": 18.34,
+   "text": "丹麥",
+   "kind": "Word"
+  },
+  {
+   "at": 18.625,
+   "text": "藏",
+   "kind": "Word"
+  },
+  {
+   "at": 18.777,
+   "text": "了",
+   "kind": "Word"
+  },
+  {
+   "at": 18.875,
+   "text": "四十五",
+   "kind": "Word"
+  },
+  {
+   "at": 19.268,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 19.581,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 19.723,
+   "text": "1991",
+   "kind": "Word"
+  },
+  {
+   "at": 20.188,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 20.429,
+   "text": "才",
+   "kind": "Word"
+  },
+  {
+   "at": 20.563,
+   "text": "被",
+   "kind": "Word"
+  },
+  {
+   "at": 20.67,
+   "text": "報紙",
+   "kind": "Word"
+  },
+  {
+   "at": 20.893,
+   "text": "挖出",
+   "kind": "Word"
+  },
+  {
+   "at": 21.179,
+   "text": "來",
+   "kind": "Word"
+  },
+  {
+   "at": 21.456,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 22.479,
+   "text": "買",
+   "kind": "Word"
+  },
+  {
+   "at": 22.64,
+   "text": "不成",
+   "kind": "Word"
+  },
+  {
+   "at": 22.89,
+   "text": "就",
+   "kind": "Word"
+  },
+  {
+   "at": 22.997,
+   "text": "用",
+   "kind": "Word"
+  },
+  {
+   "at": 23.131,
+   "text": "租的",
+   "kind": "Word"
+  },
+  {
+   "at": 23.488,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 23.693,
+   "text": "1951",
+   "kind": "Word"
+  },
+  {
+   "at": 24.166,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 24.488,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 24.586,
+   "text": "美國",
+   "kind": "Word"
+  },
+  {
+   "at": 24.863,
+   "text": "和",
+   "kind": "Word"
+  },
+  {
+   "at": 24.988,
+   "text": "丹麥",
+   "kind": "Word"
+  },
+  {
+   "at": 25.238,
+   "text": "簽",
+   "kind": "Word"
+  },
+  {
+   "at": 25.372,
+   "text": "了",
+   "kind": "Word"
+  },
+  {
+   "at": 25.479,
+   "text": "防禦",
+   "kind": "Word"
+  },
+  {
+   "at": 25.711,
+   "text": "協議",
+   "kind": "Word"
+  },
+  {
+   "at": 26.157,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 26.3,
+   "text": "美軍",
+   "kind": "Word"
+  },
+  {
+   "at": 26.559,
+   "text": "進駐",
+   "kind": "Word"
+  },
+  {
+   "at": 26.809,
+   "text": "圖勒",
+   "kind": "Word"
+  },
+  {
+   "at": 27.068,
+   "text": "基地",
+   "kind": "Word"
+  },
+  {
+   "at": 27.425,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 27.648,
+   "text": "注意",
+   "kind": "Word"
+  },
+  {
+   "at": 28.077,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 28.238,
+   "text": "這",
+   "kind": "Word"
+  },
+  {
+   "at": 28.336,
+   "text": "時候",
+   "kind": "Word"
+  },
+  {
+   "at": 28.666,
+   "text": "沒有",
+   "kind": "Word"
+  },
+  {
+   "at": 28.89,
+   "text": "人",
+   "kind": "Word"
+  },
+  {
+   "at": 28.988,
+   "text": "問",
+   "kind": "Word"
+  },
+  {
+   "at": 29.131,
+   "text": "過格",
+   "kind": "Word"
+  },
+  {
+   "at": 29.372,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 29.515,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 29.809,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 30.408,
+   "text": "我",
+   "kind": "Word"
+  },
+  {
+   "at": 30.56,
+   "text": "那",
+   "kind": "Word"
+  },
+  {
+   "at": 30.649,
+   "text": "時候",
+   "kind": "Word"
+  },
+  {
+   "at": 30.971,
+   "text": "還是",
+   "kind": "Word"
+  },
+  {
+   "at": 31.185,
+   "text": "殖民地",
+   "kind": "Word"
+  },
+  {
+   "at": 31.765,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 33.349,
+   "text": "1953",
+   "kind": "Word"
+  },
+  {
+   "at": 33.822,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 34.152,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 34.26,
+   "text": "丹麥",
+   "kind": "Word"
+  },
+  {
+   "at": 34.501,
+   "text": "修憲",
+   "kind": "Word"
+  },
+  {
+   "at": 34.956,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 35.099,
+   "text": "格",
+   "kind": "Word"
+  },
+  {
+   "at": 35.197,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 35.295,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 35.456,
+   "text": "從",
+   "kind": "Word"
+  },
+  {
+   "at": 35.617,
+   "text": "殖民地",
+   "kind": "Word"
+  },
+  {
+   "at": 35.983,
+   "text": "變成",
+   "kind": "Word"
+  },
+  {
+   "at": 36.251,
+   "text": "丹麥的",
+   "kind": "Word"
+  },
+  {
+   "at": 36.563,
+   "text": "一個",
+   "kind": "Word"
+  },
+  {
+   "at": 36.76,
+   "text": "郡",
+   "kind": "Word"
+  },
+  {
+   "at": 37.045,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 37.242,
+   "text": "1979",
+   "kind": "Word"
+  },
+  {
+   "at": 37.804,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 37.929,
+   "text": "拿到",
+   "kind": "Word"
+  },
+  {
+   "at": 38.188,
+   "text": "自治",
+   "kind": "Word"
+  },
+  {
+   "at": 38.599,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 38.742,
+   "text": "有",
+   "kind": "Word"
+  },
+  {
+   "at": 38.876,
+   "text": "了",
+   "kind": "Word"
+  },
+  {
+   "at": 38.965,
+   "text": "自己的",
+   "kind": "Word"
+  },
+  {
+   "at": 39.277,
+   "text": "議會",
+   "kind": "Word"
+  },
+  {
+   "at": 39.688,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 39.902,
+   "text": "但",
+   "kind": "Word"
+  },
+  {
+   "at": 40.027,
+   "text": "外交",
+   "kind": "Word"
+  },
+  {
+   "at": 40.295,
+   "text": "和",
+   "kind": "Word"
+  },
+  {
+   "at": 40.456,
+   "text": "國防",
+   "kind": "Word"
+  },
+  {
+   "at": 40.911,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 41.027,
+   "text": "留",
+   "kind": "Word"
+  },
+  {
+   "at": 41.17,
+   "text": "在",
+   "kind": "Word"
+  },
+  {
+   "at": 41.304,
+   "text": "哥本哈根",
+   "kind": "Word"
+  },
+  {
+   "at": 41.894,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 42.699,
+   "text": "1982",
+   "kind": "Word"
+  },
+  {
+   "at": 43.172,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 43.485,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 43.627,
+   "text": "格",
+   "kind": "Word"
+  },
+  {
+   "at": 43.726,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 43.824,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 43.976,
+   "text": "公投",
+   "kind": "Word"
+  },
+  {
+   "at": 44.422,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 44.547,
+   "text": "決定",
+   "kind": "Word"
+  },
+  {
+   "at": 44.779,
+   "text": "退出",
+   "kind": "Word"
+  },
+  {
+   "at": 45.02,
+   "text": "歐洲",
+   "kind": "Word"
+  },
+  {
+   "at": 45.315,
+   "text": "共同體",
+   "kind": "Word"
+  },
+  {
+   "at": 45.842,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 46.467,
+   "text": "那個",
+   "kind": "Word"
+  },
+  {
+   "at": 46.7,
+   "text": "漁業",
+   "kind": "Word"
+  },
+  {
+   "at": 46.887,
+   "text": "政策",
+   "kind": "Word"
+  },
+  {
+   "at": 47.217,
+   "text": "我",
+   "kind": "Word"
+  },
+  {
+   "at": 47.298,
+   "text": "受不了",
+   "kind": "Word"
+  },
+  {
+   "at": 47.816,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 48.021,
+   "text": "我",
+   "kind": "Word"
+  },
+  {
+   "at": 48.2,
+   "text": "退出",
+   "kind": "Word"
+  },
+  {
+   "at": 48.655,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 49.236,
+   "text": "1985",
+   "kind": "Word"
+  },
+  {
+   "at": 49.754,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 49.932,
+   "text": "正式",
+   "kind": "Word"
+  },
+  {
+   "at": 50.173,
+   "text": "離開",
+   "kind": "Word"
+  },
+  {
+   "at": 50.584,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 50.798,
+   "text": "到",
+   "kind": "Word"
+  },
+  {
+   "at": 50.95,
+   "text": "今天",
+   "kind": "Word"
+  },
+  {
+   "at": 51.379,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 51.486,
+   "text": "它",
+   "kind": "Word"
+  },
+  {
+   "at": 51.62,
+   "text": "還是",
+   "kind": "Word"
+  },
+  {
+   "at": 51.852,
+   "text": "唯一",
+   "kind": "Word"
+  },
+  {
+   "at": 52.084,
+   "text": "退出",
+   "kind": "Word"
+  },
+  {
+   "at": 52.37,
+   "text": "過",
+   "kind": "Word"
+  },
+  {
+   "at": 52.477,
+   "text": "歐洲",
+   "kind": "Word"
+  },
+  {
+   "at": 52.762,
+   "text": "共同體的",
+   "kind": "Word"
+  },
+  {
+   "at": 53.2,
+   "text": "地方",
+   "kind": "Word"
+  },
+  {
+   "at": 53.637,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 53.816,
+   "text": "而",
+   "kind": "Word"
+  },
+  {
+   "at": 53.977,
+   "text": "丹麥",
+   "kind": "Word"
+  },
+  {
+   "at": 54.2,
+   "text": "留",
+   "kind": "Word"
+  },
+  {
+   "at": 54.37,
+   "text": "著",
+   "kind": "Word"
+  },
+  {
+   "at": 54.593,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 55.58,
+   "text": "2009",
+   "kind": "Word"
+  },
+  {
+   "at": 56.116,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 56.402,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 56.527,
+   "text": "自治",
+   "kind": "Word"
+  },
+  {
+   "at": 56.795,
+   "text": "法",
+   "kind": "Word"
+  },
+  {
+   "at": 56.946,
+   "text": "上路",
+   "kind": "Word"
+  },
+  {
+   "at": 57.33,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 57.5,
+   "text": "格",
+   "kind": "Word"
+  },
+  {
+   "at": 57.643,
+   "text": "陵蘭人",
+   "kind": "Word"
+  },
+  {
+   "at": 58.071,
+   "text": "被",
+   "kind": "Word"
+  },
+  {
+   "at": 58.187,
+   "text": "承認為",
+   "kind": "Word"
+  },
+  {
+   "at": 58.607,
+   "text": "國際法",
+   "kind": "Word"
+  },
+  {
+   "at": 58.991,
+   "text": "上的",
+   "kind": "Word"
+  },
+  {
+   "at": 59.187,
+   "text": "一個",
+   "kind": "Word"
+  },
+  {
+   "at": 59.357,
+   "text": "民族",
+   "kind": "Word"
+  },
+  {
+   "at": 59.795,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 59.929,
+   "text": "而且",
+   "kind": "Word"
+  },
+  {
+   "at": 60.196,
+   "text": "寫",
+   "kind": "Word"
+  },
+  {
+   "at": 60.348,
+   "text": "明",
+   "kind": "Word"
+  },
+  {
+   "at": 60.491,
+   "text": "了",
+   "kind": "Word"
+  },
+  {
+   "at": 60.75,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 60.911,
+   "text": "可以",
+   "kind": "Word"
+  },
+  {
+   "at": 61.08,
+   "text": "宣布",
+   "kind": "Word"
+  },
+  {
+   "at": 61.339,
+   "text": "獨立",
+   "kind": "Word"
+  },
+  {
+   "at": 61.696,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 62.323,
+   "text": "但",
+   "kind": "Word"
+  },
+  {
+   "at": 62.457,
+   "text": "外交",
+   "kind": "Word"
+  },
+  {
+   "at": 62.734,
+   "text": "和",
+   "kind": "Word"
+  },
+  {
+   "at": 62.841,
+   "text": "國防",
+   "kind": "Word"
+  },
+  {
+   "at": 63.43,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 63.43,
+   "text": "還是",
+   "kind": "Word"
+  },
+  {
+   "at": 63.663,
+   "text": "在",
+   "kind": "Word"
+  },
+  {
+   "at": 63.761,
+   "text": "哥本哈根",
+   "kind": "Word"
+  },
+  {
+   "at": 64.359,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 65.941,
+   "text": "然後",
+   "kind": "Word"
+  },
+  {
+   "at": 66.245,
+   "text": "是",
+   "kind": "Word"
+  },
+  {
+   "at": 66.37,
+   "text": "2025",
+   "kind": "Word"
+  },
+  {
+   "at": 66.914,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 67.218,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 67.361,
+   "text": "川",
+   "kind": "Word"
+  },
+  {
+   "at": 67.53,
+   "text": "普",
+   "kind": "Word"
+  },
+  {
+   "at": 67.655,
+   "text": "說",
+   "kind": "Word"
+  },
+  {
+   "at": 67.789,
+   "text": "要",
+   "kind": "Word"
+  },
+  {
+   "at": 67.923,
+   "text": "買",
+   "kind": "Word"
+  },
+  {
+   "at": 68.173,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 68.271,
+   "text": "丹麥",
+   "kind": "Word"
+  },
+  {
+   "at": 68.53,
+   "text": "說",
+   "kind": "Word"
+  },
+  {
+   "at": 68.673,
+   "text": "不",
+   "kind": "Word"
+  },
+  {
+   "at": 68.78,
+   "text": "賣",
+   "kind": "Word"
+  },
+  {
+   "at": 69.057,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 69.2,
+   "text": "他",
+   "kind": "Word"
+  },
+  {
+   "at": 69.325,
+   "text": "就",
+   "kind": "Word"
+  },
+  {
+   "at": 69.414,
+   "text": "威脅",
+   "kind": "Word"
+  },
+  {
+   "at": 69.691,
+   "text": "課",
+   "kind": "Word"
+  },
+  {
+   "at": 69.825,
+   "text": "關稅",
+   "kind": "Word"
+  },
+  {
+   "at": 70.245,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 70.459,
+   "text": "副總統",
+   "kind": "Word"
+  },
+  {
+   "at": 70.861,
+   "text": "沒",
+   "kind": "Word"
+  },
+  {
+   "at": 71.004,
+   "text": "被",
+   "kind": "Word"
+  },
+  {
+   "at": 71.111,
+   "text": "邀請",
+   "kind": "Word"
+  },
+  {
+   "at": 71.441,
+   "text": "就",
+   "kind": "Word"
+  },
+  {
+   "at": 71.557,
+   "text": "飛去",
+   "kind": "Word"
+  },
+  {
+   "at": 71.816,
+   "text": "了",
+   "kind": "Word"
+  },
+  {
+   "at": 71.932,
+   "text": "基地",
+   "kind": "Word"
+  },
+  {
+   "at": 72.28,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 72.495,
+   "text": "2026",
+   "kind": "Word"
+  },
+  {
+   "at": 73.039,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 73.164,
+   "text": "1",
+   "kind": "Word"
+  },
+  {
+   "at": 73.307,
+   "text": "月",
+   "kind": "Word"
+  },
+  {
+   "at": 73.575,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 73.691,
+   "text": "他",
+   "kind": "Word"
+  },
+  {
+   "at": 73.825,
+   "text": "說",
+   "kind": "Word"
+  },
+  {
+   "at": 73.95,
+   "text": "不",
+   "kind": "Word"
+  },
+  {
+   "at": 74.057,
+   "text": "排除",
+   "kind": "Word"
+  },
+  {
+   "at": 74.37,
+   "text": "動武",
+   "kind": "Word"
+  },
+  {
+   "at": 74.691,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 75.29,
+   "text": "欸",
+   "kind": "Word"
+  },
+  {
+   "at": 75.718,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 77.502,
+   "text": "九",
+   "kind": "Word"
+  },
+  {
+   "at": 77.671,
+   "text": "個",
+   "kind": "Word"
+  },
+  {
+   "at": 77.761,
+   "text": "月",
+   "kind": "Word"
+  },
+  {
+   "at": 77.895,
+   "text": "後",
+   "kind": "Word"
+  },
+  {
+   "at": 78.189,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 78.35,
+   "text": "聯合",
+   "kind": "Word"
+  },
+  {
+   "at": 78.645,
+   "text": "國大",
+   "kind": "Word"
+  },
+  {
+   "at": 78.886,
+   "text": "會場",
+   "kind": "Word"
+  },
+  {
+   "at": 79.189,
+   "text": "邊",
+   "kind": "Word"
+  },
+  {
+   "at": 79.466,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 79.573,
+   "text": "美國",
+   "kind": "Word"
+  },
+  {
+   "at": 80.002,
+   "text": "、",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 80.163,
+   "text": "丹麥",
+   "kind": "Word"
+  },
+  {
+   "at": 80.529,
+   "text": "、",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 80.707,
+   "text": "格",
+   "kind": "Word"
+  },
+  {
+   "at": 80.814,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 80.939,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 81.243,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 81.377,
+   "text": "三",
+   "kind": "Word"
+  },
+  {
+   "at": 81.538,
+   "text": "方",
+   "kind": "Word"
+  },
+  {
+   "at": 81.68,
+   "text": "簽字",
+   "kind": "Word"
+  },
+  {
+   "at": 82.064,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 82.288,
+   "text": "美國",
+   "kind": "Word"
+  },
+  {
+   "at": 82.564,
+   "text": "拿到",
+   "kind": "Word"
+  },
+  {
+   "at": 82.796,
+   "text": "兩",
+   "kind": "Word"
+  },
+  {
+   "at": 82.93,
+   "text": "座",
+   "kind": "Word"
+  },
+  {
+   "at": 83.038,
+   "text": "新",
+   "kind": "Word"
+  },
+  {
+   "at": 83.189,
+   "text": "基地",
+   "kind": "Word"
+  },
+  {
+   "at": 83.582,
+   "text": "、",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 83.743,
+   "text": "原本",
+   "kind": "Word"
+  },
+  {
+   "at": 83.921,
+   "text": "那",
+   "kind": "Word"
+  },
+  {
+   "at": 84.064,
+   "text": "座",
+   "kind": "Word"
+  },
+  {
+   "at": 84.171,
+   "text": "擴建",
+   "kind": "Word"
+  },
+  {
+   "at": 84.618,
+   "text": "、",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 84.779,
+   "text": "全",
+   "kind": "Word"
+  },
+  {
+   "at": 84.939,
+   "text": "境",
+   "kind": "Word"
+  },
+  {
+   "at": 85.073,
+   "text": "飛越",
+   "kind": "Word"
+  },
+  {
+   "at": 85.395,
+   "text": "和",
+   "kind": "Word"
+  },
+  {
+   "at": 85.538,
+   "text": "海底",
+   "kind": "Word"
+  },
+  {
+   "at": 85.788,
+   "text": "通行",
+   "kind": "Word"
+  },
+  {
+   "at": 86.234,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 86.395,
+   "text": "還有",
+   "kind": "Word"
+  },
+  {
+   "at": 86.618,
+   "text": "一票",
+   "kind": "Word"
+  },
+  {
+   "at": 86.832,
+   "text": "否決權",
+   "kind": "Word"
+  },
+  {
+   "at": 87.457,
+   "text": "——",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 87.573,
+   "text": "非",
+   "kind": "Word"
+  },
+  {
+   "at": 87.707,
+   "text": "北約",
+   "kind": "Word"
+  },
+  {
+   "at": 87.966,
+   "text": "國家",
+   "kind": "Word"
+  },
+  {
+   "at": 88.198,
+   "text": "想",
+   "kind": "Word"
+  },
+  {
+   "at": 88.359,
+   "text": "在",
+   "kind": "Word"
+  },
+  {
+   "at": 88.475,
+   "text": "這裡",
+   "kind": "Word"
+  },
+  {
+   "at": 88.698,
+   "text": "駐軍",
+   "kind": "Word"
+  },
+  {
+   "at": 89.109,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 89.243,
+   "text": "三",
+   "kind": "Word"
+  },
+  {
+   "at": 89.404,
+   "text": "方",
+   "kind": "Word"
+  },
+  {
+   "at": 89.546,
+   "text": "都",
+   "kind": "Word"
+  },
+  {
+   "at": 89.636,
+   "text": "點頭",
+   "kind": "Word"
+  },
+  {
+   "at": 89.913,
+   "text": "才",
+   "kind": "Word"
+  },
+  {
+   "at": 90.055,
+   "text": "行",
+   "kind": "Word"
+  },
+  {
+   "at": 90.386,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 91.347,
+   "text": "但",
+   "kind": "Word"
+  },
+  {
+   "at": 91.48,
+   "text": "分析",
+   "kind": "Word"
+  },
+  {
+   "at": 91.739,
+   "text": "說",
+   "kind": "Word"
+  },
+  {
+   "at": 92.034,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 92.204,
+   "text": "這",
+   "kind": "Word"
+  },
+  {
+   "at": 92.302,
+   "text": "份",
+   "kind": "Word"
+  },
+  {
+   "at": 92.409,
+   "text": "協議",
+   "kind": "Word"
+  },
+  {
+   "at": 92.632,
+   "text": "大部分",
+   "kind": "Word"
+  },
+  {
+   "at": 93.177,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 93.311,
+   "text": "只是",
+   "kind": "Word"
+  },
+  {
+   "at": 93.543,
+   "text": "把",
+   "kind": "Word"
+  },
+  {
+   "at": 93.686,
+   "text": "1951",
+   "kind": "Word"
+  },
+  {
+   "at": 94.15,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 94.275,
+   "text": "那",
+   "kind": "Word"
+  },
+  {
+   "at": 94.436,
+   "text": "一份",
+   "kind": "Word"
+  },
+  {
+   "at": 94.65,
+   "text": "重講",
+   "kind": "Word"
+  },
+  {
+   "at": 94.927,
+   "text": "一次",
+   "kind": "Word"
+  },
+  {
+   "at": 95.302,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 95.525,
+   "text": "真正",
+   "kind": "Word"
+  },
+  {
+   "at": 95.82,
+   "text": "新的",
+   "kind": "Word"
+  },
+  {
+   "at": 96.061,
+   "text": "那",
+   "kind": "Word"
+  },
+  {
+   "at": 96.204,
+   "text": "一樣",
+   "kind": "Word"
+  },
+  {
+   "at": 96.597,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 96.722,
+   "text": "在",
+   "kind": "Word"
+  },
+  {
+   "at": 96.82,
+   "text": "簽名欄",
+   "kind": "Word"
+  },
+  {
+   "at": 97.239,
+   "text": "上",
+   "kind": "Word"
+  },
+  {
+   "at": 97.543,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 98.695,
+   "text": "1946",
+   "kind": "Word"
+  },
+  {
+   "at": 99.23,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 99.543,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 99.623,
+   "text": "沒",
+   "kind": "Word"
+  },
+  {
+   "at": 99.766,
+   "text": "人",
+   "kind": "Word"
+  },
+  {
+   "at": 99.864,
+   "text": "問格",
+   "kind": "Word"
+  },
+  {
+   "at": 100.097,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 100.239,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 100.543,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 100.695,
+   "text": "1951",
+   "kind": "Word"
+  },
+  {
+   "at": 101.204,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 101.525,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 101.605,
+   "text": "沒",
+   "kind": "Word"
+  },
+  {
+   "at": 101.748,
+   "text": "人",
+   "kind": "Word"
+  },
+  {
+   "at": 101.855,
+   "text": "問格",
+   "kind": "Word"
+  },
+  {
+   "at": 102.088,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 102.222,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 102.525,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 102.704,
+   "text": "2026",
+   "kind": "Word"
+  },
+  {
+   "at": 103.248,
+   "text": "年",
+   "kind": "Word"
+  },
+  {
+   "at": 103.552,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 103.677,
+   "text": "格",
+   "kind": "Word"
+  },
+  {
+   "at": 103.793,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 103.909,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 104.07,
+   "text": "自己",
+   "kind": "Word"
+  },
+  {
+   "at": 104.275,
+   "text": "簽",
+   "kind": "Word"
+  },
+  {
+   "at": 104.427,
+   "text": "了",
+   "kind": "Word"
+  },
+  {
+   "at": 104.543,
+   "text": "名",
+   "kind": "Word"
+  },
+  {
+   "at": 104.829,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 105.789,
+   "text": "協議",
+   "kind": "Word"
+  },
+  {
+   "at": 106.102,
+   "text": "沒有",
+   "kind": "Word"
+  },
+  {
+   "at": 106.343,
+   "text": "到",
+   "kind": "Word"
+  },
+  {
+   "at": 106.45,
+   "text": "期日",
+   "kind": "Word"
+  },
+  {
+   "at": 106.843,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 107.066,
+   "text": "而且",
+   "kind": "Word"
+  },
+  {
+   "at": 107.334,
+   "text": "寫明",
+   "kind": "Word"
+  },
+  {
+   "at": 107.789,
+   "text": "：",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 107.905,
+   "text": "就算",
+   "kind": "Word"
+  },
+  {
+   "at": 108.182,
+   "text": "格",
+   "kind": "Word"
+  },
+  {
+   "at": 108.298,
+   "text": "陵",
+   "kind": "Word"
+  },
+  {
+   "at": 108.414,
+   "text": "蘭",
+   "kind": "Word"
+  },
+  {
+   "at": 108.575,
+   "text": "將來",
+   "kind": "Word"
+  },
+  {
+   "at": 108.816,
+   "text": "獨立",
+   "kind": "Word"
+  },
+  {
+   "at": 109.191,
+   "text": "，",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 109.343,
+   "text": "它",
+   "kind": "Word"
+  },
+  {
+   "at": 109.468,
+   "text": "照樣",
+   "kind": "Word"
+  },
+  {
+   "at": 109.691,
+   "text": "有效",
+   "kind": "Word"
+  },
+  {
+   "at": 110.129,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 110.722,
+   "text": "所以",
+   "kind": "Word"
+  },
+  {
+   "at": 111.043,
+   "text": "我",
+   "kind": "Word"
+  },
+  {
+   "at": 111.177,
+   "text": "可以",
+   "kind": "Word"
+  },
+  {
+   "at": 111.338,
+   "text": "獨立",
+   "kind": "Word"
+  },
+  {
+   "at": 111.784,
+   "text": "？",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 112.368,
+   "text": "可以",
+   "kind": "Word"
+  },
+  {
+   "at": 112.698,
+   "text": "啊",
+   "kind": "Word"
+  },
+  {
+   "at": 112.85,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 113.577,
+   "text": "那",
+   "kind": "Word"
+  },
+  {
+   "at": 113.747,
+   "text": "基地",
+   "kind": "Word"
+  },
+  {
+   "at": 113.961,
+   "text": "呢",
+   "kind": "Word"
+  },
+  {
+   "at": 114.22,
+   "text": "？",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 114.802,
+   "text": "留",
+   "kind": "Word"
+  },
+  {
+   "at": 114.981,
+   "text": "著",
+   "kind": "Word"
+  },
+  {
+   "at": 115.133,
+   "text": "。",
+   "kind": "Punctuation"
+  },
+  {
+   "at": 115.753,
+   "text": "……喔",
+   "kind": "Word"
+  },
+  {
+   "at": 116.137,
+   "text": "。",
+   "kind": "Punctuation"
+  }
+ ]
+}

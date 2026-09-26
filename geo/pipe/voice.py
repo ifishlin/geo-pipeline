@@ -75,9 +75,19 @@ def read_script(story: str) -> list[tuple[str, str]]:
     return out
 
 
-def _to_ssml(said: str) -> str:
+def _esc(said: str) -> str:
     return (said.replace("&", "&amp;").replace("<", "&lt;")
             .replace(">", "&gt;").replace('"', "&quot;"))
+
+
+def _to_ssml(said: str) -> str:
+    """一句台詞 → SSML。**就地標記在這裡變成真的停頓和變速。**
+
+    `⏸0.3` → `<break time="300ms"/>`，`⟪-10 字⟫` → `<prosody rate="-10%">`。
+    沒有這一步的話那些符號會被 Azure 當成字唸出來。
+    """
+    from geo.pipe import marks
+    return marks.to_ssml(said, _esc)
 
 
 def build_ssml(rows: list[tuple[str, str]], cast: dict[str, dict[str, Any]],
@@ -190,8 +200,13 @@ def run(story: str, say=print) -> dict[str, Any]:
         # 不擋，但要出聲：宣告了卻沒人講，通常是稿子裡的名字打錯了。
         say(f"⚠ cast 宣告了但稿子裡沒出現：{'、'.join(idle)}")
 
-    ssml, many = build_ssml(rows, cast, spec.get("rate_percent", 40),
-                            spec.get("sentence_gap_ms", 150),
+    # **語速和句號停頓從 `rules.json` 讀，不是從故事檔，更不是寫在這裡。**
+    # 原本是 `spec.get("rate_percent", 40)` —— 而 story.json 根本沒寫那一格，
+    # 所以真正生效的是這一行裡的預設值。**數字藏在程式裡，設定檔看不到。**
+    from geo.pipe.spine import rules as _rules
+    how = _rules().get("voice") or {}
+    ssml, many = build_ssml(rows, cast, int(how.get("rate_percent", 40)),
+                            int(how.get("sentence_gap_ms", 150)),
                             spec.get("lang", "zh-TW"))
     if many != len(lines):
         raise SystemExit(f"書籤 {many} 個對不上 {len(lines)} 句")
