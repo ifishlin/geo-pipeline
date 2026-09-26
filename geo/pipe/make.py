@@ -104,7 +104,8 @@ def run(story: str, only: str = "", again: bool = False,
             kinds[one] = {"again": again}
         # `--plain` 只給寫台詞那一步：停在旁白稿，不配角色。
         # 想先確認「故事本身站不站得住」的時候用。
-        kinds["script"] = {"again": again, "plain": plain}
+        kinds["script"] = {"again": again, "plain": plain,
+                           "parts": "--parts" in sys.argv}
         call(story, **kinds.get(name, {}))
         print(f"（{time.time() - began:.0f} 秒）")
     print(f"\n{status(story)}　{story}")

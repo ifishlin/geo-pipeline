@@ -114,7 +114,7 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
     rows = rows_for(aim)
 
     raw_at = paths.home(story) / "2-spine.raw.json"
-    if again or paths.raw_stale(story, raw_at, "spine"):
+    if again or paths.raw_stale(story, raw_at, "spine", ("spine.md",)):
         listing = "\n".join(
             f"{at:>3}　{one['said']}"
             + (f"　〔{'、'.join(one['entity'])}〕" if one["entity"] else "")
@@ -143,6 +143,16 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
                      ("refrain", "會回來的那句話的核心幾個字")):
         if not str(got.get(key) or "").strip():
             raise SystemExit(f"沒有寫 {key} —— {why}")
+
+    # **句數是有代價的，不是隨意的。** 一句話的固定開銷是 1.06 秒，
+    # 所以多排四句就少四秒可以講話 —— 而字數額度是照句數反推的，句子
+    # 越多每一句越短，短到裝不下主角＋內容（量過：12 字的時候主角被擠掉）。
+    if not rows * 0.88 <= len(lines) <= rows * 1.12:
+        raise SystemExit(
+            f"排了 {len(lines)} 句，而 {aim:.0f} 秒放得下大約 {rows} 句"
+            f"（容許 {round(rows * 0.88)}–{round(rows * 1.12)}）。\n"
+            f"  一句話光是換氣就吃 1.06 秒，多排四句就少四秒可以講話，"
+            f"而每一句會被壓到裝不下主角。加 --again 重排")
 
     bad = check(lines, roles)
     if bad:

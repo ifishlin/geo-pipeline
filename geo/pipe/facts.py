@@ -39,7 +39,7 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
               for one in rows]
 
     raw_at = paths.home(story) / "1-facts.raw.json"
-    if again or paths.raw_stale(story, raw_at, "facts"):
+    if again or paths.raw_stale(story, raw_at, "facts", ("facts.md",)):
         listing = "\n\n".join(
             f"### 來源 {at}　（{one['kind']}　{one['why']}）\n{one['url']}\n\n"
             + body[:24000]

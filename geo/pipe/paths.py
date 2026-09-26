@@ -129,7 +129,8 @@ def stale(story: str, step: str) -> list[str]:
     return out
 
 
-def raw_stale(story: str, raw: Path, step: str) -> bool:
+def raw_stale(story: str, raw: Path, step: str,
+              prompts: tuple[str, ...] = ()) -> bool:
     """模型那份答案是不是拿舊資料問出來的。
 
     問模型很貴（兩分鐘、一筆錢），所以每一步都把回答存成 `*.raw.json`
@@ -142,7 +143,20 @@ def raw_stale(story: str, raw: Path, step: str) -> bool:
     if not raw.is_file():
         return True
     when = raw.stat().st_mtime
-    return any(_when(story, one) > when for one in NEEDS.get(step, ()))
+    if any(_when(story, one) > when for one in NEEDS.get(step, ())):
+        return True
+    # **改了 prompt，快取的答案也過期。**
+    #
+    # 這是後來才發現的：我在 `script.md` 加了一條「不要出現拉丁字母」，
+    # 而上一次的答案是照舊規則寫的 —— 它照樣被沿用，然後在那道新的門
+    # 前面被擋下來，而重跑幾次都一樣，因為問題在快取裡。
+    #
+    # 「規則改了、答案沒跟著改」跟「資料改了、答案沒跟著改」是同一件事。
+    for one in prompts:
+        md = PROMPTS / one
+        if md.is_file() and md.stat().st_mtime > when:
+            return True
+    return False
 
 
 def load(story: str, step: str) -> Any:

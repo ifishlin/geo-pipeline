@@ -21,7 +21,12 @@ from typing import Any
 from geo.pipe import paths
 
 MODEL = "claude-opus-5"
-WAIT = 1800
+WAIT = 2400
+
+# 允許多長的回答。**預設 32000 不夠** —— 寫 41 句台詞那一趟撞上上限，
+# 跑了 21 分鐘之後回一行 `API Error: … exceeded the 32000 output token
+# maximum`，整趟白費。模型在交出 JSON 之前會想很久，那些也算在裡面。
+OUTPUT_MOST = "64000"
 
 
 def send(story: str, task: str, prompt: str, say=print) -> str:
@@ -32,16 +37,28 @@ def send(story: str, task: str, prompt: str, say=print) -> str:
     (into / f"{task}-{stamp}.prompt.md").write_text(prompt, encoding="utf-8")
     say(f"問模型（{task}，{len(prompt)} 字）…")
     began = time.time()
+    import os
     got = subprocess.run(
         ["claude", "-p", "--model", MODEL, "--output-format", "text"],
-        input=prompt, capture_output=True, text=True, timeout=WAIT)
+        input=prompt, capture_output=True, text=True, timeout=WAIT,
+        env={**os.environ, "CLAUDE_CODE_MAX_OUTPUT_TOKENS": OUTPUT_MOST})
     took = time.time() - began
     said = got.stdout or ""
     (into / f"{task}-{stamp}.said.md").write_text(said, encoding="utf-8")
+    # **把真正的訊息印出來。** 第一版看到 exit≠0 就報「模型沒有回答」，
+    # 而回答其實在 stdout 裡躺著 —— 那一行是
+    # `API Error: Claude's response exceeded the 32000 output token maximum`。
+    # 21 分鐘之後拿到一句沒有資訊的錯誤，真正的原因在檔案裡沒有人看。
     if got.returncode != 0 or not said.strip():
         raise SystemExit(
-            f"模型沒有回答（exit {got.returncode}，{took:.0f}s）"
-            f"{'：' + got.stderr[:300] if got.stderr else ''}")
+            f"模型那一趟失敗了（exit {got.returncode}，{took:.0f}s）\n"
+            + (f"  它說：{said.strip()[:400]}\n" if said.strip() else "")
+            + (f"  stderr：{got.stderr.strip()[:300]}\n"
+               if got.stderr.strip() else "")
+            + f"  送出去的和收回來的都存著：{into.name}/")
+    if said.lstrip().startswith("API Error"):
+        raise SystemExit(f"模型回了一句錯誤訊息（{took:.0f}s）：\n"
+                         f"  {said.strip()[:400]}")
     say(f"  回來了　{took:.0f}s　{len(said)} 字")
     return said
 

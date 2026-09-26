@@ -122,9 +122,15 @@ def rows_for(aim: float) -> int:
     return max(6, round((aim - HOLDS) / (PER_ROW / RATE + PER_LINE)))
 
 
-def budget(aim: float) -> int:
-    """這麼多秒唸得完幾個字。"""
-    return rows_for(aim) * PER_ROW
+def budget(aim: float, rows: int | None = None) -> int:
+    """這麼多秒、這麼多句，唸得完幾個字。
+
+    **句數要用骨幹實際排的，不是理想的那個。** 骨幹排 41 句而理想是 37 句
+    的時候，每一句的固定開銷就多了 4×1.06 秒 —— 照理想句數給的字數額度會
+    多出四秒。差不多，但沒有理由差。
+    """
+    many = rows_for(aim) if rows is None else rows
+    return max(50, round((aim - HOLDS - many * PER_LINE) * RATE))
 
 
 def shape_of(who: list[str], narrator: str) -> dict[str, Any]:
@@ -163,20 +169,26 @@ def _rows(who: list[str], says: list[str],
 
 
 def run(story: str, say=print, again: bool = False,
-        plain: bool = False) -> dict[str, Any]:
+        plain: bool = False, parts: bool = False) -> dict[str, Any]:
+    """`again` 兩支都重問，`parts` 只重問配角色那一支。
+
+    分開是因為它們一次 10–25 分鐘，而**通常只有一支要重來** —— 旁白稿
+    寫得好、只是某一句改成角色講的時候寫壞了，沒有理由把好的那一份丟掉。
+    """
     paths.insist(story, "script")
     spec = story_module.load(story)
     bones = paths.load(story, "spine")
     facts = paths.load(story, "facts")
     cast = story_module.cast_of(spec)
     aim = float(spec.get("seconds") or 116)
-    words = budget(aim)
+    plan = bones["lines"]
+    words = budget(aim, len(plan))
     narrator = next((name for name, one in cast.items()
                      if one["slot"] == "narrator"), "旁白")
 
     # —— 第一支：旁白稿 ————————————————————————————————
     raw_at = paths.home(story) / "3-script.raw.json"
-    if again or paths.raw_stale(story, raw_at, "script"):
+    if (again and not parts) or paths.raw_stale(story, raw_at, "script", ("script.md",)):
         nodes = "\n".join(
             f"{at:>3}　{one['role']:<4}　{one['point']}"
             + ("".join(f"\n        · {facts[i - 1]['said'][:52]}"
@@ -192,7 +204,7 @@ def run(story: str, say=print, again: bool = False,
             hero_least=f"{HERO_LEAST:.0%}",
             seconds=f"{aim:.0f}", words=words,
             least=round(words * 0.92), most=round(words * 1.08),
-            slack=8, rows=round(words / PER_ROW),
+            slack=8, rows=len(plan),
             rate=RATE, per_line=PER_ROW, line_cost=PER_LINE,
             holds=f"{HOLDS:.0f}"), say))
         raw_at.write_text(json.dumps(got, ensure_ascii=False, indent=1),
@@ -201,7 +213,6 @@ def run(story: str, say=print, again: bool = False,
         say(f"沿用 {raw_at.name}（上游沒動過；要重問加 --again）")
         got = json.loads(raw_at.read_text(encoding="utf-8"))
 
-    plan = bones["lines"]
     says: list[str] = []
     asides: list[int] = []
     holds_after: dict[int, float] = {}
@@ -279,10 +290,9 @@ def run(story: str, say=print, again: bool = False,
         bad.append(
             f"有一段連續 {gone} 句沒有主角（最多 {HERO_GONE_MOST}）"
             f"—— 那一段變成世界大事年表")
-    if len(asides) < ASIDE_LEAST:
-        bad.append(
-            f"只有 {len(asides)} 句標了 aside（至少 {ASIDE_LEAST} 句）"
-            f"—— 不帶新事實、只有態度的句子。參考片的笑點大半在這裡")
+    # 「吐槽幾句」那道門在 spine（`rules.json` 的 roles.吐槽.least）——
+    # 那裡是決定「這一句要幹嘛」的地方。這裡再擋一次就是同一件事兩個
+    # 地方管，而兩個地方就會有一個是假的。
     if bad:
         raise SystemExit(
             "旁白寫成年表了：\n  " + "\n  ".join(bad)
@@ -310,9 +320,9 @@ def run(story: str, say=print, again: bool = False,
 
     # —— 第二支：挑幾句交給角色 ——————————————————————————
     parts_at = paths.home(story) / "3-parts.raw.json"
-    stale = (not parts_at.is_file()
+    stale = (paths.raw_stale(story, parts_at, "script", ("parts.md",))
              or parts_at.stat().st_mtime < raw_at.stat().st_mtime)
-    if again or stale:
+    if again or parts or stale:
         listing = "\n".join(f"{at:>3}　{one}" for at, one in enumerate(says))
         folk = "\n".join(f"- **{name}**" for name in cast if name != narrator)
         got2 = ask.as_json(ask.send(story, "parts", ask.prompt_of(
@@ -358,6 +368,16 @@ def run(story: str, say=print, again: bool = False,
             + "\n\n（參考片：佔 39%、6 群、最長一群 4 句、最長旁白連續 6 句）"
               "\n加 --again 重問")
 
+    # **中文稿裡不要有拉丁字母。** 「我讓 Hans Egede 回島上」——
+    # zh-TW 的合成器唸外文人名會唸成一串音節，而它照樣唸得出來、
+    # 照樣壓得出片，只有聽的人知道不對。人名要用中譯，或者根本不提。
+    latin = [one for one in says if re.search(r"[A-Za-z]{2,}", one)]
+    if latin:
+        raise SystemExit(
+            "這幾句裡有拉丁字母，中文語音唸不好：\n  "
+            + "\n  ".join(latin[:5])
+            + "\n\n人名用中譯，或者不提名字。加 --again")
+
     fresh = sum(_han(one) for one in says)
     if abs(fresh - said) > said * 0.15:
         raise SystemExit(
@@ -377,4 +397,5 @@ def run(story: str, say=print, again: bool = False,
 
 if __name__ == "__main__":
     run(sys.argv[1] if len(sys.argv) > 1 else "",
-        again="--again" in sys.argv, plain="--plain" in sys.argv)
+        again="--again" in sys.argv, plain="--plain" in sys.argv,
+        parts="--parts" in sys.argv)

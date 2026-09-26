@@ -189,10 +189,13 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
     aim = max(6, round(whole / AIM_SECONDS))
 
     raw_at = paths.home(story) / "6-storyboard.raw.json"
-    if again or paths.raw_stale(story, raw_at, "storyboard"):
+    if again or paths.raw_stale(story, raw_at, "storyboard", ("storyboard.md",)):
+        # 骨幹現在是「一句一筆」（role + point），不是節點表。**送 role
+        # 過去**：分鏡看得到哪幾句是吐槽、哪一句是翻面，才知道哪個接縫
+        # 是真的斷點。
         nodes = "\n".join(
-            f"- {one.get('when', '')}　〔{one['beat']}〕{one['what'][:44]}"
-            for one in bones["nodes"])
+            f"{at:>3}　{one['role']:<4}　{one['point'][:46]}"
+            for at, one in enumerate(bones["lines"]))
         lines = "\n".join(
             f"{at:>3}　{who}　{text}"
             for at, (who, text) in enumerate(zip(heard["who"],
