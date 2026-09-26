@@ -13,7 +13,7 @@
 3-script.tsv      台詞　誰⇥講什麼（`停` 也是一種「誰」）
 4-voice/          配音：wav、逐字時間、送出去的 SSML
 5-atlas.json      實體 → 地理（geoId、外框、算出來的相機）
-6-storyboard.json 哪一個字上切到哪一個鏡頭
+6-storyboard.json 分鏡：哪一段看哪裡、哪個接縫是斷點
 7-scene.json      隔壁吃的那份
 8-film.mp4        成片
 ```

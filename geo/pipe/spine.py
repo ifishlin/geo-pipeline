@@ -75,16 +75,22 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
         raise SystemExit(
             f"整條線 {kinds} —— 沒有 turn 或沒有 payoff 的話，"
             f"那是一串事情，不是一支片")
+    if not str(got.get("refrain") or "").strip():
+        raise SystemExit(
+            "沒有寫 refrain —— 那是「會回來的那句話」的核心幾個字。\n"
+            "  整支片要有一句話講兩次（前面鋪、最後收），那是觀眾記得住"
+            "這支片的唯一理由。寫台詞那一步會拿它去數。")
     if not str(got.get("turn") or "").strip():
         raise SystemExit("沒有寫 turn 那一句 —— 那一句寫不出來，"
                          "通常表示這條線只是流水帳")
 
-    body = {"turn": str(got.get("turn")), "ending": str(got.get("ending") or ""),
-            "nodes": nodes}
+    body = {"turn": str(got.get("turn")), "refrain": str(got.get("refrain")),
+            "ending": str(got.get("ending") or ""), "nodes": nodes}
     paths.save(story, "spine", body)
     say(f"\n{len(nodes)} 個節點　"
         + "　".join(f"{k} {v}" for k, v in kinds.items()))
     say(f"  轉：{body['turn']}")
+    say(f"  會回來的那句：{body['refrain']}")
     say(f"  收：{body['ending']}")
     for one in nodes:
         say(f"  {str(one.get('when','')):<8}{one['beat']:<8}{one['what'][:40]}")

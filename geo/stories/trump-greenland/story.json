@@ -8,7 +8,7 @@
     "丹麥": "female-low",
     "美國": "male-low"
   },
-  "map_style": "clean",
+  "map_style": "satellite",
   "seconds": 116,
   "sources": [
     {

@@ -21,6 +21,7 @@ import json
 import sys
 from typing import Any
 
+from geo.pipe import camera as camera_module
 from geo.pipe import paths, story as story_module
 
 THEME = paths.GEO / "data" / "theme.json"
@@ -29,11 +30,94 @@ THEME = paths.GEO / "data" / "theme.json"
 BREAKS = "。！？；，、：…"
 
 
+# 鏡頭移動的那幾格參數搬到 `geo/data/theme.json` 的 `camera` 了 ——
+# 它們是判斷不是事實（「多久算太短」「重疊多少算同一帶地方」），
+# 而判斷應該讓人改得到，不是寫死在程式裡。每一格的理由寫在那份的說明裡。
+
+
+def _legs(one: dict[str, Any], nxt: dict[str, Any] | None, span: float,
+          wide: int, high: int, knobs: dict[str, Any]
+          ) -> tuple[str, list[tuple[float, dict[str, Any], dict[str, Any]]]]:
+    """這一格要拆成幾段、每一段的相機從哪到哪。
+
+    回 `(種類, [(幾秒, 起, 訖), …])`。**種類是它自己說的，不是從段數推的** ——
+    第一版讓報告數段數，而「滑」從兩段改成三段（停、走、到位停）之後，
+    報告就開始說「滑 0、拉遠 27」，其實那 27 個全是滑的。數字說謊比沒有
+    數字糟。
+
+    **滑是預設，切是例外。** 觀眾看的是一張地圖，地圖一直跳人會暈，而且
+    會失去「這些地方彼此在哪」的感覺 —— 那正是地理短影音唯一能給的東西。
+    所以只有分鏡指名 `cut` 的接縫才硬切；其餘一律滑過去。
+
+    **提早到位，再停一下。** 移動在這一格的後段，而且在下一句開口前
+    `settle` 秒就到 —— 不然「這一句還在講，畫面已經在往別的地方跑」。
+
+    四種結果：
+
+    ```
+    切       停在自己的鏡頭            分鏡說這裡是斷點，或這一格太短
+    滑       停一下，滑過去            預設
+    拉遠     停、拉遠到兩邊都看得到、推進   兩邊離太遠，直接滑過去是一片海
+    ```
+    """
+    here = one["camera"]
+    if nxt is None or span < knobs["move_least"]:
+        return ("cut", [(span, here, here)])
+    there = nxt["camera"]
+    if here == there or nxt.get("cut"):
+        return ("cut", [(span, here, here)])
+
+    # **三段加起來必須剛好等於這一格。** 第一版的補救寫成「room 至少 0.3」，
+    # 於是短格子的 hold+room+settle 比 span 大，105 段累積下來整支片多了
+    # 0.46 秒 —— 影音就對不齊了，而那是壓完才看得到的。
+    # 現在把 settle 和 room 一起夾在 span 以內，hold 吃剩下的。
+    settle = min(float(knobs.get("settle", 0.25)), span * 0.3)
+    room = min(span * knobs["travel"], knobs["travel_most"], span - settle)
+    hold = span - room - settle
+    if hold < 0:                                  # 理論上不會，保險
+        return ("cut", [(span, here, here)])
+    close = camera_module.overlap(here, there, wide, high)
+    if close >= knobs["together"]:
+        return ("glide", [(hold, here, here), (room, here, there),
+                          (settle, there, there)])
+
+    # 離太遠：直接滑過去是一整段沒有意義的海。先拉遠到兩邊都進得來，
+    # 再推進去。**這不是戲，是為了滑得順** —— 引擎一段只能直線移動，
+    # 中心和縮放都單調地變，所以拉遠再推進做不到一段裡。
+    if span < knobs["move_least"] * 2:
+        return ("cut", [(span, here, here)])
+    both = camera_module.merge([camera_module.view(here, wide, high),
+                                camera_module.view(there, wide, high)])
+    try:
+        out = camera_module.fit(both, wide, high, pad=0.03, hold=1.0, lift=0.0)
+    except ValueError:
+        return ("cut", [(span, here, here)])
+    return ("out", [(hold, here, here), (room / 2, here, out),
+                    (room / 2, out, there), (settle, there, there)])
+
+
 def theme(spec: dict[str, Any]) -> dict[str, Any]:
+    """外觀，**顏色照底圖挑那一套**。
+
+    一套顏色配所有底圖是行不通的：`clean` 那套的半透明深紅在空照圖的地形
+    上會消失，而那不是「比較不明顯」—— 是整塊地看不出有沒有上色，而畫面
+    照樣畫得完、每道門都過。
+    """
     got = json.loads(THEME.read_text(encoding="utf-8"))
     got = {k: v for k, v in got.items() if not k.startswith("_")}
-    for key, value in (spec.get("theme") or {}).items():
-        got[key] = {**got[key], **value} if isinstance(value, dict) else value
+    style = str(spec.get("map_style", "clean"))
+    looks = got.pop("looks")
+    # `satellite-hd` 之類的變體跟著它的主底圖走；認不得就用 clean 那套，
+    # 而且說一聲 —— 悄悄用錯一套顏色是看不出來的。
+    key = style if style in looks else style.split("-")[0]
+    if key not in looks:
+        print(f"⚠ 底圖 {style} 沒有對應的顏色，先用 clean 那套")
+        key = "clean"
+    got.update(looks[key])
+    for name, value in (spec.get("theme") or {}).items():
+        got[name] = ({**got[name], **value}
+                     if isinstance(value, dict) and isinstance(got.get(name), dict)
+                     else value)
     return got
 
 
@@ -211,7 +295,10 @@ def run(story: str, say=print) -> dict[str, Any]:
     cuts = board["cuts"]
     whole = float(board["seconds"])
 
+    wide, high = spec["video"]["width"], spec["video"]["height"]
+    fps = int(spec["video"]["fps"])
     scenes: list[dict[str, Any]] = []
+    moves: dict[str, int] = {}
     for at, one in enumerate(cuts):
         until = cuts[at + 1]["at"] if at + 1 < len(cuts) else whole
         if until <= one["at"]:
@@ -232,19 +319,55 @@ def run(story: str, say=print) -> dict[str, Any]:
                            "offset": [0, -52], **look["label"]})
         # 小到只靠填色看不出來的，改用標記去指。**程式判的，不是模型** ——
         # 它看不到畫面，算不出那塊地在這個相機下有幾個像素。
-        for name in one["faint"]:
+        #
+        # **已經被 mark 的就不要再插一根針。** 丹麥被分鏡標了、又被算成
+        # 太小，於是同一個座標上兩根針（黃的一根、紅的一根）疊在一起 ——
+        # 畫得出來、不會報錯，只是看起來像畫壞了。
+        for name in [x for x in one["faint"] if x not in one["mark"]]:
             spot = atlas[name]["at"]
             markers.append({"coordinates": spot, **look["faint"]})
             labels.append({"text": name, "coordinates": spot,
                            "offset": [0, -56], **look["label"]})
-        scenes.append({
-            "id": f"{one['at']:06.2f}-{one['why'][:18] or lead}",
-            "duration": round(until - one["at"], 3),
-            "camera": {"from": one["camera"], "to": one["camera"]},
-            "highlights": highlights,
-            "markers": markers,
-            "labels": labels,
-        })
+        body = {"highlights": highlights, "markers": markers, "labels": labels}
+        nxt = cuts[at + 1] if at + 1 < len(cuts) else None
+        kind, legs = _legs(one, nxt, until - one["at"], wide, high,
+                           look["camera"])
+        moves[kind] = moves.get(kind, 0) + 1
+        # **邊界對齊到整幀，從絕對時間算，不是每一段各自四捨五入。**
+        #
+        # 這是量出來的：`settle` 是 0.25 秒，在 30fps 剛好是 7.5 幀 ——
+        # 每一次都往同一邊進位，27 個滑鏡頭累積出 13.5 幀＝0.45 秒。
+        # 我這邊的檢查看秒數（122.138），渲染器按幀算（122.58），
+        # 兩邊都「對」，而成片的影音差了將近半秒。
+        #
+        # 從絕對時間算的話誤差不會累積：每一個邊界各自取整，相鄰兩個
+        # 邊界相減就是那一段的幀數，總和永遠等於最後一個邊界。
+        walk = one["at"]
+        for n, (span, a, b) in enumerate(legs):
+            head, tail = walk, walk + span
+            frames = round(tail * fps) - round(head * fps)
+            walk = tail
+            if frames <= 0:
+                continue
+            scenes.append({
+                "id": f"{one['at']:06.2f}{'-移' + str(n) if n else ''}"
+                      f"-{one['why'][:16] or lead}",
+                "duration": frames / fps,
+                "camera": {"from": a, "to": b,
+                           "easing": "linear" if a == b else "easeInOut"},
+                **body,
+            })
+
+    # **分段之後總長要等於原本的時間軸。** 一格拆成三段的算式只要有一個
+    # 分支加起來不等於 span，105 段累積下來就是半秒，而那是壓完十分鐘
+    # 之後在「影音等長」那道門才叫的。擋在這裡便宜得多。
+    drawn = sum(one["duration"] for one in scenes)
+    # 容許一幀 —— 最後一格的尾巴本來就會落在幀的邊界上。
+    if abs(drawn - whole) > 1.5 / fps:
+        raise SystemExit(
+            f"畫面加起來 {drawn:.3f} 秒，而聲音是 {whole:.3f} 秒 —— "
+            f"差 {abs(drawn - whole):.3f}。分段的算式有一條加起來不等於"
+            f"那一格的長度")
 
     subtitles: list[dict[str, Any]] = []
     for at, (start, end) in enumerate(heard["bounds"]):
@@ -257,7 +380,11 @@ def run(story: str, say=print) -> dict[str, Any]:
         "mapStyle": spec.get("map_style", "clean"),
         # 硬切：每一格從第一幀就完整。`soft` 會淡入，而 1.28 秒的格子
         # 淡入會吃掉一大半。
+        # 硬切：每一格從第一幀就完整。`soft` 會淡入，而一秒的格子淡入
+        # 會吃掉一大半。鏡頭移動是另一回事 —— 那是 camera 的 from→to，
+        # 跟這一格無關。
         "cuts": "hard",
+        "basemapBrightness": look.get("brightness", 1.0),
         "motionBlur": look.get("motion_blur", 0),
         "subtitleStyle": {k: v for k, v in look["subtitle"].items()
                           if k in ("y", "box", "fontSize")},
@@ -270,6 +397,9 @@ def run(story: str, say=print) -> dict[str, Any]:
     }
     paths.save(story, "scene", body)
     long = max((one["end"] - one["start"] for one in subtitles), default=0)
+    say(f"鏡頭　切 {moves.get('cut', 0)}　滑 {moves.get('glide', 0)}　"
+        f"拉遠再推進 {moves.get('out', 0)}"
+        + f"　（{sum(moves.values())} 個切點 → {len(scenes)} 段）")
     say(f"{len(scenes)} 格、{len(subtitles)} 塊字幕　"
         f"共 {sum(one['duration'] for one in scenes):.1f} 秒")
     say(f"  字幕最長一塊 {long:.1f} 秒、最多 "

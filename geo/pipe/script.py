@@ -76,6 +76,21 @@ def budget(aim: float) -> int:
     return max(50, round((aim - HOLDS) / per))
 
 
+DATE = re.compile(r"\d+\s*年(\s*\d+\s*月)?(\s*\d+\s*日)?")
+
+
+def _numbers(text: str) -> int:
+    """這句話裡有幾個「要記住的數字」。一個完整日期算一個。
+
+    **只數阿拉伯數字。** 中文數字（「八個盟國」「一萬名美軍」）抓不到，
+    所以「八個盟國派兵來守。只有 8% 的美國人支持動武。」這種會漏。
+    寧可漏也不要亂叫 —— 要抓中文數字就得分辨「三個主人」（不是要記的數字）
+    和「八個盟國」（是），而那條界線我畫不出來。prompt 那邊還是有寫規矩。
+    """
+    # 小數點和千分位不算兩個數字：70.8% 是一個，不是 70 和 8。
+    return len(re.findall(r"\d+(?:[.,]\d+)*", DATE.sub("〇", text)))
+
+
 def _han(text: str) -> int:
     """唸得出來的字數：漢字加數字，不算標點。"""
     return len(re.findall(r"[一-鿿]", text)) + \
@@ -106,6 +121,7 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
         got = ask.as_json(ask.send(story, "script", ask.prompt_of(
             "script.md", title=spec["title"], turn=bones["turn"],
             ending=bones.get("ending", ""), cast=who, nodes=nodes,
+            refrain=bones.get("refrain", ""),
             # **prompt 印的範圍就是門用的範圍。** 兩邊各寫一個數字的話，
             # 模型照 prompt 寫、程式照門退回，而退回的訊息說的是一個它
             # 從來沒看過的數字 —— 那道門是在罰它不知道的規矩。
@@ -150,6 +166,42 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
         raise SystemExit(
             f"整支片只有「{'、'.join(voices)}」在講話 —— 那是解說稿，"
             f"不是短劇。資訊要靠對白傳，不是靠旁白講")
+    # **會回來的那句話要真的回來。** 這是觀眾記得住一支片的唯一理由，
+    # 而它是第一次成功純屬運氣 —— prompt 裡一個字都沒提過。現在 spine
+    # 宣告 `refrain`，這裡去數。
+    refrain = str(bones.get("refrain") or "").strip()
+    if refrain:
+        whole = "".join(str(one.get("say") or "") for one in spoken)
+        bare = re.sub(r"[，。！？、：；…—\s]", "", whole)
+        times = whole.count(refrain) or bare.count(
+            re.sub(r"[，。！？、：；…—\s]", "", refrain))
+        if times < 2:
+            raise SystemExit(
+                f"「{refrain}」在台詞裡只出現 {times} 次，要兩次 —— "
+                f"前面鋪一次、最後收一次。那是觀眾記得住這支片的地方。"
+                f"加 --again 重寫")
+        say(f"  「{refrain}」出現 {times} 次")
+
+    # 最後一句是旁白＝百科條目的收法。這種片的最後一句要有人在說話。
+    last = str(spoken[-1].get("who") or "")
+    if cast.get(last, {}).get("slot") == "narrator":
+        raise SystemExit(
+            f"最後一句是旁白講的：「{spoken[-1].get('say')}」。\n"
+            f"  旁白收尾是百科條目的作法 —— 這種片的最後一句要有角色在說話。"
+            f"加 --again 重寫")
+
+    # 一句兩個數字，唸出來只記得住一個。不擋，但要看得見。
+    #
+    # **一個日期是一件事，不是三件。** 第一版直接數 `\d+`，於是
+    # 「2026 年 9 月 22 日」被數成三個、「1261 年歸挪威，1814 年分家」
+    # 被當成超載 —— 那是刻意的壓縮。會亂叫的警告等於沒有警告，所以先把
+    # 日期收成一個，再數剩下幾個「數字＋單位」。
+    thick = [str(one.get("say")) for one in spoken
+             if _numbers(str(one.get("say") or "")) >= 2]
+    if thick:
+        say(f"⚠ {len(thick)} 句裡有兩個以上的數字，唸出來記不住："
+            + "　".join(one[:18] for one in thick[:3]))
+
     long = guess(said, len(spoken), holds)
     if abs(long - aim) > aim * SLACK:
         raise SystemExit(

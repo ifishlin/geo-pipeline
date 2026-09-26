@@ -124,6 +124,40 @@ def too_small(shot: dict[str, Any], bbox: Sequence[float]) -> bool:
     return max(wide, high) < TINY
 
 
+def view(shot: dict[str, Any], width: int = 1080,
+         height: int = 1920) -> list[float]:
+    """這個相機看得到的範圍，回成外框 (西, 南, 東, 北)。
+
+    跟 `fit()` 是一對：那一支從外框算相機，這一支從相機算回外框。
+    兩個鏡頭之間要不要用移動的，看的就是這兩個範圍有沒有重疊。
+    """
+    scale = WORLD * 2 ** float(shot["zoom"])
+    lon, lat = (float(one) for one in shot["center"])
+    half_x = width / 2 / scale * 360
+    half_y = height / 2 / scale
+    mid = merc_y(lat)
+    return [lon - half_x, lat_of(min(1.0, mid + half_y)),
+            lon + half_x, lat_of(max(0.0, mid - half_y))]
+
+
+def overlap(a: dict[str, Any], b: dict[str, Any], width: int = 1080,
+            height: int = 1920) -> float:
+    """兩個鏡頭看得到的範圍重疊多少（0 到 1，取兩者中較小那個的比例）。
+
+    **用來決定鏡頭是用移的還是用切的。** 重疊得多就是同一帶地方，
+    鏡頭滑過去看得懂；完全不重疊就是跳到地球另一邊，直接滑過去的話
+    觀眾會看到一整段沒有意義的海。
+    """
+    one, other = view(a, width, height), view(b, width, height)
+    wide = min(one[2], other[2]) - max(one[0], other[0])
+    high = min(one[3], other[3]) - max(one[1], other[1])
+    if wide <= 0 or high <= 0:
+        return 0.0
+    small = min((one[2] - one[0]) * (one[3] - one[1]),
+                (other[2] - other[0]) * (other[3] - other[1]))
+    return (wide * high) / small if small > 0 else 0.0
+
+
 def covers(shot: dict[str, Any], bbox: Sequence[float],
            width: int = 1080, height: int = 1920) -> bool:
     """這個相機**真的**把這個外框裝進去了嗎。
