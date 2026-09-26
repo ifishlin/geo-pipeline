@@ -47,34 +47,47 @@ import sys
 from typing import Any
 
 from geo.pipe import ask, paths, story as story_module
+from geo.pipe.spine import rules as _rules
 
 # 唸多久 ＝ 字數 / RATE ＋ 句數 × PER_LINE ＋ 宣告的停頓。
 # 兩個數字是拿兩次真實合成解出來的（572 字 36 句 → 116.74 秒；
 # 585 字 49 句 → 133.10 秒）。句數那一項很大：字數只差 13 個，秒數差 16 秒。
-RATE = 8.22
-PER_LINE = 1.060
-# 一句話幾個字。**12 太短了** —— 中文一句 12 個字寫不下主角＋內容，
-# 於是模型把主角擠掉（量到 0/43 句提到它）。而且一句話的固定開銷是
-# 1.06 秒，句子越短、開銷佔比越高：43 句就是 46 秒，四成的預算花在換氣上。
+# 唸多久 ＝ 字數/RATE ＋ 行數×PER_LINE ＋ 句號數×PER_END ＋ 宣告的停頓
 #
-# 15 個字：句數降到 37，開銷 39 秒，字數額度反而從 505 升到 555。
-PER_ROW = 15
+# **句號比行更貴，而且擋不掉。** 第一版只有「每行 1.06 秒」，那是把兩件事
+# 混成一個數字。拆開是量出來的：
+#
+#   整份稿子   41 行、54 個句號、564 字 → 開銷 43.5 秒
+#   單獨測     1 行、4 個句號、28 字   → 開銷 2.2 秒
+#
+#   兩式解出   每行 0.50 秒　每個句號 0.425 秒
+#   驗算       41×0.50 + 54×0.425 = 43.5 ✅
+#
+# 那 0.425 秒是 Azure 自己在句號後面加的，關不掉：把 `sentence_gap_ms`
+# 從 150 調到 0，四個句號只省 0.34 秒（而從預設調到 150 省了 1.18 秒，
+# 所以那一格本身是有效的，只是已經調到底了）。
+#
+# 可以動的是**句號的數量**：一行寫一句，比一行寫三句省 0.85 秒。
+RATE = 8.22
+PER_LINE = 0.50
+PER_END = 0.425
+
+# 一行幾個字、幾個句號。**一行一句** —— 多一個句號就多 0.425 秒，
+# 而那些秒數本來可以拿去講話。
+PER_ROW = 21
+PER_ROW_ENDS = 1
+
 HOLDS = 10.0
 SLACK = 0.06
 
+# 一行最多幾個句尾標點。超過就是把三句話塞在一行裡，每一個都在付錢。
+ENDS_MOST = 2
+
 # 旁白自己的形狀。**「年份開頭」不是錯的寫法，整篇都這樣才是** ——
 # 那是一張清單，不是一個故事。所以是上限，不是禁止。
-#
-#                     我們第一版   參考片   訂
-#   以年份開頭          87%        11%     ≤30%
-#   提到主角            27%        42%     ≥35%
-#   態度句（不帶新事實）  0 句       3 句     ≥2 句
-#
-# 參考片三道全過，我們第一版三道全不過。
 DATE_HEAD_MOST = 0.30
 HERO_LEAST = 0.35
-# 主角最多連續幾句不出現。**比例是弱的代理，這個才是要擋的東西** ——
-# 「主角整段消失」是一段連續的沉默，不是一個百分比。
+# 主角最多連續幾行不出現。比例是弱的代理，「整段消失」才是要擋的。
 HERO_GONE_MOST = 5
 
 # 角色對白的形狀，四個數字都拿參考片驗過（見模組說明）。
@@ -107,8 +120,15 @@ def _han(text: str) -> int:
         sum(len(one) for one in re.findall(r"\d+", text))
 
 
-def guess(said: int, rows: int, holds: float) -> float:
-    return said / RATE + rows * PER_LINE + holds
+def guess(said: int, rows: int, holds: float, ends: int | None = None) -> float:
+    """唸出來大概幾秒。`ends` 不給就假設一行一句。"""
+    return (said / RATE + rows * PER_LINE
+            + (rows if ends is None else ends) * PER_END + holds)
+
+
+def _ends(text: str) -> int:
+    """這一行有幾個句尾標點。每一個都要 0.425 秒。"""
+    return len(re.findall(r"[。！？：；]", text))
 
 
 def rows_for(aim: float) -> int:
@@ -119,7 +139,8 @@ def rows_for(aim: float) -> int:
     兩邊各算一次的話就會像第一版那樣 —— 骨幹用 `aim/2.8` 排了 43 句，
     而那個句數在字數額度下根本放不下，多出 13 秒。
     """
-    return max(6, round((aim - HOLDS) / (PER_ROW / RATE + PER_LINE)))
+    per = PER_ROW / RATE + PER_LINE + PER_ROW_ENDS * PER_END
+    return max(6, round((aim - HOLDS) / per))
 
 
 def budget(aim: float, rows: int | None = None) -> int:
@@ -130,7 +151,8 @@ def budget(aim: float, rows: int | None = None) -> int:
     多出四秒。差不多，但沒有理由差。
     """
     many = rows_for(aim) if rows is None else rows
-    return max(50, round((aim - HOLDS - many * PER_LINE) * RATE))
+    cost = many * (PER_LINE + PER_ROW_ENDS * PER_END)
+    return max(50, round((aim - HOLDS - cost) * RATE))
 
 
 def shape_of(who: list[str], narrator: str) -> dict[str, Any]:
@@ -168,8 +190,13 @@ def _rows(who: list[str], says: list[str],
     return out
 
 
-def run(story: str, say=print, again: bool = False,
-        plain: bool = False, parts: bool = False) -> dict[str, Any]:
+def _numbers_in(text: str) -> list[str]:
+    """這句話裡的數字，照原樣。改說法不准改數字，靠這個比。"""
+    return sorted(re.findall(r"\d+(?:[.,]\d+)*", text))
+
+
+def run(story: str, say=print, again: bool = False, plain: bool = False,
+        parts: bool = False, narrate: bool = False) -> dict[str, Any]:
     """`again` 兩支都重問，`parts` 只重問配角色那一支。
 
     分開是因為它們一次 10–25 分鐘，而**通常只有一支要重來** —— 旁白稿
@@ -182,7 +209,11 @@ def run(story: str, say=print, again: bool = False,
     cast = story_module.cast_of(spec)
     aim = float(spec.get("seconds") or 116)
     plan = bones["lines"]
-    words = budget(aim, len(plan))
+    talk = _rules()["talk"]
+    # **字數額度先留一塊給「接起來」那一步。** 不先留的話它每次都會撞
+    # 長度的門，而撞的時候分不出是內容太多還是接詞太多。
+    full = budget(aim, len(plan))
+    words = round(full * (1 - talk["room"]))
     narrator = next((name for name, one in cast.items()
                      if one["slot"] == "narrator"), "旁白")
 
@@ -206,6 +237,7 @@ def run(story: str, say=print, again: bool = False,
             least=round(words * 0.92), most=round(words * 1.08),
             slack=8, rows=len(plan),
             rate=RATE, per_line=PER_ROW, line_cost=PER_LINE,
+            end_cost=PER_END,
             holds=f"{HOLDS:.0f}"), say))
         raw_at.write_text(json.dumps(got, ensure_ascii=False, indent=1),
                           encoding="utf-8")
@@ -238,15 +270,24 @@ def run(story: str, say=print, again: bool = False,
         raise SystemExit("一句台詞都沒有")
 
     said = sum(_han(one) for one in says)
-    long = guess(said, len(says), total_hold)
-    if abs(long - aim) > aim * SLACK:
+    ends = sum(_ends(one) for one in says)
+    long = guess(said, len(says), total_hold, ends)
+    # **這一步量的是字數，不是秒數。** 旁白稿只用 `words`（總額度的
+    # 82%），剩下的留給「接起來」那一步的接詞和語助詞 —— 拿 100% 的
+    # 秒數去量它，寫得剛好反而被判太短（量到 108 秒，而容許 109 起）。
+    # 秒數那道門在最後，等三趟都做完才量。
+    if abs(said - words) > words * 0.10:
         raise SystemExit(
-            f"這份稿子唸出來大約 {long:.0f} 秒，目標 {aim:.0f}"
-            f"（容許 {aim * (1 - SLACK):.0f}–{aim * (1 + SLACK):.0f}）。\n"
+            f"旁白稿 {said} 個字，額度是 {words}"
+            f"（容許 {round(words * 0.9)}–{round(words * 1.1)}）。\n"
+            f"  這是留給內容的額度，接詞和語助詞的字另外算"
+            f"（總額度 {full}）。\n"
             f"  {said} 字 ÷ {RATE} ＝ {said / RATE:.0f}s"
-            f"　＋ {len(says)} 句 × {PER_LINE} ＝ {len(says) * PER_LINE:.0f}s"
+            f"　＋ {len(says)} 行 × {PER_LINE} ＝ {len(says) * PER_LINE:.0f}s"
+            f"　＋ {ends} 個句號 × {PER_END} ＝ {ends * PER_END:.0f}s"
             f"　＋ 停 {total_hold:.0f}s\n"
-            f"  **句數也要算錢** —— 一句拆成兩句多 {PER_LINE} 秒。加 --again")
+            f"  現在估計 {long:.0f} 秒（三趟做完的目標是 {aim:.0f}）。"
+            f"加 --again")
 
     refrain = str(bones.get("refrain") or "").strip()
     if refrain:
@@ -297,10 +338,20 @@ def run(story: str, say=print, again: bool = False,
         raise SystemExit(
             "旁白寫成年表了：\n  " + "\n  ".join(bad)
             + "\n加 --again 重寫")
+    say(f"  {ends} 個句號（一行 {ends / len(says):.1f} 個）")
     say(f"  年份開頭 {len(dated) / len(says):.0%}"
         + (f"　提到主角 {len(shown) / len(says):.0%}"
            f"（最長連續 {gone} 句沒有）" if hero else "")
         + f"　吐槽 {len(asides)} 句")
+
+    # **一行最多兩個句尾標點。** 每一個 0.425 秒，而那些秒數本來可以
+    # 拿去講話。三句塞在一行裡，長度上等於多寫了七個字。
+    crowded = [one for one in says if _ends(one) > ENDS_MOST]
+    if crowded:
+        bad.append(
+            f"{len(crowded)} 行的句尾標點超過 {ENDS_MOST} 個"
+            f"（每一個 {PER_END} 秒）："
+            + "　".join(one[:20] for one in crowded[:3]))
 
     thick = [one for one in says if _numbers(one) >= 2]
     if thick:
@@ -384,18 +435,99 @@ def run(story: str, say=print, again: bool = False,
             f"改寫之後從 {said} 字變成 {fresh} 字 —— 改的是說法，"
             f"不是長度。加 --again")
 
-    paths.save(story, "script", "\n".join(_rows(who, says, holds_after)) + "\n")
+    (paths.home(story) / "3-script.parts.tsv").write_text(
+        "\n".join(_rows(who, says, holds_after)) + "\n", encoding="utf-8")
     say(f"\n角色 {sum(1 for x in who if x != narrator)} 句／{len(says)} 句"
         f"（{shape['share']:.0%}）　{shape['runs']} 群　"
         f"最長一群 {shape['run_most']}　最長旁白連續 {shape['narration_run']}")
     for name in cast:
         say(f"  {name:<5}{sum(1 for x in who if x == name):>3} 句")
-    say(f"  改寫後 {fresh} 字（原本 {said}）　"
-        f"估計 {guess(fresh, len(says), total_hold):.0f} 秒")
+    say(f"  改寫後 {fresh} 字（原本 {said}）")
+
+    # —— 第三支：接成一段話 ————————————————————————————
+    talk_at = paths.home(story) / "3-narrate.raw.json"
+    stale = (paths.raw_stale(story, talk_at, "script", ("narrate.md",))
+             or talk_at.stat().st_mtime < parts_at.stat().st_mtime)
+    if again or narrate or stale:
+        listing = "\n".join(f"{at:>3}　{w}　{s}"
+                             for at, (w, s) in enumerate(zip(who, says)))
+        got3 = ask.as_json(ask.send(story, "narrate", ask.prompt_of(
+            "narrate.md", lines=listing, now=fresh, most=full,
+            room=full - fresh, fillers="、".join(talk["fillers"]),
+            every=talk["every"],
+            most_per_line=talk["most_per_line"]), say))
+        talk_at.write_text(json.dumps(got3, ensure_ascii=False, indent=1),
+                           encoding="utf-8")
+    else:
+        say(f"沿用 {talk_at.name}")
+        got3 = json.loads(talk_at.read_text(encoding="utf-8"))
+
+    before = list(says)
+    seen: set[int] = set()
+    for one in (got3.get("lines") or []):
+        at = int(one.get("at", -1))
+        text = str(one.get("say") or "").strip()
+        if not 0 <= at < len(says):
+            raise SystemExit(f"要改第 {at} 句，而只有 {len(says)} 句")
+        if not text:
+            raise SystemExit(f"第 {at} 句改成空的")
+        # **改說法不准改數字。** 接句子的時候最容易把年份和百分比弄丟，
+        # 或者把「1261 年」講成「13 世紀」—— 聽起來一樣對，而事實變了。
+        if _numbers_in(text) != _numbers_in(says[at]):
+            raise SystemExit(
+                f"第 {at} 句的數字被改了：\n"
+                f"  原本：{says[at]}\n"
+                f"  改成：{text}\n"
+                f"改說法可以，改數字不行。加 --narrate 重問")
+        says[at], seen = text, seen | {at}
+    missing = [i for i in range(len(says)) if i not in seen]
+    if missing:
+        say(f"⚠ 這 {len(missing)} 句沒有改寫，照原樣：{missing[:8]}")
+
+    marks = [sum(one.count(f) for f in talk["fillers"]) for one in says]
+    with_ = sum(1 for one in marks if one)
+    need = len(says) // talk["every"]
+    bad = []
+    if with_ < need:
+        bad.append(f"只有 {with_}/{len(says)} 句有語助詞，"
+                   f"每 {talk['every']} 句要有一句（至少 {need} 句）"
+                   f"—— 沒有語助詞的中文旁白聽起來像在唸稿")
+    thickest = [one for one, n in zip(says, marks)
+                if n > talk["most_per_line"]]
+    if thickest:
+        bad.append(f"{len(thickest)} 句的語助詞超過 "
+                   f"{talk['most_per_line']} 個："
+                   + "　".join(one[:16] for one in thickest[:3]))
+    grown = sum(_han(one) for one in says)
+    grown_ends = sum(_ends(one) for one in says)
+    if grown_ends > ends * 1.25:
+        bad.append(f"接完之後句號從 {ends} 個變成 {grown_ends} 個 —— "
+                   f"每一個 {PER_END} 秒，接句子不該多切出句號")
+    whole = guess(grown, len(says), total_hold, grown_ends)
+    if abs(whole - aim) > aim * SLACK:
+        bad.append(
+            f"三趟做完唸出來 {whole:.0f} 秒，目標 {aim:.0f}"
+            f"（容許 {aim * (1 - SLACK):.0f}–{aim * (1 + SLACK):.0f}）"
+            f"　{grown} 字、{len(says)} 行、{grown_ends} 個句號")
+    if grown > full * 1.06:
+        bad.append(f"接完之後 {grown} 字，上限 {full}"
+                   f"（原本 {fresh}，額度 {full - fresh}）"
+                   f"—— 接詞和語助詞的字，不是新內容的字")
+    if bad:
+        raise SystemExit("接起來那一步不合規矩：\n  " + "\n  ".join(bad)
+                         + "\n加 --narrate 重問")
+
+    paths.save(story, "script", "\n".join(_rows(who, says, holds_after)) + "\n")
+    changed = sum(1 for a, b in zip(before, says) if a != b)
+    say(f"\n接起來　改寫 {changed}/{len(says)} 句　"
+        f"{grown} 字（原本 {fresh}，上限 {full}）")
+    say(f"  語助詞 {with_}/{len(says)} 句（至少 {need}）　"
+        f"句號 {grown_ends} 個　"
+        f"估計 {guess(grown, len(says), total_hold, grown_ends):.0f} 秒")
     return {"lines": says, "who": who}
 
 
 if __name__ == "__main__":
     run(sys.argv[1] if len(sys.argv) > 1 else "",
         again="--again" in sys.argv, plain="--plain" in sys.argv,
-        parts="--parts" in sys.argv)
+        parts="--parts" in sys.argv, narrate="--narrate" in sys.argv)

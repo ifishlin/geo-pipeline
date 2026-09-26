@@ -92,6 +92,18 @@ def run(story: str, only: str = "", again: bool = False,
                 raise SystemExit(f"「{name}」跑不了，缺 {'、'.join(gap)}")
             print(f"\n停在「{name}」—— 缺 {'、'.join(gap)}")
             return
+        # **昂貴的步驟前面先掃一次名字。** 毫秒的事，而漏掉的代價是
+        # 「模型答完了才 NameError」—— 一個晚上被咬三次，最貴的一次
+        # 是十二分鐘。
+        if name in ("facts", "spine", "script", "storyboard"):
+            from geo import check as check_module
+            bad = []
+            for one in sorted((check_module.HERE).rglob("*.py")):
+                if "__pycache__" not in str(one):
+                    bad += check_module.scan(one)
+            if bad:
+                raise SystemExit("程式裡有不存在的名字，先修再跑：\n  "
+                                 + "\n  ".join(bad[:8]))
         print(f"\n{'─' * 8} {name} {'─' * 8}")
         began = time.time()
         call = _step(name)
@@ -105,7 +117,8 @@ def run(story: str, only: str = "", again: bool = False,
         # `--plain` 只給寫台詞那一步：停在旁白稿，不配角色。
         # 想先確認「故事本身站不站得住」的時候用。
         kinds["script"] = {"again": again, "plain": plain,
-                           "parts": "--parts" in sys.argv}
+                           "parts": "--parts" in sys.argv,
+                           "narrate": "--narrate" in sys.argv}
         call(story, **kinds.get(name, {}))
         print(f"（{time.time() - began:.0f} 秒）")
     print(f"\n{status(story)}　{story}")

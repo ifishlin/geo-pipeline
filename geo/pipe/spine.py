@@ -30,12 +30,17 @@
 from __future__ import annotations
 
 import json
+import re
 import sys
 from typing import Any
 
 from geo.pipe import ask, paths, story as story_module
 
 RULES = paths.GEO / "data" / "rules.json"
+
+# 一句 point 裡有年份的樣子。「西元前 2500 年」「1953 年」「2026 年 9 月」
+# 都算；「四千五百年前」那種相對時間不算 —— 它接得上上一句，年份不接。
+YEAR = re.compile(r"(西元前\s*)?\d{3,4}\s*年|\b\d{4}\b")
 
 
 def rules() -> dict[str, Any]:
@@ -105,7 +110,8 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
     paths.insist(story, "spine")
     spec = story_module.load(story)
     facts = paths.load(story, "facts")
-    roles = rules()["roles"]
+    got_rules = rules()
+    roles, got_shape = got_rules["roles"], got_rules["shape"]
     aim = float(spec.get("seconds") or 116)
     # **句數問寫台詞那一支，不要自己算。** 第一版這裡寫 `aim / 2.8`，
     # 排出 43 句 —— 而那個句數在字數額度下放不下，寫出來 129 秒（目標 116）。
@@ -122,7 +128,9 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
         got = ask.as_json(ask.send(story, "spine", ask.prompt_of(
             "spine.md", title=spec["title"], ask=spec.get("ask", ""),
             hero=spec.get("hero", ""), roles=roles_table(roles),
-            facts=listing, count=len(facts), rows=rows), say))
+            facts=listing, count=len(facts), rows=rows,
+            dated_most=f"{got_shape.get('dated_most', 0.3):.0%}",
+            dated_rows=round(rows * got_shape.get("dated_most", 0.3))), say))
         raw_at.write_text(json.dumps(got, ensure_ascii=False, indent=1),
                           encoding="utf-8")
     else:
@@ -154,6 +162,22 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
             f"  一句話光是換氣就吃 1.06 秒，多排四句就少四秒可以講話，"
             f"而每一句會被壓到裝不下主角。加 --again 重排")
 
+    # **年份本身沒有錯，整排都掛年份才是。** 第一版 17/33 句的 point
+    # 綁著一個年份，寫成台詞之後 15/33 句帶年份 —— 而那是 narrate 修不掉
+    # 的：「這一句要講 1953 年那件事」是這一步決定的。
+    #
+    # 每一句都可以獨立存在的稿子，就是一張清單。故事要的是每一句都接著
+    # 上一句，而「後來」「同一年」「三年後」接得上，年份接不上。
+    dated = [one for one in lines if YEAR.search(one["point"])]
+    cap = float(got_shape.get("dated_most", 0.30))
+    if len(dated) / len(lines) > cap:
+        raise SystemExit(
+            f"{len(dated)}/{len(lines)} 句的 point 綁著一個年份"
+            f"（{len(dated) / len(lines):.0%}，上限 {cap:.0%}）—— "
+            f"那會寫成一份年表。\n"
+            f"  把幾件事合併成一句，或者用「後來」「同一年」「三年後」"
+            f"這種接得上上一句的說法。加 --again 重排")
+
     bad = check(lines, roles)
     if bad:
         raise SystemExit("骨幹的形狀不對：\n  " + "\n  ".join(bad)
@@ -164,7 +188,8 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
     paths.save(story, "spine", body)
 
     kinds = [str(one["role"]) for one in lines]
-    say(f"\n{len(lines)} 句")
+    say(f"\n{len(lines)} 句　{len(dated)} 句綁年份"
+        f"（{len(dated) / len(lines):.0%}，上限 {cap:.0%}）")
     say(f"  轉：{body['turn'][:60]}")
     say(f"  會回來的那句：{body['refrain']}")
     say(f"  收：{body['ending'][:56]}")

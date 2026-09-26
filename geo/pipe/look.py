@@ -145,17 +145,24 @@ def _when(one: Path) -> str:
     return time.strftime("%H:%M", time.localtime(one.stat().st_mtime))
 
 
-def _asks(story: str) -> dict[str, list[tuple[Path, Path]]]:
-    """每一步問過幾次，各自的 (送出去, 收回來)。照時間排。"""
+# 一趟問答屬於哪一步。**檔名不等於步驟名** —— 台詞那一步問三次
+# （script／parts／narrate），而只有第一個跟步驟同名，另外兩趟就從
+# 畫面上消失了。漏掉的正是「這一句為什麼變成這樣」最關鍵的兩趟。
+BELONGS = {"parts": "script", "narrate": "script"}
+
+
+def _asks(story: str) -> dict[str, list[tuple[Path, Path, str]]]:
+    """每一步問過幾次，各自的 (送出去, 收回來, 哪一支 prompt)。照時間排。"""
     into = paths.home(story) / "_ask"
-    out: dict[str, list[tuple[Path, Path]]] = {}
+    out: dict[str, list[tuple[Path, Path, str]]] = {}
     if not into.is_dir():
         return out
     for one in sorted(into.glob("*.prompt.md")):
         said = one.with_name(one.name.replace(".prompt.md", ".said.md"))
         if not said.is_file():
             continue
-        out.setdefault(one.name.split("-")[0], []).append((one, said))
+        task = one.name.split("-")[0]
+        out.setdefault(BELONGS.get(task, task), []).append((one, said, task))
     return out
 
 
@@ -324,7 +331,7 @@ def _arch() -> str:
 
 
 def _history(story: str, name: str,
-             rows: list[tuple[Path, Path]]) -> str:
+             rows: list[tuple[Path, Path, str]]) -> str:
     """這一步問過幾次。**最後一次是現在用的，前面那幾次留著比對。**
 
     多問幾次是常態（字數不合、形狀不對、擋下來重寫），而「這一版跟上一版
@@ -333,15 +340,21 @@ def _history(story: str, name: str,
     """
     if not rows:
         return ""
-    out = [f'<p class=tries>問過 {len(rows)} 次'
-           f'{"，最後一次是現在用的" if len(rows) > 1 else ""}</p>']
-    for at, (one, said) in enumerate(rows, 1):
-        now = at == len(rows)
+    kinds: dict[str, int] = {}
+    for _, _, task in rows:
+        kinds[task] = kinds.get(task, 0) + 1
+    out = [f'<p class=tries>'
+           + "　".join(f"<b>{esc(k)}</b> 問過 {v} 次" for k, v in kinds.items())
+           + "</p>"]
+    last = {task: max(i for i, (_, _, t2) in enumerate(rows) if t2 == task)
+            for task in kinds}
+    for at, (one, said, task) in enumerate(rows):
+        now = last[task] == at
         stamp = one.name.split("-", 1)[1].replace(".prompt.md", "")
         tag = '<span class="tag now">現在用的</span>' if now else \
               f'<span class=tag>第 {at} 次</span>'
         out.append(
-            f"<details><summary>{esc(stamp)}{tag}"
+            f"<details><summary><b>{esc(task)}</b>　{esc(stamp)}{tag}"
             f"　送出 {one.stat().st_size // 1000}k 字元、"
             f"回來 {said.stat().st_size // 1000}k</summary>"
             f'<div class=pair><div><h4>送出去的</h4>'
