@@ -39,7 +39,7 @@ from typing import Any
 from geo.pipe import paths, story as story_module
 
 AGENT = "geo-pipeline (map shorts; contact via repo owner)"
-KINDS = ("news", "wiki", "official", "voices")
+KINDS = ("news", "wiki", "official", "study", "voices")
 
 
 def certs() -> Any:
@@ -115,7 +115,11 @@ def run(story: str, say=print) -> dict[str, Any]:
                     "file": f"0-sources/{name}",
                     "chars": len(where.read_text(encoding="utf-8"))})
 
-    missing = [one for one in ("news", "wiki") if
+    # **五類都要看。** 第一版只比 ("news", "wiki")，於是「大家原本以為
+    # 什麼」那一類掛零從來沒有人發現 —— 川普格陵蘭那題五個來源零誤解，
+    # 安靜過關。docstring 寫著「少了哪一種看得出來」而程式只看兩種，
+    # 那句話等於沒寫。
+    missing = [one for one in KINDS if
                not any(x["kind"] == one for x in out)]
     if missing:
         say(f"⚠ 沒有 {'、'.join(missing)} 類的來源 —— "

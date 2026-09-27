@@ -115,8 +115,15 @@ def spent(story: str) -> list[dict[str, Any]]:
     return out
 
 
-def send(story: str, task: str, prompt: str, say=print) -> str:
-    """問一次，回原文。兩份都存，而且**回答是邊收邊寫的**。"""
+def send(story: str, task: str, prompt: str, say=print,
+         tools: str = "") -> str:
+    """問一次，回原文。兩份都存，而且**回答是邊收邊寫的**。
+
+    `tools` 是空格分開的工具名，預設空的 —— **一個工具都不給**。
+
+    只有 `hunt` 那一步打開它：那一步的工作就是自己去搜、自己去讀。
+    其他每一步都是「看著我給的材料判斷」，給工具只會讓它跑去做別的事。
+    """
     into = paths.home(story) / "_ask"
     into.mkdir(parents=True, exist_ok=True)
     stamp = time.strftime("%m%d-%H%M%S")
@@ -129,10 +136,13 @@ def send(story: str, task: str, prompt: str, say=print) -> str:
     import os
     import threading
 
+    # **`--allowedTools` 擺最後面。** 它收多值而且貪婪，擺中間會把後面的
+    # 東西一起吃掉 —— 實測擺在提示字前面，提示字就沒了，CLI 回
+    # 「Input must be provided」。提示字走 stdin，不受影響。
     how = subprocess.Popen(
-        ["claude", "-p", "--model", MODEL, "--output-format", "json",
-         "--allowedTools", NO_TOOLS]
-        + (["--resume", carry] if carry else []),
+        ["claude", "-p", "--model", MODEL, "--output-format", "json"]
+        + (["--resume", carry] if carry else [])
+        + ["--allowedTools"] + (tools.split() or [NO_TOOLS]),
         stdin=subprocess.PIPE, stdout=subprocess.PIPE,
         stderr=subprocess.PIPE, cwd=AWAY,
         env={**os.environ, "CLAUDE_CODE_MAX_OUTPUT_TOKENS": OUTPUT_MOST})

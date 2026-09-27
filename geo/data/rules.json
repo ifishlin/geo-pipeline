@@ -144,5 +144,44 @@
       5,
       10
     ]
+  },
+  "hunt": {
+    "_comment": "找來源那一步（geo/pipe/hunt.py）。**這一步是繞圈的**：搜一次、讀一點、讀到的東西決定下一輪要讀什麼。一次問完做不到聰明 —— 真正讓格陵蘭那支片成立的「以前想買、買不成改用租」，是第五輪才冒出來的，第一輪不可能列得出來。\n\n【rounds_most】最多繞幾圈。一圈約 3–5 分鐘、$0.8–2，所以這個數字直接決定這一步多貴。4 是實測值：人工做那次用了 5 輪，其中兩輪可以合併。\n\n【stop_when_nothing_new】連續幾輪沒有新網址就停。這是真正的判準 ——不是「找到所有資料」（沒有盡頭），是「再多讀一個也不會改變故事」。\n\n【least】每一類至少要幾筆才算覆蓋到。news 只要 1–2 筆是因為「誰在什麼時候簽了什麼」各家講的一樣，不需要立場光譜；voices（大家原本以為什麼）要 2 筆是因為冷知識型的片沒有它就沒有片子。\n\n【tongues_least】除了英文之外還要讀幾種語言的維基。0 的話這一道不擋。丹麥文維基寫格陵蘭，跟英文版寫的不一樣 —— 那才是這種題目的「各家說法」。\n\n【trust】官方文件只收這些網域結尾的搜尋結果。搜尋引擎拿來找來源很好，拿來當來源很糟：打一個問題回來的前十筆，一半是內容農場互相抄，而它們會抄出同一個錯 —— 三個來源指向同一份，看起來像交叉驗證。\n\n【為什麼 official 和 study 要分開】第一次實測，模型把大學的新聞稿和法學院的頁面標成 official —— 因為 .edu 在白名單裡。白名單混淆了兩件事：**可信**和**原始文件**。一篇教授談這件事的報導很可信，但它不是條約本身。所以 official 只收 gov/int/un/歐盟那幾個網域（一手文件），分析另外開一類 study。\n\n【為什麼 voices 要算「幾口井」不是「幾筆」】同一次實測，voices 2/2 是同一個平台的兩次查詢，只有查詢字串不同。同一口井打兩次不是兩個來源。",
+    "rounds_most": 4,
+    "stop_when_nothing_new": 1,
+    "least": {
+      "news": 1,
+      "wiki": 3,
+      "official": 1,
+      "study": 1,
+      "voices": 2
+    },
+    "most_sources": 12,
+    "tongues_least": 1,
+    "trust": [
+      ".gov",
+      ".gov.uk",
+      ".govt.nz",
+      ".gc.ca",
+      ".europa.eu",
+      "un.org",
+      ".int",
+      "worldbank.org",
+      "imf.org",
+      "oecd.org"
+    ],
+    "voices_wells_least": 2,
+    "study_trust": [
+      ".edu",
+      ".ac.uk",
+      ".ac.jp",
+      "jstor.org",
+      "doi.org",
+      "brookings.edu",
+      "atlanticcouncil.org",
+      "csis.org",
+      "chathamhouse.org",
+      "carnegieendowment.org"
+    ]
   }
 }
