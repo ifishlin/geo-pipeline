@@ -325,7 +325,11 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
                 f"第 {at} 句要推近「{'、'.join(astray)}」，"
                 f"而那一格看的是 {'＋'.join(see)} —— 推近的對象要在 see 裡面")
         shot = _fit(camera_module.merge(boxes), wide, high, spec, at, see, say)
-        tint = [str(x) for x in (one.get("tint") or see)]
+        # **沒寫和寫空的是兩件事。** 沒寫＝跟 see 一樣；寫 `[]`＝這一格
+        # 刻意不塗（台詞叫觀眾看「那塊白白的」）。用 `or` 的話空陣列會
+        # 被當成沒寫，prompt 答應的事程式做不到。
+        tint = [str(x) for x in (see if one.get("tint") is None
+                                 else one["tint"])]
         cuts.append({
             "at": round(when, 3), "line": at, "word": want,
             "see": see, "mark": [str(x) for x in (one.get("mark") or [])],
@@ -345,10 +349,18 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
         cuts[0]["cut"] = True
     thin: list[dict[str, Any]] = []
     for one in cuts:
-        if thin and _shape(thin[-1]) == _shape(one):
+        if thin and not one["do"] and _shape(thin[-1]) == _shape(one):
             continue
         thin.append(one)
     dropped = len(cuts) - len(thin)
+    # **併格不准帶走動作。** `_shape` 只看相機和塗色，而動作掛在格上 ——
+    # 開場「兩塊地拎起來比大小」那格跟前一格相機一樣，被當成重複併掉，
+    # 動作跟著消失，32 個剩 28 個，一個字都沒印。
+    lost = (sum(len(x["do"]) for x in cuts)
+            - sum(len(x["do"]) for x in thin))
+    if lost:
+        raise SystemExit(f"併掉一樣的格子時丟了 {lost} 個動作 —— "
+                         f"帶著動作的格子不能併")
     cuts = thin
 
     gap = offscreen(cuts, heard, atlas, whole)

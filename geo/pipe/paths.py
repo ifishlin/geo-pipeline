@@ -189,3 +189,16 @@ def stories() -> list[str]:
         return []
     return sorted(one.name for one in STORIES.iterdir()
                   if one.is_dir() and not one.name.startswith("_"))
+
+
+# 不算文件的目錄：別人的素材、跑出來的東西（`_ask/` 的 prompt 在
+# /asks 那一頁看，不混進文件）。
+NOT_DOCS = ("reference", ".git", "__pycache__", "stories", ".venv")
+
+
+def docs() -> list[Path]:
+    """repo 裡算文件的 md。**連結檢查和網頁的文件頁都問這一支** ——
+    各列一份的話，一邊看得到的文件另一邊不檢查。"""
+    return sorted(one for one in ROOT.rglob("*.md")
+                  if not any(bit in one.relative_to(ROOT).parts
+                             for bit in NOT_DOCS))

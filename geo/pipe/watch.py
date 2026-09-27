@@ -116,8 +116,7 @@ def build(story: str):
     for at, one in enumerate(got, 1):
         acts = "<br>".join(
             f"◆ {esc(a['move'])} "
-            + esc("　".join(f"{k}={v if isinstance(v, str) else '→'.join(v)}"
-                            for k, v in a.items() if k not in ("move", "why")))
+            + esc(board_module.fields(a))
             for a in one["do"])
         says = "<br>".join(
             f"<span class=who>{esc(w)}</span> {esc(t)}" for w, t in one["says"])

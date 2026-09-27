@@ -27,9 +27,6 @@ import sys
 
 from geo.pipe import paths
 
-# 不掃這幾個目錄：別人的素材、跑出來的東西。
-SKIP = ("reference", ".git", "__pycache__", "stories")
-
 LINK = re.compile(r"\[([^\]]*)\]\(([^)\s]+)\)")
 
 # 已知指不到、而且不打算修的。**每一筆都要寫得出理由** ——
@@ -53,9 +50,7 @@ def excused(link: str) -> str:
 def broken() -> list[tuple[str, str, str]]:
     """回 (哪一份文件, 連結的字, 指到哪)。指得到的不回。"""
     out = []
-    for one in sorted(paths.ROOT.rglob("*.md")):
-        if any(bit in one.parts for bit in SKIP):
-            continue
+    for one in paths.docs():
         for text, link in LINK.findall(one.read_text(encoding="utf-8")):
             if link.startswith(("http://", "https://", "#", "mailto:")):
                 continue
@@ -72,8 +67,7 @@ def main() -> int:
     total = sum(
         len([1 for _, link in LINK.findall(one.read_text(encoding="utf-8"))
              if not link.startswith(("http://", "https://", "#", "mailto:"))])
-        for one in paths.ROOT.rglob("*.md")
-        if not any(bit in one.parts for bit in SKIP))
+        for one in paths.docs())
     known = [one for one in bad if excused(one[2])]
     new = [one for one in bad if not excused(one[2])]
 

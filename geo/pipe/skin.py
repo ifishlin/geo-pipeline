@@ -42,6 +42,7 @@ h2{font-size:18px;margin:32px 0 10px}
 .btn{border:1px solid var(--line);background:#fff;color:var(--ink);
      border-radius:8px;padding:5px 12px;font-size:13px;cursor:pointer;
      font-family:inherit;line-height:1.5}
+a.btn{text-decoration:none;display:inline-block}
 .btn:hover{border-color:#b6bcc4}
 .btn:disabled{opacity:.45;cursor:default}
 .btn.go{background:var(--hit);border-color:var(--hit);color:#fff}
@@ -75,6 +76,19 @@ td.num{text-align:right;font-variant-numeric:tabular-nums;white-space:nowrap}
      white-space:pre-wrap;word-break:break-word;max-height:58vh;
      overflow:auto;margin:12px 0 0}
 .log:empty{display:none}
+.log.tall{max-height:78vh}
+
+/* 渲染過的 md（/docs） */
+.md{background:#fff;border:1px solid var(--line);border-radius:12px;
+    padding:8px 28px 28px}
+.md h1{margin-top:20px}.md h2{border-bottom:1px solid var(--line);padding-bottom:4px}
+.md code{background:var(--soft);border-radius:4px;padding:1px 5px;font-size:.9em}
+.md pre.code{background:#14161a;color:#e8eaed;border-radius:10px;
+     padding:12px 16px;overflow:auto;font:12.5px/1.6 ui-monospace,Menlo,monospace}
+.md table{margin:10px 0}
+.md blockquote{margin:10px 0;padding:4px 14px;border-left:3px solid var(--line);
+     color:var(--dim)}
+.md hr{border:0;border-top:1px solid var(--line);margin:22px 0}
 .spin{display:inline-block;width:9px;height:9px;border-radius:50%;
       background:var(--hit);margin-right:7px;
       animation:beat 1s ease-in-out infinite}
@@ -97,7 +111,8 @@ def page(title: str, body: str, *, here: str = "", js: str = "") -> str:
     """一頁的外框。**每一頁都從這裡出來**，所以那排連結的位置一樣。"""
     rail = "".join(
         f'<a href="{where}"{" class=on" if here == where else ""}>{name}</a>'
-        for where, name in (("/", "題目"), ("/effects", "特效"),
+        for where, name in (("/", "題目"), ("/asks", "問答"),
+                            ("/docs", "文件"), ("/effects", "特效"),
                             ("/rules", "門檻"), ("/spend", "花費")))
     return (f"<!doctype html><html lang=zh-Hant><meta charset=utf-8>"
             f"<meta name=viewport content='width=device-width,initial-scale=1'>"

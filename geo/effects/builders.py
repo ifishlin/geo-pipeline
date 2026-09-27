@@ -116,11 +116,14 @@ def _wind(spec, got, world, out) -> None:
 def _detach(spec, got, world, out) -> None:
     box = spec["params"]
     for name in spec["who"]:
+        # 隔壁的 schema 要 `pivot`：縮小、飄開都是繞著它算的。一個地方
+        # 拆成好幾塊的話，共用同一個支點才會整塊一起走。
+        pivot = _spot(world, name)
         for geo in _ids(world, name):
             out["highlights"].append({
                 "geoId": geo, "start": spec["start_s"],
                 "end": _end(spec, world),
-                "detach": {"at": spec["start_s"], **box}})
+                "detach": {"at": spec["start_s"], "pivot": pivot, **box}})
 
 
 @builds("closeup")
@@ -226,16 +229,34 @@ def _stage(spec, got, world, out) -> None:
 
 @builds("count_up")
 def _counter(spec, got, world, out) -> None:
+    """**先保證最後的數字停得住，跑數字的時間去遷就它。**
+
+    本來顯示多久照格子長度、數字固定跑 1.2 秒 —— 1.0 秒的格子裡數字
+    跑不完，觀眾最後看到的是「2份條約」。現在：
+
+        停住     hold 秒，不打折
+        跑數字   格子剩下的時間，夾在 fastest 和 seconds 之間
+        顯示     跑數字 ＋ 停住，放不下就溢到下一格
+
+    溢出去是可以的：疊加層的時間軸是整支片，不是那一格。
+
+    **畫成字卡，固定在畫面上，不釘在地圖上。** 釘在地圖上的時候，數字
+    一溢到下一格就被正在滑走的鏡頭帶出畫面（「3 份條約」只剩一個
+    「約」）。隔壁的標籤只吃經緯度，字卡吃畫面位置，而且也會跑數字。
+    """
     box = spec["params"]
-    many = spec.get("to")
+    many = spec.get("many")
     if not str(many).strip().lstrip("-").isdigit():
-        raise SkipThis(f"`to` 不是數字（{many!r}）—— 不從台詞猜")
-    out["labels"].append({
-        "text": "{n}" + str(spec.get("unit") or ""),
-        "coordinates": _spot(world, spec["at"][0]),
-        "count": {"from": 0, "to": int(many),
-                  "seconds": box.pop("seconds", 1.2)},
-        "start": spec["start_s"], "end": _end(spec, world), **box})
+        raise SkipThis(f"`many` 不是數字（{many!r}）—— 不從台詞猜")
+    most, fastest = box.pop("seconds", 1.2), box.pop("fastest", 0.4)
+    hold = box.pop("hold", 0.8)
+    run = max(fastest, min(most, spec["span_s"] - hold))
+    out["cards"].append({
+        "title": "{n}" + str(spec.get("unit") or ""),
+        "count": {"from": 0, "to": int(many), "seconds": round(run, 2)},
+        "start": spec["start_s"],
+        "end": round(min(spec["start_s"] + run + hold, float(world["whole"])), 2),
+        **box})
 
 
 @builds("title_card")

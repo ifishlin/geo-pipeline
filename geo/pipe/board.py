@@ -24,6 +24,17 @@ from typing import Any
 from geo.pipe import marks, paths, voice as voice_module
 
 
+def fields(act: dict[str, Any]) -> str:
+    """一個動作的欄位，印成一行：`who=格陵蘭→丹麥　many=3`。
+
+    **只准這一份。** 本來 board、look、watch 各抄一份，都假設值不是字串
+    就是清單 —— 「跑數字」帶進一個整數，三頁一起炸，而修了一份還剩兩份。
+    """
+    return "　".join(
+        f"{k}={'→'.join(map(str, v)) if isinstance(v, list) else v}"
+        for k, v in act.items() if k not in ("move", "why"))
+
+
 def rows(story: str) -> list[dict[str, Any]]:
     """一格一筆，補上長度和那一格蓋到哪幾句。"""
     board = paths.load(story, "storyboard")
@@ -62,10 +73,7 @@ def show(story: str, say=print) -> None:
             head += f"　標 {'＋'.join(one['mark'])}"
         say(head)
         for act in one["do"]:
-            bits = "　".join(f"{k}={v if isinstance(v, str) else '→'.join(v)}"
-                             for k, v in act.items()
-                             if k not in ("move", "why"))
-            say(f"        ◆ {act['move']}　{bits}　（{act.get('why', '')}）")
+            say(f"        ◆ {act['move']}　{fields(act)}　（{act.get('why', '')}）")
         say(f"        {one['why']}")
         for name, text in one["says"]:
             say(f"        {name}｜{text}")

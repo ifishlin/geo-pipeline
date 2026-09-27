@@ -184,23 +184,47 @@ def theme(spec: dict[str, Any]) -> dict[str, Any]:
 # 「2026 年 9 月 2」和「2 日」——畫面上是一個被腰斬的日期，而程式跑得完全
 # 成功。中文一個字一個字切看起來沒問題，正是因為中文本來就一個字一個意思；
 # 數字和外文字不是。
-ATOM = __import__("re").compile(r"\d[\d,.]*\s*[年月日％%℃]?|[A-Za-z][A-Za-z'’.-]*")
+#
+# 中文數字只在後面接「年月日」的時候黏起來：「九八六｜年講起」是配音引擎
+# 斷成兩個詞，照詞切還是會切開。不接單位的不黏 —— 不然「一路」的「一」
+# 會先被認成數字，「一路」這個詞就認不到了。
+CJK_NUMBER = "〇零一二三四五六七八九十百千萬兩"
+ATOM = __import__("re").compile(
+    r"\d[\d,.]*\s*[年月日％%℃]?|[A-Za-z][A-Za-z'’.-]*"
+    rf"|[{CJK_NUMBER}]+[年月日]")
 
 
-def atoms(text: str) -> list[str]:
-    """把一句話切成不可再分的塊。一個漢字一塊，一個數字（含單位）一塊。"""
+def atoms(text: str, vocab: set[str] | frozenset[str] = frozenset()
+          ) -> list[str]:
+    """把一句話切成不可再分的塊。一個數字（含單位）一塊，`vocab` 裡的詞
+    一塊，其他一個漢字一塊。
+
+    `vocab` 是配音引擎斷出來的詞。沒有它的時候一個漢字一塊，而那樣切，
+    「自己」會變成「歸自｜己，挪威不服」。
+    """
+    longest = max((len(one) for one in vocab), default=0)
     out: list[str] = []
     at = 0
-    for hit in ATOM.finditer(text):
-        out += list(text[at:hit.start()])
-        out.append(hit.group())
-        at = hit.end()
-    out += list(text[at:])
+    while at < len(text):
+        hit = ATOM.match(text, at)
+        if hit and hit.end() > at:
+            out.append(hit.group())
+            at = hit.end()
+            continue
+        for n in range(min(longest, len(text) - at), 1, -1):
+            if text[at:at + n] in vocab:
+                out.append(text[at:at + n])
+                at += n
+                break
+        else:
+            out.append(text[at])
+            at += 1
     return [one for one in out if one]
 
 
-def chop(text: str, most: int) -> list[str]:
-    """一句話切成每塊不超過 `most` 個字。**在標點後面斷，不切開數字。**
+def chop(text: str, most: int,
+         vocab: set[str] | frozenset[str] = frozenset()) -> list[str]:
+    """一句話切成每塊不超過 `most` 個字。**在標點後面斷，不切開數字和詞。**
 
     **塊數先算出來，再照平均長度排**。一路貼著上限塞的話，最後一塊會是
     剩下的零頭 ——「1991 年才被報紙挖出」＋「來。」，兩個字一閃而過。
@@ -208,10 +232,21 @@ def chop(text: str, most: int) -> list[str]:
     """
     room = len(text)
     many = max(1, -(-room // most))          # 向上取整
-    return _pack(text, max(1, -(-room // many)), most)
+    return _pack(text, max(1, -(-room // many)), most, vocab)
 
 
-def _pack(text: str, aim: int, most: int) -> list[str]:
+def _head(seq: list[str]) -> int:
+    """從頭數到第一個標點之前有幾個字。"""
+    n = 0
+    for one in seq:
+        if one in BREAKS:
+            break
+        n += len(one)
+    return n
+
+
+def _pack(text: str, aim: int, most: int,
+          vocab: set[str] | frozenset[str] = frozenset()) -> list[str]:
     """照 `aim` 的長度排，但絕不超過 `most`。"""
     out: list[str] = []
     hold: list[str] = []
@@ -224,10 +259,20 @@ def _pack(text: str, aim: int, most: int) -> list[str]:
         hold, best = hold[at:], -1
         room = sum(len(one) for one in hold)
 
-    for one in atoms(text):
-        # 一、放不下了就一定要斷，在最近的標點後面，沒有標點就在原子邊界。
+    seq = atoms(text, vocab)
+    for i, one in enumerate(seq):
+        # 一、放不下了就一定要斷，在最近的標點後面。
+        #    **沒有標點可以斷的時候，往前退到下一塊的開頭站得住。** 塞到滿
+        #    才斷的話，下一塊會以標點開頭（「、沒什麼人住的，」），或掛著
+        #    上一句的尾巴（「它。美國簽過三份條約，」）。
         if hold and room + len(one) > most:
-            close(best if best > 0 else len(hold))
+            if best > 0:
+                close(best)
+            else:
+                cut = len(hold)
+                while cut > 1 and _head(hold[cut:] + seq[i:]) < ORPHAN - 1:
+                    cut -= 1
+                close(cut)
         # 二、已經到目標長度、而且剛好有個標點可以斷 —— 那就斷在那裡。
         #    這一條讓每一塊都落在目標附近，而不是「塞到滿、剩下的當零頭」。
         elif hold and room >= aim and best > 0:
@@ -240,10 +285,11 @@ def _pack(text: str, aim: int, most: int) -> list[str]:
         out.append("".join(hold).strip())
     out = [one for one in out if one]
 
-    return _no_orphans(out, most)
+    return _no_orphans(out, most, vocab)
 
 
-def _no_orphans(out: list[str], most: int) -> list[str]:
+def _no_orphans(out: list[str], most: int,
+                vocab: set[str] | frozenset[str] = frozenset()) -> list[str]:
     """短到一閃而過的塊，併進鄰居或跟鄰居借字。
 
     **兩種孤兒，兩種解法**：
@@ -273,7 +319,7 @@ def _no_orphans(out: list[str], most: int) -> list[str]:
             stuck.clear()            # 版面變了，剛才救不了的也許現在救得了
             continue
         if at > 0:
-            give = atoms(out[at - 1])
+            give = atoms(out[at - 1], vocab)
             before = out[at]
             while len(out[at]) < ORPHAN and len("".join(give[:-1])) >= ORPHAN:
                 out[at] = give[-1] + out[at]
@@ -291,6 +337,46 @@ def _no_orphans(out: list[str], most: int) -> list[str]:
 ORPHAN = 4
 
 
+def _vocab(words: list[dict[str, Any]], start: float, end: float) -> set[str]:
+    """這一句裡配音引擎斷出來的詞（兩個字以上）。**切字幕不准切開它們。**
+
+    斷詞不用另外裝套件：合成器回逐字事件的時候已經照詞斷好了
+    （「自己」「威脅」「白白的」各是一筆）。
+    """
+    return {one["text"] for one in words
+            if start - 0.02 <= one["at"] < end and len(one["text"]) > 1
+            and not any(ch in BREAKS for ch in one["text"])}
+
+
+def caption_faults(pieces: list[str], vocab: set[str]) -> list[str]:
+    """一句話切成的字幕塊裡，看得出切壞的地方。
+
+    115 塊裡有 9 塊是這樣：「己，挪威不服，」（「自己」被切開）、
+    「、沒什麼人住的，」（標點被擠到下一塊開頭）。每一道門都過 ——
+    長度對、秒數對 —— 截圖才看到。
+    """
+    out = []
+    for at, piece in enumerate(pieces):
+        if piece[:1] in BREAKS:
+            out.append(f"「{piece}」以標點開頭")
+        # 「它。美國簽過三份條約，」—— 詞沒切開，但開頭掛著上一句的尾巴
+        head = next((i for i, ch in enumerate(piece) if ch in "。！？"), None)
+        if at and head is not None and 0 < head < ORPHAN - 1 \
+                and head + 1 < len(piece):
+            out.append(f"「{piece}」開頭掛著上一句的尾巴")
+        if not at:
+            continue
+        before = pieces[at - 1]
+        if (before[-1:].isdigit() or before[-1:] in CJK_NUMBER) \
+                and piece[:1] in "年月日":
+            out.append(f"「{before}｜{piece}」把日期切開")
+        for word in vocab:
+            if any(before.endswith(word[:k]) and piece.startswith(word[k:])
+                   for k in range(1, len(word))):
+                out.append(f"「{before}｜{piece}」把「{word}」切開")
+    return out
+
+
 def caption_times(text: str, start: float, end: float,
                   words: list[dict[str, Any]], most: int
                   ) -> list[dict[str, Any]]:
@@ -304,7 +390,7 @@ def caption_times(text: str, start: float, end: float,
     完完全全成功。抽一格出來看才發現 —— 視覺的錯不會報錯。
     """
     text = marks.strip(text)
-    pieces = chop(text, most)
+    pieces = chop(text, most, _vocab(words, start, end))
     if len(pieces) == 1:
         return [{"start": round(start, 3), "end": round(end, 3),
                  "text": pieces[0]}]
@@ -362,6 +448,20 @@ def run(story: str, say=print) -> dict[str, Any]:
     hero = str(spec.get("hero") or "")
     whole = float(board["seconds"])
 
+    # **誰用什麼顏色，整支片算一次，照「那塊地是誰」，不照「這一格
+    # 誰排第一」。** 上一版主角沒被塗的那幾格，主色就給排第一的 ——
+    # 美國於是一下紅一下藍。角色是主角加故事檔的 cast（旁白不算）；
+    # 群組（北約）裡屬於角色的那一塊，照樣穿角色的顏色。
+    roles = [hero] if hero in atlas else []
+    roles += [name for name in (spec.get("cast") or {})
+              if name in atlas and name not in roles]
+    wears = [look["subject"]] + [{**look["other"], "fill": one}
+                                 for one in look.get("cast") or []]
+    dressed: dict[str, dict[str, Any]] = {}
+    for name, style in zip(roles, wears):
+        for geo in atlas[name]["draw"]:
+            dressed.setdefault(geo, style)
+
     wide, high = spec["video"]["width"], spec["video"]["height"]
     fps = int(spec["video"]["fps"])
     scenes: list[dict[str, Any]] = []
@@ -370,16 +470,11 @@ def run(story: str, say=print) -> dict[str, Any]:
         until = cuts[at + 1]["at"] if at + 1 < len(cuts) else whole
         if until <= one["at"]:
             continue
-        # 誰用主色。**主角固定是主角**，不是「模型把誰排第一」——
-        # 上一版用 `see[0]`，於是同一塊地在不同格會換顏色，而觀眾是靠
-        # 顏色認人的。主角沒被塗到的那幾格，才退回用排第一的。
-        lead = hero if hero in one["tint"] else (
-            one["tint"][0] if one["tint"] else one["see"][0])
         highlights = []
         for name in one["tint"]:
-            style = look["subject"] if name == lead else look["other"]
             for geo in atlas[name]["draw"]:
-                highlights.append({"geoId": geo, **style})
+                highlights.append({"geoId": geo,
+                                   **dressed.get(geo, look["other"])})
         markers = []
         labels = []
         for name in one["mark"]:
@@ -423,7 +518,7 @@ def run(story: str, say=print) -> dict[str, Any]:
                 continue
             scenes.append({
                 "id": f"{one['at']:06.2f}{'-移' + str(n) if n else ''}"
-                      f"-{one['why'][:16] or lead}",
+                      f"-{one['why'][:16] or '＋'.join(one['see'])}",
                 "duration": frames / fps,
                 "camera": {"from": a, "to": b,
                            "easing": "linear" if a == b else "easeInOut"},
@@ -441,10 +536,30 @@ def run(story: str, say=print) -> dict[str, Any]:
             f"差 {abs(drawn - whole):.3f}。分段的算式有一條加起來不等於"
             f"那一格的長度")
 
+    # **一塊地整支片只准一種顏色。** 觀眾是靠顏色認人的；美國一下紅
+    # 一下藍（#6 紅、#4 藍），歐洲共同體先紅後藍 —— 每一道門都過，
+    # 看縮圖才看到。
+    worn: dict[str, set[str]] = {}
+    for one in scenes:
+        for mark in one.get("highlights") or []:
+            worn.setdefault(mark["geoId"], set()).add(mark["fill"])
+    mixed = {geo: sorted(fills) for geo, fills in worn.items() if len(fills) > 1}
+    if mixed:
+        raise SystemExit(f"{len(mixed)} 塊地在不同格換了顏色：\n  "
+                         + "\n  ".join(f"{geo}：{'、'.join(fills)}"
+                                       for geo, fills in mixed.items()))
+
     subtitles: list[dict[str, Any]] = []
+    faults: list[str] = []
     for at, (start, end) in enumerate(heard["bounds"]):
-        subtitles += caption_times(heard["lines"][at], start, end,
-                                   heard["words"], look["subtitle"]["per_row"])
+        blocks = caption_times(heard["lines"][at], start, end,
+                               heard["words"], look["subtitle"]["per_row"])
+        faults += caption_faults([one["text"] for one in blocks],
+                                 _vocab(heard["words"], start, end))
+        subtitles += blocks
+    if faults:
+        raise SystemExit(f"{len(faults)} 處字幕切壞了：\n  "
+                         + "\n  ".join(faults[:10]))
 
     body = {
         "title": spec["title"],

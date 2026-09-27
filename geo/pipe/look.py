@@ -430,9 +430,7 @@ def _board(story: str) -> str:
         slow = ' style="background:#fdf6ee"' if one["for"] > 6 else ""
         deeds = "<br>".join(
             f"<b style='color:#b4530f'>{esc(a['move'])}</b> "
-            + esc("　".join(
-                f"{k}={v if isinstance(v, str) else '→'.join(v)}"
-                for k, v in a.items() if k not in ("move", "why")))
+            + esc(board_module.fields(a))
             for a in one["do"]) or "—"
         talk = "<br>".join(
             f"<span class='who{"" if w == "旁白" else " role"}'>{esc(w)}</span>"

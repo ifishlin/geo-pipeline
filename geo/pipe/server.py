@@ -1,6 +1,6 @@
 """geo 的網頁：跑一步、看產物、查目錄。
 
-    python3 -m geo.pipe.server            開在 8765
+    python3 -m geo.pipe.server            開在 8003
     python3 -m geo.pipe.server 9000       換個埠
 
 ## 這一頁要解決的是什麼
@@ -38,11 +38,11 @@ from http.server import BaseHTTPRequestHandler, ThreadingHTTPServer
 from pathlib import Path
 from typing import Any
 
-from geo.pipe import paths, skin
+from geo.pipe import paths, shelf, skin
 
 esc = skin.esc
 
-PORT = 8765
+PORT = 8003
 
 # 這幾支會開背景 job。**加一支就要在這裡加一行**，而且畫面上要有人盯著
 # 它 —— `geo/checks/_web.py` 對這張表和 JS 逐一比對。
@@ -184,6 +184,8 @@ def _story(name: str) -> str:
                     f' target=_blank>看片＋分鏡</a>')
     out.append("<p>" + "　".join(seen) + "</p>")
 
+    out.append(_sources(name))
+
     out.append("<h2>九步</h2><table><tr><th>步</th><th>產物</th>"
                "<th>狀態</th><th></th></tr>")
     for at, (step, what) in enumerate(paths.STEPS.items()):
@@ -213,6 +215,72 @@ def _story(name: str) -> str:
     out.append("</table>")
     out.append('<h2>跑到哪了</h2><div class=log id=log></div>')
     return skin.page(title, "".join(out), js=JS)
+
+
+def _sources(name: str) -> str:
+    """這一題用了哪些來源：題目檔列的、抓回來的、各生出幾則事實。
+
+    **三個數字要分開看。** 列了沒抓、抓了全文不在這台機器、抓了卻一則
+    事實都沒生出來 —— 三種在「5 份來源」那一行裡長得一模一樣。
+    """
+    from geo.pipe import story as story_module
+    try:
+        asked = story_module.load(name).get("sources") or []
+    except Exception as bad:                                  # noqa: BLE001
+        return (f'<h2>來源</h2><div class="card broken"><p class=why>'
+                f'題目檔讀不出來：{esc(bad)}</p></div>')
+    got: dict[str, dict[str, Any]] = {}
+    if paths.done(name, "sources"):
+        try:
+            got = {str(one.get("url")): one
+                   for one in paths.load(name, "sources")}
+        except Exception as bad:                              # noqa: BLE001
+            return (f'<h2>來源</h2><div class="card broken"><p class=why>'
+                    f'0-sources.json 讀不出來：{esc(bad)}</p></div>')
+    used: dict[str, int] = {}
+    if paths.done(name, "facts"):
+        try:
+            for one in paths.load(name, "facts"):
+                used[str(one.get("url"))] = used.get(str(one.get("url")), 0) + 1
+        except Exception:                                     # noqa: BLE001
+            used = {}
+    facts_done = paths.done(name, "facts")
+
+    out = [f"<h2>來源<span class=tag>{len(asked)} 份</span></h2>"]
+    if not asked:
+        return out[0] + ("<div class='card broken'><p class=why>⚠ 題目檔沒有 "
+                         "<code>sources</code> —— 第一步什麼都抓不到。</p></div>")
+    out.append("<table><tr><th>種類</th><th>網址</th><th>為什麼要它</th>"
+               "<th class=num>全文</th><th class=num>生出事實</th></tr>")
+    home = paths.home(name)
+    for one in asked:
+        url = str(one.get("url") or "")
+        have = got.get(url)
+        if not have:
+            text = '<span class="tag warn">還沒抓</span>'
+        elif (home / have["file"]).is_file():
+            text = (f"<a href='/f/{urllib.parse.quote(name)}/"
+                    f"{urllib.parse.quote(have['file'])}' target=_blank>"
+                    f"{int(have.get('chars') or 0):,} 字</a>")
+        else:
+            # 全文不進版控；換一台機器、或搬過 repo，就只剩清單
+            text = (f"{int(have.get('chars') or 0):,} 字<br>"
+                    f"<span class='tag warn'>全文不在這台機器</span>")
+        n = used.get(url, 0)
+        fed = (f"{n} 則" if n else
+               ("<span class='tag bad'>0 則</span>" if facts_done else "—"))
+        out.append(
+            f"<tr><td><span class=tag>{esc(one.get('kind', ''))}</span></td>"
+            f"<td><a href='{esc(url)}' target=_blank>{esc(url)}</a></td>"
+            f"<td class=why>{esc(one.get('why', ''))}</td>"
+            f"<td class=num>{text}</td><td class=num>{fed}</td></tr>")
+    out.append("</table>")
+    stray = sum(n for url, n in used.items()
+                if url not in {str(x.get("url")) for x in asked})
+    if stray:
+        out.append(f"<p class=sub>⚠ 另有 {stray} 則事實的網址不在上面這張表 "
+                   "—— 題目檔改過來源之後，事實沒有重抽</p>")
+    return "".join(out)
 
 
 def _effects() -> str:
@@ -265,7 +333,7 @@ def _rules() -> str:
 def _spend_of(story: str) -> tuple[int, float]:
     from geo.pipe import ask as ask_module
     rows = ask_module.spent(story)
-    return len(rows), sum(float(one.get("cost_usd") or 0) for one in rows)
+    return len(rows), sum(float(one.get("usd") or 0) for one in rows)
 
 
 def _spend() -> str:
@@ -276,7 +344,10 @@ def _spend() -> str:
         from geo.pipe import ask as ask_module
         for row in ask_module.spent(one):
             rows.append((one, row))
-            grand += float(row.get("cost_usd") or 0)
+            # 欄位名照 `ask.send()` 寫進去的那一份（usd / when / took）。
+            # 本來讀的是 cost_usd / at / seconds —— 三個都不存在，整頁安靜
+            # 地印 $0.00，而那跟「還沒花錢」長得一模一樣。
+            grand += float(row.get("usd") or 0)
             trips += 1
     out.append(f"<p class=sub>{int(trips)} 趟，共 ${grand:.2f}</p>")
     if not rows:
@@ -285,13 +356,13 @@ def _spend() -> str:
                    ' 沒被寫到 —— 兩種在畫面上長得一樣。</p></div>')
     out.append("<table><tr><th>題目</th><th>哪一步</th><th>什麼時候</th>"
                "<th class=num>秒</th><th class=num>美金</th></tr>")
-    for story, row in sorted(rows, key=lambda x: str(x[1].get("at", "")),
+    for story, row in sorted(rows, key=lambda x: str(x[1].get("when", "")),
                              reverse=True)[:200]:
         out.append(
             f"<tr><td>{esc(story)}</td><td>{esc(row.get('task', ''))}</td>"
-            f"<td class=why>{esc(row.get('at', ''))}</td>"
-            f"<td class=num>{float(row.get('seconds') or 0):.0f}</td>"
-            f"<td class=num>{float(row.get('cost_usd') or 0):.3f}</td></tr>")
+            f"<td class=why>{esc(row.get('when', ''))}</td>"
+            f"<td class=num>{float(row.get('took') or 0):.0f}</td>"
+            f"<td class=num>{float(row.get('usd') or 0):.3f}</td></tr>")
     out.append("</table>")
     return skin.page("花費", "".join(out), here="/spend")
 
@@ -420,6 +491,15 @@ class Handler(BaseHTTPRequestHandler):
             return self._html(_rules())
         if bits[0] == "spend":
             return self._html(_spend())
+        if bits[0] == "docs":
+            if len(bits) == 1:
+                return self._html(shelf.docs_page())
+            return self._html(*shelf.doc_page("/".join(bits[1:])))
+        if bits[0] == "asks":
+            if len(bits) == 1:
+                return self._html(shelf.asks_page(query))
+            if len(bits) == 3:
+                return self._html(*shelf.ask_page(bits[1], bits[2]))
         if bits[0] == "job" and len(bits) > 1:
             key = bits[1]
             with _LOCK:
@@ -470,7 +550,9 @@ class Handler(BaseHTTPRequestHandler):
                 ".png": "image/png", ".jpg": "image/jpeg",
                 ".html": "text/html; charset=utf-8",
                 ".json": "application/json; charset=utf-8",
-                ".tsv": "text/plain; charset=utf-8"}.get(
+                ".tsv": "text/plain; charset=utf-8",
+                ".md": "text/plain; charset=utf-8",
+                ".txt": "text/plain; charset=utf-8"}.get(
                     one.suffix.lower(), "application/octet-stream")
         size = one.stat().st_size
         span = self.headers.get("Range")
