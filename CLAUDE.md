@@ -7,6 +7,39 @@
 [geo/MISTAKES.md](geo/MISTAKES.md)，那一份比這一份重要 —— 這裡的每一條
 都是從那裡面長出來的。
 
+## 動哪一層，先讀哪一份
+
+```
+prompts/       docs/PROMPTS.md    ★ 動 prompt 之前一定要讀，這裡最貴
+effects/       docs/EFFECTS.md      加一種特效、欄位名去哪查
+camera / 分鏡   docs/CAMERA.md      投影、取景、切換 —— 開頭那句是「一律畫圖」
+voice / marks  docs/VOICE.md        唸起來順不順，全是量出來的
+整條路怎麼跑    geo/README.md
+現在停在哪      geo/HANDOVER.md　待辦：geo/TODO.md
+```
+
+- [docs/PROMPTS.md](docs/PROMPTS.md) —— 寫 prompt 的十五條經驗，每一條都
+  附著量出來的數字。**這一份是給「將來要改 prompt 的人」的**，包括你。
+- [docs/EFFECTS.md](docs/EFFECTS.md) —— 特效函式庫
+- [docs/CAMERA.md](docs/CAMERA.md) —— 鏡頭
+- [docs/VOICE.md](docs/VOICE.md) —— 配音
+
+## 改完跑哪幾支
+
+```sh
+python3 -m geo.check            程式裡有沒有用到不存在的名字（毫秒）
+python3 -m geo.checks._effects  特效目錄和 builder 對不對得起來
+python3 -m geo.checks._parts    反應句那組門 —— 種了 8 個違規，它們都要叫
+python3 -m geo.checks._links    文件裡的連結指不指得到
+npm run validate <scene.json>   隔壁驗 schema（一秒，壓片十二分鐘）
+```
+
+前三支已經接在 `make.py` 裡**問模型那幾步的前面** —— 毫秒的事，
+而漏掉的代價是「模型答完了才 NameError」。
+
+`_parts` 和 `_effects` 是**驗門的門**：改壞一道門的下一趟會花十分鐘問
+模型，然後安靜地放行。
+
 ## 分工只有一條線
 
 ```

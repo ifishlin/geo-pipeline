@@ -33,7 +33,16 @@ geo/HANDOVER.md  交接：現在停在哪（快照，每次收工整份改寫）
 geo/TODO.md      待辦（累積的，做完劃掉不刪）
 ```
 
-repo 的根只有三樣東西：`geo/`、`docs/VOICE.md`、`.gitignore`。
+repo 的根：
+
+```
+CLAUDE.md        改的時候要遵守什麼（先讀這份）
+docs/PROMPTS.md  動 geo/prompts/ 之前一定要讀 —— 這一層最貴
+docs/EFFECTS.md  特效函式庫：加一種要動哪兩個地方
+docs/CAMERA.md   鏡頭：投影、取景、切換
+docs/VOICE.md    配音：唸起來順不順
+geo/             這一整套
+```
 
 **為什麼程式不攤在根目錄。** 這一套本來住在 `Video_pipeline/geo/`，
 2026-09-27 抽出來自己一個 repo（歷史用 `git subtree split` 帶過來了，
