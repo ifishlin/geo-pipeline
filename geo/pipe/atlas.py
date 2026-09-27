@@ -102,9 +102,45 @@ def run(story: str, say=print) -> dict[str, Any]:
         if name in named:
             key = named[name]
             got = places[key]
-            shot = camera_module.fit(got["bbox"], wide, high,
-                                     pad=spec["pad"], hold=spec["hold"],
-                                     lift=spec["lift"])
+            try:
+                shot = camera_module.fit(got["bbox"], wide, high,
+                                         pad=spec["pad"], hold=spec["hold"],
+                                         lift=spec["lift"])
+            except ValueError:
+                # **裝不下不是錯，是真實的限制。**
+                #
+                # 直式畫面一次最多看得到約 202 度經度（MapLibre 不准在
+                # 極點外留空白），而「北約」32 個成員從阿拉斯加跨到土耳其
+                # ——186 度，加上邊界留白就超過了。
+                #
+                # 以前這裡直接 raise，整支片停在 atlas 那一步。而那是
+                # **一個真實存在的集合**，稿子提到它很正常。改成退到
+                # 「成員裡最大的那幾個」，並且出聲說降級了 —— 畫面上會
+                # 少幾塊地，但片子跑得完，而且有人知道。
+                parts = got.get("of") or [key]
+                boxes = sorted(
+                    ((places[x]["bbox"], x) for x in parts if x in places),
+                    key=lambda b: (b[0][2] - b[0][0]) * (b[0][3] - b[0][1]),
+                    reverse=True)
+                keep, box = [], None
+                for one, who in boxes:
+                    fresh = one if box is None else camera_module.merge(
+                        [box, one])
+                    try:
+                        shot = camera_module.fit(
+                            fresh, wide, high, pad=spec["pad"],
+                            hold=spec["hold"], lift=spec["lift"])
+                    except ValueError:
+                        continue
+                    box, keep = fresh, keep + [who]
+                if not keep:
+                    raise
+                say(f"⚠ 「{name}」{len(parts)} 個成員裝不下直式畫面"
+                    f"（跨 {got['bbox'][2] - got['bbox'][0]:.0f} 度經度），"
+                    f"只畫得下其中 {len(keep)} 個")
+                got = dict(got, bbox=box, of=keep,
+                           label=[round((box[0] + box[2]) / 2, 4),
+                                  round((box[1] + box[3]) / 2, 4)])
             out[name] = {"kind": "area", "geoId": key,
                          "draw": got.get("of") or [key],
                          "bbox": got["bbox"], "at": got["label"],

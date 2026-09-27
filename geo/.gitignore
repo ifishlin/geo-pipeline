@@ -8,4 +8,10 @@ stories/*/_ask/
 stories/*/*.mp4
 stories/*/*.png
 stories/_probe/
+# 每次跑都重產的頁面。**看的人要的是現在這一版**，而 diff 裡的
+# 是三天前那一版 —— 兩個都在版控裡只會讓人讀到舊的。
 stories/*/look.html
+stories/*/watch.html
+# 從成片截出來的畫格（`pipe/shot.py` 產的，一次 11 MB）。
+# 它們是**拿來看的**，不是紀錄 —— 成片和 scene.json 在，隨時再截一次。
+work/frames/

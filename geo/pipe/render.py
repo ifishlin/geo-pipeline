@@ -86,6 +86,16 @@ def loudness_of(one: Path) -> float | None:
     return None
 
 
+def check(where, say=print) -> None:
+    """讓隔壁驗一次 schema。**一秒鐘，而錯過的話是壓十二分鐘才炸。**
+
+    抽成一支是因為兩個地方要用：寫檔的那一步（`scene`）和壓片的那一步。
+    各寫一次的話會有一邊漏掉，而漏掉的那一邊不會報錯 —— 它只是沒驗。
+    """
+    _run(["npx", "tsx", "scripts/validate.ts", str(where.resolve())],
+         say, MAPS)
+
+
 def run(story: str, say=print, draft: bool = False) -> dict[str, Any]:
     paths.insist(story, "film")
     if not MAPS.is_dir():
@@ -102,8 +112,7 @@ def run(story: str, say=print, draft: bool = False) -> dict[str, Any]:
     film = paths.at(story, "film")
 
     say("一、先驗（一秒鐘，比壓完才發現便宜十二分鐘）")
-    _run(["npx", "tsx", "scripts/validate.ts", str(where.resolve())],
-         say, MAPS)
+    check(where, say)
 
     say(f"\n二、壓成無聲影片{'（草稿畫質）' if draft else ''}")
     args = ["npm", "run", "render", "--", str(where.resolve()),

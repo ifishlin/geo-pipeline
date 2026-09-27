@@ -1,0 +1,683 @@
+{
+ "_comment": "特效目錄。**照 `geo/地理短影音_通用特效函式目錄_Remotion_MapLibre.md` 那份規格建的**，而那份的分類軸是「視覺行為」不是「地理題材」—— 暖水、冷水、風、軍隊、船隻只是同一組通用特效的不同資料。\n\n【type 和 名】`type` 是英文，程式用，對得上規格書；`名` 是中文，模型看到的和挑的。兩個都要：模型挑中文挑得準（量過），而程式要一個不會因為翻譯而漂的識別字。\n\n【能不能畫】`renders` 標的是**渲染器現在真的畫得出來嗎**。規格書列的是「該往哪裡長」，不是「現在能做什麼」——兩者混在一起的話，選單會列出畫不出來的東西，而模型挑了之後成片裡沒有，兩邊都不報錯。`renders: false` 的不會進選單。\n\n【加一種】在這裡加一格，再到 `geo/effects/builders.py` 註冊一支同名的 builder。**分派邏輯不用動**。\n\n【共通契約】每一種吃的 spec 都有 `id / type / start_s / duration_s / layer / easing / seed`，各自的參數放在 `params`。時間對外一律用秒，換算成影格是渲染那一端的事。",
+ "kinds": {
+  "highlight_region": {
+   "名": "塗色",
+   "layer": "map",
+   "rank": "P0",
+   "renders": true,
+   "當": "把一塊地塗上顏色：國家、島嶼、海域、勢力範圍、暖區冷區",
+   "不當": "示意的區域不要講得像精確觀測",
+   "要": {
+    "region": [
+     "哪一塊",
+     "地名，從清單挑"
+    ]
+   },
+   "params": {
+    "fill": "#FF4B57",
+    "opacity": 0.72,
+    "stroke": "#FFFFFF",
+    "strokeWidth": 2.0,
+    "fadeIn": 0.3
+   },
+   "seconds": 2.0,
+   "least": 0.6,
+   "can_wait": false
+  },
+  "highlight_sequence": {
+   "名": "依序亮",
+   "layer": "map",
+   "rank": "P0",
+   "renders": true,
+   "當": "幾塊地一個一個亮起來 —— 一個一個簽字、加入、退出",
+   "不當": "散得很開的用「亮燈」；只有兩個的話沒必要排順序",
+   "要": {
+    "regions": [
+     "按順序",
+     "哪幾塊，照順序"
+    ]
+   },
+   "params": {
+    "gap": 0.45,
+    "gap_least": 0.25,
+    "fill": "#FF4B57",
+    "opacity": 0.72,
+    "stroke": "#FFFFFF",
+    "strokeWidth": 2.0,
+    "fadeIn": 0.3
+   },
+   "seconds": 0,
+   "least": 0,
+   "can_wait": true
+  },
+  "light_up": {
+   "名": "亮燈",
+   "layer": "map",
+   "rank": "P1",
+   "renders": true,
+   "當": "散得很開的幾個地方，鏡頭退到看得見全部，一個一個亮",
+   "不當": "湊得近的用「依序亮」；一個一個上台會看不清楚才用這個",
+   "要": {
+    "regions": [
+     "亮哪些",
+     "散在各處的那幾個地方"
+    ]
+   },
+   "選項": {
+    "globe": [
+     "地球儀",
+     "散到一整顆星球的時候打開 —— 直式畫面攤平最多看得到 202 度經度。**打開之後名字標不上去**"
+    ]
+   },
+   "params": {
+    "gap": 0.4,
+    "gap_least": 0.22,
+    "fill": "#FFC94A",
+    "opacity": 0.85,
+    "stroke": "#FFFFFF",
+    "strokeWidth": 1.6,
+    "fadeIn": 0.25
+   },
+   "seconds": 0,
+   "least": 0,
+   "can_wait": true
+  },
+  "draw_route": {
+   "名": "航線",
+   "layer": "geo_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "兩地之間畫一條線：開船、走過來、飛過去、貨運、因果連線。線畫完會留著",
+   "不當": "一整片的流向用「風」，不要拿一條線冒充流場",
+   "要": {
+    "from": [
+     "從",
+     "起點的地名"
+    ],
+    "to": [
+     "到",
+     "終點的地名"
+    ]
+   },
+   "params": {
+    "curve": "greatCircle",
+    "color": "#EE6E7A",
+    "width": 4,
+    "arrow": true,
+    "bow": 0.25,
+    "fadeOut": 0.4,
+    "stay": 3.0
+   },
+   "seconds": 1.4,
+   "least": 0.7,
+   "can_wait": true
+  },
+  "animate_flow": {
+   "名": "風",
+   "layer": "map",
+   "rank": "P1",
+   "renders": true,
+   "當": "海上一整片的流向：洋流、季風、航路、遷徙",
+   "不當": "只有一條路線用「航線」；沒有方向資訊不要用",
+   "要": {
+    "box": [
+     "範圍",
+     "兩個地名，取它們之間那一片海"
+    ],
+    "direction": [
+     "方向",
+     "往哪個方向吹，度數；270 是往西"
+    ]
+   },
+   "params": {
+    "strength": 0.7,
+    "fadeIn": 0.4,
+    "fadeOut": 0.4
+   },
+   "seconds": 2.5,
+   "least": 1.2,
+   "can_wait": true
+  },
+  "animate_field": {
+   "名": "一片區域",
+   "layer": "map",
+   "rank": "P1",
+   "renders": true,
+   "當": "一片連續的強弱：暖流、冰層、雨帶、乾旱、勢力範圍",
+   "不當": "**不要拿它當真實資料的熱圖**；點的密度是另一回事",
+   "要": {
+    "region": [
+     "哪一片",
+     "哪一片"
+    ]
+   },
+   "調色": {
+    "暖": "warm",
+    "熱": "heat",
+    "冷": "cold",
+    "雨": "rain",
+    "乾": "dry",
+    "反常": "anomaly",
+    "火": "fire"
+   },
+   "params": {
+    "on": "sea",
+    "strength": 0.8,
+    "noise": 0.3,
+    "fadeIn": 0.5,
+    "fadeOut": 0.5,
+    "radius": [
+     22.0,
+     9.0
+    ]
+   },
+   "seconds": 2.5,
+   "least": 1.2,
+   "can_wait": true
+  },
+  "pulse_point": {
+   "名": "標點",
+   "layer": "geo_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "單點定位、事件發生、抵達 —— 一個會脈動的點加名字",
+   "不當": "整塊地用「塗色」",
+   "要": {
+    "at": [
+     "放哪裡",
+     "哪一個點"
+    ]
+   },
+   "params": {
+    "type": "pulse",
+    "color": "#F7B82F",
+    "size": 40,
+    "fontSize": 46,
+    "offset": [
+     0,
+     -52
+    ]
+   },
+   "seconds": 2.0,
+   "least": 0.8,
+   "can_wait": false
+  },
+  "place_geo_asset": {
+   "名": "小圖示",
+   "layer": "geo_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "地圖上釘一個會動的小圖示，表示那裡在做什麼",
+   "不當": "抽象的概念不要硬找圖示",
+   "要": {
+    "at": [
+     "放哪裡",
+     "放哪裡"
+    ]
+   },
+   "圖示": {
+    "帆船": "sailboat",
+    "溫度計": "thermometer",
+    "雲": "cloud",
+    "下雨": "rain",
+    "太陽": "sun",
+    "乾裂": "drought",
+    "電風扇": "fan",
+    "警告": "marker"
+   },
+   "params": {
+    "size": 130,
+    "fadeIn": 0.25,
+    "fadeOut": 0.25
+   },
+   "seconds": 2.0,
+   "least": 1.0,
+   "can_wait": true
+  },
+  "animate_face": {
+   "名": "表情",
+   "layer": "geo_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "一張臉長在那塊地上，講那個地方的感受時用。臉跟著鏡頭縮放",
+   "不當": "沒有情緒的句子不要加；同一個表情不要用超過兩次",
+   "要": {
+    "who": [
+     "誰",
+     "誰"
+    ]
+   },
+   "表情": {
+    "生氣": "angry",
+    "無奈": "annoyed",
+    "難過": "sad",
+    "開心": "happy",
+    "得意": "smug",
+    "疑惑": "curious",
+    "擔心": "worried",
+    "嚇到": "surprised",
+    "想睡": "sleepy"
+   },
+   "params": {
+    "size": 320,
+    "refZoom": 3.0,
+    "minScale": 0.8,
+    "maxScale": 1.6,
+    "blend": 0.2,
+    "blink": true,
+    "fadeIn": 0.2,
+    "fadeOut": 0.25,
+    "arms": "down"
+   },
+   "seconds": 2.2,
+   "least": 1.2,
+   "can_wait": true
+  },
+  "circle_place": {
+   "名": "圈起來",
+   "layer": "geo_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "手繪的圈，一筆一筆畫上去 —— 「就是這裡」「注意這一塊」",
+   "不當": "圈太多次就沒有強調的效果",
+   "要": {
+    "who": [
+     "圈誰",
+     "圈誰"
+    ]
+   },
+   "params": {
+    "width": 300,
+    "height": 180,
+    "color": "#E53935",
+    "strokeWidth": 8,
+    "stay": 1.8
+   },
+   "seconds": 1.0,
+   "least": 0.6,
+   "can_wait": false
+  },
+  "lift_to_stage": {
+   "名": "上台",
+   "layer": "screen_overlay",
+   "rank": "P1",
+   "renders": true,
+   "當": "把地從地圖上拎起來放大，擺到畫面上。一個放中間、兩個左右、三四個橫排。**一群當成一個**",
+   "不當": "超過四個改用「亮燈」；位置有意義的時候用「推近」",
+   "要": {
+    "who": [
+     "誰上台",
+     "誰上台"
+    ]
+   },
+   "選項": {
+    "same_scale": [
+     "同一把尺",
+     "打開的話照真實面積算大小（小的真的很小），用在比大小；關的話各自放大，用在對話"
+    ]
+   },
+   "params": {
+    "size_one": 460,
+    "size_two": 380,
+    "size_many": 240,
+    "dim": 0.5,
+    "fadeIn": 0.35,
+    "gap": 0.1,
+    "most": 4
+   },
+   "seconds": 2.8,
+   "least": 1.6,
+   "can_wait": true
+  },
+  "detach_place": {
+   "名": "掙脫",
+   "layer": "map",
+   "rank": "P2",
+   "renders": true,
+   "當": "一塊地浮起來、飄開、再落回去 —— 「它脫離了誰」",
+   "不當": "只是講制度改變不要用，那個動作是有情緒的",
+   "要": {
+    "who": [
+     "誰",
+     "誰"
+    ]
+   },
+   "params": {
+    "out": 0.5,
+    "hold": 0.8,
+    "back": 0.5,
+    "scale": 0.88,
+    "offset": [
+     90,
+     -60
+    ]
+   },
+   "seconds": 2.0,
+   "least": 1.2,
+   "can_wait": true
+  },
+  "count_up": {
+   "名": "跑數字",
+   "layer": "screen_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "一個數字從 0 跑到某個數 —— 數量用聽的會滑過去，用看的會留下",
+   "不當": "**數字一定要由你給**，程式不會從台詞猜",
+   "要": {
+    "at": [
+     "放哪裡",
+     "放哪裡"
+    ],
+    "to": [
+     "數到",
+     "數到幾（阿拉伯數字，一定要給）"
+    ]
+   },
+   "params": {
+    "fontSize": 88,
+    "style": "tag",
+    "seconds": 1.2,
+    "fadeIn": 0.2
+   },
+   "seconds": 1.5,
+   "least": 0.9,
+   "can_wait": false,
+   "選填": {
+    "unit": [
+     "單位",
+     "數字後面那幾個字，例如「份條約」"
+    ]
+   }
+  },
+  "closeup": {
+   "名": "推近",
+   "layer": "map",
+   "rank": "P0",
+   "renders": true,
+   "當": "鏡頭推近一塊地的某一角，看那裡的細節。位置有意義的時候用",
+   "不當": "只想看形狀用「上台」；連續推近不同角落會暈",
+   "要": {
+    "who": [
+     "推近誰",
+     "推近誰"
+    ]
+   },
+   "方位": [
+    "整個",
+    "北",
+    "南",
+    "東",
+    "西",
+    "東北",
+    "西北",
+    "東南",
+    "西南",
+    "中央"
+   ],
+   "params": {
+    "part": 0.45
+   },
+   "seconds": 2.0,
+   "least": 1.2,
+   "can_wait": true
+  },
+  "title_card": {
+   "名": "標題卡",
+   "layer": "screen_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "整個畫面打一張標題，地圖在後面壓暗",
+   "不當": "只在開場或收尾，一支片最多一次",
+   "要": {},
+   "params": {
+    "dim": 0.42,
+    "typewriter": 0.6,
+    "fontSize": 104,
+    "rotate": -3
+   },
+   "seconds": 2.2,
+   "least": 1.4,
+   "can_wait": true,
+   "most_per_film": 1,
+   "選填": {
+    "title": [
+     "標題",
+     "卡上那幾個字，最多十個字。不給就用題目的標題"
+    ]
+   }
+  },
+  "dim_map": {
+   "名": "壓暗",
+   "layer": "screen_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "把地圖壓暗，讓上面的東西跳出來",
+   "不當": "**通常不單獨用**，是配合上台、卡片、圈起來",
+   "要": {},
+   "params": {
+    "opacity": 0.55,
+    "fadeIn": 0.3,
+    "fadeOut": 0.3
+   },
+   "seconds": 1.5,
+   "least": 0.6,
+   "can_wait": false
+  },
+  "flash": {
+   "名": "閃一下",
+   "layer": "screen_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "整個畫面暖色閃一下，**只在真的翻面的地方**",
+   "不當": "一支片超過兩次就像壞掉的燈",
+   "要": {},
+   "params": {
+    "color": "#FFF3E0",
+    "seconds": 0.14,
+    "opacity": 0.8
+   },
+   "seconds": 0.4,
+   "least": 0.4,
+   "can_wait": false,
+   "most_per_film": 2
+  },
+  "shake": {
+   "名": "震一下",
+   "layer": "screen_overlay",
+   "rank": "P1",
+   "renders": true,
+   "當": "整個畫面震動，像被撞到 —— 宣戰、決裂、拍桌",
+   "不當": "一支片最多一次，多了像壞掉",
+   "要": {},
+   "params": {
+    "amount": 14,
+    "seconds": 0.45
+   },
+   "seconds": 0.5,
+   "least": 0.3,
+   "can_wait": false,
+   "most_per_film": 1
+  },
+  "transition_scene": {
+   "名": "掃過去",
+   "layer": "screen_overlay",
+   "rank": "P0",
+   "renders": true,
+   "當": "換場的時候掃過一道色板 —— 真的換時代、換段落",
+   "不當": "一般的換鏡頭不要用，一支片最多兩次",
+   "要": {},
+   "params": {
+    "type": "wipe",
+    "color": "#1A1A1A",
+    "seconds": 0.45,
+    "shape": "curve"
+   },
+   "seconds": 0.6,
+   "least": 0.4,
+   "can_wait": false,
+   "most_per_film": 2
+  },
+  "reveal_boundary": {
+   "名": "描邊界",
+   "layer": "map",
+   "rank": "P1",
+   "renders": true,
+   "當": "把一塊地的國境一筆一筆描出來，像有人拿筆沿著邊畫",
+   "不當": "整塊地要上色用「塗色」；兩地之間拉一條線用「航線」。**一群國家（北約、歐盟）描不了** —— 一次最多三塊地",
+   "要": {
+    "region": [
+     "哪一塊",
+     "描誰的邊界"
+    ]
+   },
+   "params": {
+    "color": "#F2C14E",
+    "width": 3,
+    "fadeOut": 0.0,
+    "points": 48,
+    "stay": 2.5,
+    "most": 3
+   },
+   "seconds": 1.6,
+   "least": 0.8,
+   "can_wait": true,
+   "選填": {
+    "points": [
+     "幾段",
+     "描得多細，預設 48"
+    ]
+   }
+  },
+  "move_geo_asset": {
+   "名": "移動物件",
+   "layer": "geo_overlay",
+   "rank": "P1",
+   "renders": false,
+   "當": "船、飛機、部隊沿著路徑移動",
+   "不當": "沒有單一物體的氣流用「風」",
+   "要": {
+    "path": [
+     "沿著哪條路",
+     "沿著哪條路"
+    ]
+   },
+   "沒做": "渲染器沒有「沿路徑移動的物件」。現在只能用「航線」畫線。",
+   "params": {},
+   "seconds": 2.5,
+   "least": 1.2,
+   "can_wait": true
+  },
+  "show_point_data": {
+   "名": "點資料",
+   "layer": "map",
+   "rank": "P2",
+   "renders": false,
+   "當": "大量地理點的密度、群聚、分布",
+   "不當": "**熱圖是點密度，不能拿來表示溫度場**（那是「一片區域」）",
+   "要": {
+    "points": [
+     "點",
+     "的清單"
+    ]
+   },
+   "沒做": "渲染器沒有 cluster/heatmap 圖層。",
+   "params": {},
+   "seconds": 2.5,
+   "least": 1.2,
+   "can_wait": true
+  },
+  "emit_particles": {
+   "名": "粒子",
+   "layer": "geo_overlay",
+   "rank": "P2",
+   "renders": false,
+   "當": "雨、雪、火花、碎屑、煙塵",
+   "不當": "整片流向用「風」",
+   "要": {
+    "at": [
+     "放哪裡",
+     "從哪裡發"
+    ]
+   },
+   "沒做": "渲染器只有海上的風粒子（`winds`），沒有通用的粒子系統。",
+   "params": {},
+   "seconds": 2.0,
+   "least": 1.0,
+   "can_wait": true
+  },
+  "show_cutaway": {
+   "名": "插畫面",
+   "layer": "cutaway",
+   "rank": "P1",
+   "renders": false,
+   "當": "暫離地圖插一張照片或圖，之後回地圖",
+   "不當": "地圖講得清楚的事不要離開地圖",
+   "要": {
+    "asset": [
+     "素材",
+     "哪一張"
+    ]
+   },
+   "沒做": "渲染器有 `backdrops` 和 `overlays`，但我們沒有素材庫 ——而那是另一整套（授權、審核、存放）。",
+   "params": {},
+   "seconds": 2.5,
+   "least": 1.5,
+   "can_wait": true
+  },
+  "play_audio_cue": {
+   "名": "音效",
+   "layer": "audio",
+   "rank": "P2",
+   "renders": false,
+   "當": "撞擊、轉場、環境音",
+   "不當": "蓋過旁白",
+   "要": {
+    "asset": [
+     "素材",
+     "哪一個音"
+    ]
+   },
+   "沒做": "聲音是我們自己用 ffmpeg 接的，不走渲染器 —— 要做的話在 `render.py` 混音那一步，不在這裡。",
+   "params": {},
+   "seconds": 1.0,
+   "least": 0.3,
+   "can_wait": false
+  }
+ },
+ "別名": {
+  "誰": "who",
+  "圈誰": "who",
+  "推近誰": "who",
+  "誰上台": "who",
+  "從": "from",
+  "到哪": "to",
+  "放哪裡": "at",
+  "在哪": "at",
+  "哪一塊": "region",
+  "哪一片": "region",
+  "哪幾塊": "regions",
+  "亮哪些": "regions",
+  "按順序": "regions",
+  "範圍": "box",
+  "方向": "direction",
+  "標題": "title",
+  "數到": "to",
+  "單位": "unit",
+  "沿著哪條路": "path",
+  "mood": "表情",
+  "kind_of": "圖示",
+  "palette": "調色",
+  "where": "方位",
+  "same_scale": "same_scale",
+  "globe": "globe",
+  "同一把尺": "same_scale",
+  "地球儀": "globe",
+  "哪一邊": "方位",
+  "到": "to",
+  "顏色": "調色",
+  "哪個方向": "direction",
+  "誰的邊界": "region",
+  "幾段": "points"
+ }
+}

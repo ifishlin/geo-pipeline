@@ -401,21 +401,53 @@ def _spine(story: str) -> str:
 
 
 def _board(story: str) -> str:
+    """分鏡表。**一格一行，畫面和那一格在講的台詞擺同一行。**
+
+    分鏡本來只活在 `6-storyboard.json` 裡 —— 50 筆 JSON，沒有人會一筆一筆
+    打開看，而下一個看到畫面的機會是九分鐘之後的成片。到那時候要指出
+    「第 23 格取景不對」已經很難。**每次都產出，逼迫「看」發生。**
+    """
     try:
-        got = paths.load(story, "storyboard")
-    except (FileNotFoundError, json.JSONDecodeError):
+        from geo.pipe import board as board_module
+        got = board_module.rows(story)
+    except (FileNotFoundError, json.JSONDecodeError, KeyError):
         return ""
-    cuts, whole = got["cuts"], got["seconds"]
-    out = ["<table><tr><th>秒</th><th>長</th><th>接</th><th>看到</th>"
-           "<th>為什麼</th></tr>"]
-    for at, one in enumerate(cuts):
-        until = cuts[at + 1]["at"] if at + 1 < len(cuts) else whole
+    if not got:
+        return ""
+    acts = sum(len(one["do"]) for one in got)
+    out = [f"<p class=note>{len(got)} 格　"
+           f"{sum(1 for x in got if x['cut'])} 切　"
+           f"{sum(1 for x in got if not x['cut'])} 滑　"
+           f"挑了 {acts} 個動作"
+           + ("　<span class='tag warn'>一個動作都沒挑</span>"
+              if not acts else "") + "</p>",
+           "<table><tr><th>#</th><th>秒</th><th>長</th><th>接</th>"
+           "<th>看到</th><th>動作</th><th>為什麼 ／ 這一格在講什麼</th>"
+           "</tr>"]
+    for at, one in enumerate(got, 1):
+        # 一格停太久（超過 6 秒沒換畫面）標出來 —— 那是「畫面停住了」，
+        # 而門只出聲不擋，出聲會被捲過去。
+        slow = ' style="background:#fdf6ee"' if one["for"] > 6 else ""
+        deeds = "<br>".join(
+            f"<b style='color:#b4530f'>{esc(a['move'])}</b> "
+            + esc("　".join(
+                f"{k}={v if isinstance(v, str) else '→'.join(v)}"
+                for k, v in a.items() if k not in ("move", "why")))
+            for a in one["do"]) or "—"
+        talk = "<br>".join(
+            f"<span class='who{"" if w == "旁白" else " role"}'>{esc(w)}</span>"
+            f"　{esc(t)}" for w, t in one["says"])
         out.append(
-            f"<tr><td class=num>{one['at']:.1f}</td>"
-            f"<td class=num>{until - one['at']:.1f}s</td>"
-            f"<td>{'切' if one.get('cut') else '滑'}</td>"
-            f"<td>{esc('＋'.join(one['see']))}</td>"
-            f"<td style='color:#6b7280'>{esc(one.get('why',''))}</td></tr>")
+            f"<tr{slow}><td class=num>{at}</td>"
+            f"<td class=num>{one['at']:.1f}</td>"
+            f"<td class=num>{one['for']:.1f}s</td>"
+            f"<td>{'切' if one['cut'] else '滑'}</td>"
+            f"<td style='white-space:nowrap'>{esc('＋'.join(one['see']))}"
+            + (f"<br><span class=tag>標 {esc('＋'.join(one['mark']))}</span>"
+               if one.get("mark") else "")
+            + f"</td><td>{deeds}</td>"
+            f"<td><div style='color:#6b7280'>{esc(one['why'])}</div>"
+            f"{talk}</td></tr>")
     return "".join(out) + "</table>"
 
 

@@ -776,27 +776,19 @@ def run(story: str, say=print, again: bool = False, plain: bool = False,
         bad.append("標記不合規矩：\n    " + "\n    ".join(marked[:5]))
     held = sum(marks.held(one) for one in says)
 
-    # **結尾不准開新的東西。** 觀眾只聽一次，而比喻要他當場翻譯 —— 翻不
-    # 出來，全片最後一句就空了，沒有第二次機會。
+    # **「結尾不准出現新字」那道門拿掉了。**
     #
-    # 量出來的：那一版的最後一句「第一個開口問的，是來要它天空的人」，
-    # 「空」這個字整篇第一次出現，而前面鋪的都是「飛機」。觀眾要在最後
-    # 半秒自己把兩個詞接起來。
+    # 加它是為了擋「第一個開口問的，是來要它天空的人」——「天空」整篇只出現
+    # 在最後一句，觀眾要在最後半秒自己把它跟前面的「飛機」接起來。
     #
-    # 只對最後一句生效 —— 前面幾句每一句都有 5–12 個新字（新的人名、新的
-    # 事件），那是正常的推進。**收尾是唯一一句不該有新東西的。**
-    tail = [one for one, who in zip(says, who) if who == narrator]
-    if tail:
-        last = marks.strip(tail[-1])
-        before = "".join(marks.strip(one) for one in says[:says.index(tail[-1])])
-        fresh = [c for c in dict.fromkeys(re.findall(r"[一-鿿]", last))
-                 if c not in before]
-        if fresh:
-            bad.append(
-                f"最後一句出現了整篇沒有過的字：{'、'.join(fresh)}\n"
-                f"    {last}\n"
-                f"    收尾只能用前面出現過的東西 —— 新的名詞或比喻，"
-                f"觀眾來不及接")
+    # 而字面查不出「名詞」和「虛詞」的差別：下一份稿子的結尾是「這份協議
+    # 沒有結束的一天」，它擋的是「結」「束」「乎」—— 常用詞。改成查兩個字
+    # 更糟（連「沒有」「的一」都算新的，因為跨詞切）。
+    #
+    # 更根本的是**它擋不到根源**：那一句是 spine 的 `ending` 帶下來的，
+    # narrate 重寫十次都一樣。連著擋了三趟、花了 $0.7，一次都沒有讓稿子
+    # 變好。**誤擋的門比沒有門糟**，所以拿掉，改用 `spine.md` 的規則
+    # （「只能用前面出現過的東西」）。
 
     grown = sum(_han(one) for one in says)
     grown_ends = sum(_ends(one) for one in says)

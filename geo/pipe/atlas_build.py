@@ -35,6 +35,16 @@ RAW = MAPS / "ne_50m_admin_0_countries.geojson"
 # 一級行政區（州、省、邦）。俄 85、美 56、印 36、印尼 33、中 31、巴西 27…
 STATES = MAPS / "ne_50m_admin_1_states_provinces.geojson"
 OUT = paths.GEO / "data" / "places.json"
+# 輪廓取樣成幾個點。**描邊界那個特效用的。**
+#
+# 渲染器的 `draw`（一筆一筆畫上去）只對「線狀的地區」有效，而國家是面，
+# 所以描不了。繞過去的做法是**拿 `lines` 串**：把輪廓切成 N 段，排 N 筆
+# 線、每筆晚一點開始，看起來就是一條線描過去。
+#
+# 48 是掃出來的取捨：24 段的丹麥看得出是多邊形，96 段要塞 96 筆 lines。
+OUTLINE_POINTS = 48
+OUTLINES = paths.GEO / "data" / "outlines.json"
+
 
 # 資料裡沒有、或叫法不一樣的別名。**一個一行，看得見**。
 # 值是 geoId，鍵是我們在稿子和事實裡會寫的名字。
@@ -250,6 +260,58 @@ def _merge(boxes: list[tuple[float, float, float, float]]
             max(one[2] for one in boxes), max(one[3] for one in boxes))
 
 
+def _resample(ring: list, many: int) -> list:
+    """把一圈座標重新取樣成 `many` 個等距的點。
+
+    **照弧長等距，不是每隔幾個點取一個** —— 後者在點密的地方（峽灣）
+    會擠成一團，描起來忽快忽慢。
+    """
+    pts = [(float(x[0]), float(x[1])) for x in ring]
+    if len(pts) < 3:
+        return []
+    if pts[0] != pts[-1]:
+        pts.append(pts[0])
+    run = [0.0]
+    for a, b in zip(pts, pts[1:]):
+        run.append(run[-1] + math.dist(a, b))
+    whole = run[-1]
+    if whole <= 0:
+        return []
+    out, at = [], 0
+    for i in range(many):
+        want = whole * i / many
+        while at + 1 < len(run) - 1 and run[at + 1] < want:
+            at += 1
+        gap = run[at + 1] - run[at]
+        part = 0.0 if gap <= 0 else (want - run[at]) / gap
+        a, b = pts[at], pts[at + 1]
+        out.append([round(a[0] + (b[0] - a[0]) * part, 3),
+                    round(a[1] + (b[1] - a[1]) * part, 3)])
+    return out
+
+
+def outlines(rows: list) -> dict:
+    """每一塊地的主體輪廓，取樣過的。**只取最大的那一圈** ——
+    丹麥有 400 多個島，全部描出來是一團點。"""
+    out = {}
+    for one in rows:
+        got = one["properties"]
+        key = str(got.get("ADM0_A3") or "")
+        if not key or key == "-99":
+            continue
+        try:
+            rings = [r[0] for r in _parts(one["geometry"])]
+        except ValueError:
+            continue
+        if not rings:
+            continue
+        big = max(rings, key=len)
+        got_ = _resample(big, OUTLINE_POINTS)
+        if got_:
+            out[key] = got_
+    return out
+
+
 def main() -> None:
     if not RAW.is_file():
         raise SystemExit(
@@ -377,6 +439,14 @@ def main() -> None:
             raise SystemExit(f"ALSO 裡的「{said}」指向 {key}，而索引裡沒有這一個")
         named[said] = key
 
+    # 輪廓另存一份 —— 它比索引大得多（48 個點 × 245 國），混在一起的話
+    # 每次讀索引都要載進那些點，而算相機根本用不到。
+    lines = outlines(rows)
+    OUTLINES.write_text(json.dumps(lines, ensure_ascii=False,
+                                   separators=(",", ":")), encoding="utf-8")
+    print(f"輪廓 {len(lines)} 塊（每塊 {OUTLINE_POINTS} 點）"
+          f"　{OUTLINES.stat().st_size // 1024} KB")
+
     OUT.parent.mkdir(parents=True, exist_ok=True)
     OUT.write_text(json.dumps(
         {"where": str(RAW.relative_to(RAW.parents[3])),
@@ -400,3 +470,4 @@ def main() -> None:
 
 if __name__ == "__main__":
     main()
+

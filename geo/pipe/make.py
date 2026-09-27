@@ -127,12 +127,14 @@ def _walk(story: str, only: str, again: bool, draft: bool,
             # **門自己也要被檢查。** 反應句那組門是拿種進去的違規驗的
             # （`geo/checks/_parts.py`），毫秒的事；不接在這裡的話，改壞
             # 一道門的下一趟會花十分鐘問模型，然後安靜地放行。
-            from geo.checks import _parts
+            from geo.checks import _effects, _parts
             import contextlib, io
-            with contextlib.redirect_stdout(io.StringIO()) as quiet:
-                if _parts.main():
-                    raise SystemExit("反應句那組門壞了：\n"
-                                     + quiet.getvalue())
+            for one, why in ((_parts, "反應句那組門"),
+                             (_effects, "特效目錄和 builder")):
+                with contextlib.redirect_stdout(io.StringIO()) as quiet:
+                    if one.main():
+                        raise SystemExit(f"{why}對不起來：\n"
+                                         + quiet.getvalue())
         print(f"\n{'─' * 8} {name} {'─' * 8}")
         began = time.time()
         call = _step(name)

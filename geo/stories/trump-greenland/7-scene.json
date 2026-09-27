@@ -16,176 +16,8 @@
  },
  "scenes": [
   {
-   "id": "000.00-開場先讓那個小國填滿畫面一次",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "000.00-移1-開場先讓那個小國填滿畫面一次",
-   "duration": 0.5333333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "000.00-移2-開場先讓那個小國填滿畫面一次",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "001.06-鏡頭退開，剛剛那一整國縮成一個點",
-   "duration": 0.26666666666666666,
+   "id": "000.00-開場把島跟它的所有國一起立在畫面",
+   "duration": 4.3,
    "camera": {
     "from": {
      "center": [
@@ -210,29 +42,36 @@
      "opacity": 0.62,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
     }
    ],
    "markers": [
     {
      "coordinates": [
-      12.568,
-      55.676
+      9.0182,
+      55.967
      ],
-     "color": "#F7B82F",
+     "color": "#FF4B57",
      "type": "pin",
-     "size": 40
+     "size": 46
     }
    ],
    "labels": [
     {
-     "text": "哥本哈根",
+     "text": "丹麥",
      "coordinates": [
-      12.568,
-      55.676
+      9.0182,
+      55.967
      ],
      "offset": [
       0,
-      -52
+      -56
      ],
      "fontSize": 46,
      "style": "tag"
@@ -240,159 +79,15 @@
    ]
   },
   {
-   "id": "001.06-移1-鏡頭退開，剛剛那一整國縮成一個點",
-   "duration": 0.5,
+   "id": "004.31-從比大小切回地圖，指出它在哪",
+   "duration": 0.7333333333333333,
    "camera": {
     "from": {
      "center": [
-      -28.8405,
-      77.7124
+      -42.1218,
+      78.2006
      ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "001.06-移2-鏡頭退開，剛剛那一整國縮成一個點",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "002.09-買家從另一邊進來，兩塊大的隔著海",
-   "duration": 0.9666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "002.09-移1-買家從另一邊進來，兩塊大的隔著海",
-   "duration": 1.2,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
+     "zoom": 3.035
     },
     "to": {
      "center": [
@@ -401,7 +96,174 @@
      ],
      "zoom": 3.035
     },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "004.31-移1-從比大小切回地圖，指出它在哪",
+   "duration": 0.9333333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
     "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "004.31-移2-從比大小切回地圖，指出它在哪",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "006.23-推進去看那片空白",
+   "duration": 1.9333333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "008.17-買家第一次出現，跟商品同框",
+   "duration": 2.933333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "011.11-角色插話，鏡頭交給講話的那一邊",
+   "duration": 3.6,
+   "camera": {
+    "from": {
+     "center": [
+      -95.8485,
+      44.0977
+     ],
+     "zoom": 3.322
+    },
+    "to": {
+     "center": [
+      -95.8485,
+      44.0977
+     ],
+     "zoom": 3.322
+    },
+    "easing": "linear"
    },
    "highlights": [
     {
@@ -416,11 +278,325 @@
    "labels": []
   },
   {
-   "id": "002.09-移2-買家從另一邊進來，兩塊大的隔著海",
+   "id": "014.70-時代跳回一千年前，硬切到故事起點",
+   "duration": 1.2333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      3.5304,
+      67.3127
+     ],
+     "zoom": 3.365
+    },
+    "to": {
+     "center": [
+      3.5304,
+      67.3127
+     ],
+     "zoom": 3.365
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "014.70-移1-時代跳回一千年前，硬切到故事起點",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      3.5304,
+      67.3127
+     ],
+     "zoom": 3.365
+    },
+    "to": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "014.70-移2-時代跳回一千年前，硬切到故事起點",
    "duration": 0.23333333333333334,
    "camera": {
     "from": {
      "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "to": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "017.58-講的是從這邊渡到那邊",
+   "duration": 0.8,
+   "camera": {
+    "from": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "to": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "017.58-移1-講的是從這邊渡到那邊",
+   "duration": 1.0,
+   "camera": {
+    "from": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "017.58-移2-講的是從這邊渡到那邊",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
       -42.1218,
       78.2006
      ],
@@ -437,7 +613,42 @@
    },
    "highlights": [
     {
-     "geoId": "USA",
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
      "fill": "#FF4B57",
      "opacity": 0.62,
      "stroke": "#FFFFFF",
@@ -448,7 +659,135 @@
    "labels": []
   },
   {
-   "id": "004.51-收回島上，故事從這裡開始",
+   "id": "019.62-落在被取名字的那塊地上",
+   "duration": 1.3333333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "019.62-移1-落在被取名字的那塊地上",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "019.62-移2-落在被取名字的那塊地上",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "022.62-推進去看名字底下其實是什麼",
+   "duration": 1.8,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "024.43-這句在推翻上一段，硬切表示翻頁",
    "duration": 2.1333333333333333,
    "camera": {
     "from": {
@@ -480,116 +819,28 @@
    "labels": []
   },
   {
-   "id": "006.65-跳到 986 年，人是從這一邊出",
-   "duration": 0.36666666666666664,
+   "id": "024.43-移1-這句在推翻上一段，硬切表示翻頁",
+   "duration": 1.4,
    "camera": {
     "from": {
      "center": [
-      3.5304,
-      67.3127
+      -42.1218,
+      78.2006
      ],
-     "zoom": 3.365
+     "zoom": 3.035
     },
     "to": {
      "center": [
-      3.5304,
-      67.3127
+      -76.2138,
+      76.8451
      ],
-     "zoom": 3.365
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "SWE",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "FIN",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "ISL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "006.65-移1-跳到 986 年，人是從這一邊出",
-   "duration": 0.5666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      3.5304,
-      67.3127
-     ],
-     "zoom": 3.365
-    },
-    "to": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
+     "zoom": 2.155
     },
     "easing": "easeInOut"
    },
    "highlights": [
     {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "SWE",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "FIN",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "ISL",
+     "geoId": "GRL",
      "fill": "#FF4B57",
      "opacity": 0.62,
      "stroke": "#FFFFFF",
@@ -600,56 +851,28 @@
    "labels": []
   },
   {
-   "id": "006.65-移2-跳到 986 年，人是從這一邊出",
-   "duration": 0.26666666666666666,
+   "id": "024.43-移2-這句在推翻上一段，硬切表示翻頁",
+   "duration": 0.23333333333333334,
    "camera": {
     "from": {
      "center": [
-      -20.6408,
-      78.1927
+      -76.2138,
+      76.8451
      ],
-     "zoom": 2.467
+     "zoom": 2.155
     },
     "to": {
      "center": [
-      -20.6408,
-      78.1927
+      -76.2138,
+      76.8451
      ],
-     "zoom": 2.467
+     "zoom": 2.155
     },
     "easing": "linear"
    },
    "highlights": [
     {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "SWE",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "FIN",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "ISL",
+     "geoId": "GRL",
      "fill": "#FF4B57",
      "opacity": 0.62,
      "stroke": "#FFFFFF",
@@ -660,8 +883,47 @@
    "labels": []
   },
   {
-   "id": "007.83-鏡頭跟著船往西滑，落在島上",
-   "duration": 0.43333333333333335,
+   "id": "028.21-講的是從那邊遷過來",
+   "duration": 1.7666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -76.2138,
+      76.8451
+     ],
+     "zoom": 2.155
+    },
+    "to": {
+     "center": [
+      -76.2138,
+      76.8451
+     ],
+     "zoom": 2.155
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "CAN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "029.96-它跟那批晚到的人同框，話才有對象",
+   "duration": 2.9,
    "camera": {
     "from": {
      "center": [
@@ -682,6 +944,41 @@
    "highlights": [
     {
      "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
      "fill": "#43C8FF",
      "opacity": 0.5,
      "stroke": "#FFFFFF",
@@ -692,15 +989,575 @@
    "labels": []
   },
   {
-   "id": "007.83-移1-鏡頭跟著船往西滑，落在島上",
+   "id": "032.87-臣服這件事三邊都要看得到",
+   "duration": 3.7,
+   "camera": {
+    "from": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "to": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "036.56-那批北歐人整批消失，鏡頭收回這兩",
+   "duration": 0.5333333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "to": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "036.56-移1-那批北歐人整批消失，鏡頭收回這兩",
+   "duration": 0.7666666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      -20.6408,
+      78.1927
+     ],
+     "zoom": 2.467
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "036.56-移2-那批北歐人整批消失，鏡頭收回這兩",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "SWE",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FIN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "038.11-派隊回去找人，兩端同框",
+   "duration": 3.2,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "038.11-移1-派隊回去找人，兩端同框",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -59.0048,
+      70.1325
+     ],
+     "zoom": 4.187
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "038.11-移2-派隊回去找人，兩端同框",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -59.0048,
+      70.1325
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -59.0048,
+      70.1325
+     ],
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "042.95-首都在西南岸，位置有意義",
+   "duration": 0.2,
+   "camera": {
+    "from": {
+     "center": [
+      -59.0048,
+      70.1325
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -59.0048,
+      70.1325
+     ],
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "042.95-移1-首都在西南岸，位置有意義",
+   "duration": 0.4666666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      -59.0048,
+      70.1325
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "042.95-移2-首都在西南岸，位置有意義",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "043.89-從那一角退回整座島",
    "duration": 0.6666666666666666,
    "camera": {
     "from": {
      "center": [
-      -20.6408,
-      78.1927
+      -42.1218,
+      78.2006
      ],
-     "zoom": 2.467
+     "zoom": 3.035
     },
     "to": {
      "center": [
@@ -709,11 +1566,209 @@
      ],
      "zoom": 3.035
     },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "043.89-移1-從那一角退回整座島",
+   "duration": 0.9666666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
     "easing": "easeInOut"
    },
    "highlights": [
     {
      "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "043.89-移2-從那一角退回整座島",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "045.77-留下的東西是誰的，要看得到",
+   "duration": 1.4666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "047.23-換角色講話，鏡頭交給它",
+   "duration": 4.133333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "to": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "051.37-共主聯邦是這兩個王室的事",
+   "duration": 2.433333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      17.8798,
+      65.8166
+     ],
+     "zoom": 4.305
+    },
+    "to": {
+     "center": [
+      17.8798,
+      65.8166
+     ],
+     "zoom": 4.305
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "NOR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
      "fill": "#43C8FF",
      "opacity": 0.5,
      "stroke": "#FFFFFF",
@@ -724,8 +1779,699 @@
    "labels": []
   },
   {
-   "id": "007.83-移2-鏡頭跟著船往西滑，落在島上",
+   "id": "051.37-移1-共主聯邦是這兩個王室的事",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      17.8798,
+      65.8166
+     ],
+     "zoom": 4.305
+    },
+    "to": {
+     "center": [
+      -20.9288,
+      78.1762
+     ],
+     "zoom": 2.475
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "NOR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "051.37-移2-共主聯邦是這兩個王室的事",
    "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -20.9288,
+      78.1762
+     ],
+     "zoom": 2.475
+    },
+    "to": {
+     "center": [
+      -20.9288,
+      78.1762
+     ],
+     "zoom": 2.475
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "NOR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "055.46-分家分完，它被塗成丹麥那一邊的顏",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -20.9288,
+      78.1762
+     ],
+     "zoom": 2.475
+    },
+    "to": {
+     "center": [
+      -20.9288,
+      78.1762
+     ],
+     "zoom": 2.475
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "055.46-移1-分家分完，它被塗成丹麥那一邊的顏",
+   "duration": 0.5,
+   "camera": {
+    "from": {
+     "center": [
+      -20.9288,
+      78.1762
+     ],
+     "zoom": 2.475
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "055.46-移2-分家分完，它被塗成丹麥那一邊的顏",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "056.45-整座島被宣告成一個人的",
+   "duration": 1.4333333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "056.45-移1-整座島被宣告成一個人的",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      17.8798,
+      65.8166
+     ],
+     "zoom": 4.305
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "056.45-移2-整座島被宣告成一個人的",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      17.8798,
+      65.8166
+     ],
+     "zoom": 4.305
+    },
+    "to": {
+     "center": [
+      17.8798,
+      65.8166
+     ],
+     "zoom": 4.305
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "059.55-打官司的是這兩邊",
+   "duration": 2.2,
+   "camera": {
+    "from": {
+     "center": [
+      17.8798,
+      65.8166
+     ],
+     "zoom": 4.305
+    },
+    "to": {
+     "center": [
+      17.8798,
+      65.8166
+     ],
+     "zoom": 4.305
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "NOR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "061.73-美國插進這條線，硬切帶它進來",
+   "duration": 1.0666666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "061.73-移1-美國插進這條線，硬切帶它進來",
+   "duration": 1.3,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "061.73-移2-美國插進這條線，硬切帶它進來",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "064.34-三份條約牽涉的三邊一起看",
+   "duration": 2.933333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "067.26-角色插話，鏡頭交給它",
+   "duration": 3.0,
+   "camera": {
+    "from": {
+     "center": [
+      -95.8485,
+      44.0977
+     ],
+     "zoom": 3.322
+    },
+    "to": {
+     "center": [
+      -95.8485,
+      44.0977
+     ],
+     "zoom": 3.322
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "070.27-歷任主人跟它一起排在畫面上",
+   "duration": 4.033333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -20.9288,
+      78.1762
+     ],
+     "zoom": 2.475
+    },
+    "to": {
+     "center": [
+      -20.9288,
+      78.1762
+     ],
+     "zoom": 2.475
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NOR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "074.31-吐槽落點，收回它一個人身上",
+   "duration": 2.1666666666666665,
    "camera": {
     "from": {
      "center": [
@@ -746,6 +2492,173 @@
    "highlights": [
     {
      "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "076.47-時代跳到二戰，鏡頭跳到被占領的本",
+   "duration": 1.4666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "to": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "076.47-移1-時代跳到二戰，鏡頭跳到被占領的本",
+   "duration": 0.7,
+   "camera": {
+    "from": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "to": {
+     "center": [
+      -63.1741,
+      61.8889
+     ],
+     "zoom": 2.168
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "076.47-移2-時代跳到二戰，鏡頭跳到被占領的本",
+   "duration": 0.7,
+   "camera": {
+    "from": {
+     "center": [
+      -63.1741,
+      61.8889
+     ],
+     "zoom": 2.168
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "076.47-移3-時代跳到二戰，鏡頭跳到被占領的本",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "079.58-美軍是從那一邊過來的",
+   "duration": 0.9,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
      "fill": "#43C8FF",
      "opacity": 0.5,
      "stroke": "#FFFFFF",
@@ -756,7 +2669,1521 @@
    "labels": []
   },
   {
-   "id": "009.19-名字取好了，整座島被塗上；這一格",
+   "id": "080.45-全片的翻面就在這一句",
+   "duration": 2.3333333333333335,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "082.79-加入北約、跟美國簽約，三塊都要在",
+   "duration": 1.9,
+   "camera": {
+    "from": {
+     "center": [
+      -62.9325,
+      73.7975
+     ],
+     "zoom": 2.13
+    },
+    "to": {
+     "center": [
+      -62.9325,
+      73.7975
+     ],
+     "zoom": 2.13
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "CAN",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GBR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "BEL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "082.79-移1-加入北約、跟美國簽約，三塊都要在",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      -62.9325,
+      73.7975
+     ],
+     "zoom": 2.13
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "CAN",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GBR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "BEL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "082.79-移2-加入北約、跟美國簽約，三塊都要在",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "CAN",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GBR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "BEL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "086.35-人是駐在它身上",
+   "duration": 1.2333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "087.58-角色插話，推到最熱鬧的那一帶",
+   "duration": 3.033333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      81.5684
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      81.5684
+     ],
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "090.59-修憲發生在本土，鏡頭回到做決定的",
+   "duration": 0.9666666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "to": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "090.59-移1-修憲發生在本土，鏡頭回到做決定的",
+   "duration": 1.2333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "090.59-移2-修憲發生在本土，鏡頭回到做決定的",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "093.05-兩塊塗成同一個顏色，變成同一國",
+   "duration": 2.566666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "095.62-吐槽落在整座空島上",
+   "duration": 0.5,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "095.62-移1-吐槽落在整座空島上",
+   "duration": 0.7333333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "095.62-移2-吐槽落在整座空島上",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "097.11-兵是從哪來的，要跟島同框才比得出",
+   "duration": 2.8333333333333335,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "099.92-對照組先單獨出場",
+   "duration": 0.6,
+   "camera": {
+    "from": {
+     "center": [
+      3.8573,
+      60.3121
+     ],
+     "zoom": 4.677
+    },
+    "to": {
+     "center": [
+      3.8573,
+      60.3121
+     ],
+     "zoom": 4.677
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "FRO",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "法羅群島",
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "099.92-移1-對照組先單獨出場",
+   "duration": 0.8333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      3.8573,
+      60.3121
+     ],
+     "zoom": 4.677
+    },
+    "to": {
+     "center": [
+      8.9208,
+      53.9088
+     ],
+     "zoom": 3.901
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "FRO",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "法羅群島",
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "099.92-移2-對照組先單獨出場",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      8.9208,
+      53.9088
+     ],
+     "zoom": 3.901
+    },
+    "to": {
+     "center": [
+      8.9208,
+      53.9088
+     ],
+     "zoom": 3.901
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "FRO",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "法羅群島",
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "101.61-沒進去的那塊跟那一大塊要並在一起",
+   "duration": 1.9333333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      8.9208,
+      53.9088
+     ],
+     "zoom": 3.901
+    },
+    "to": {
+     "center": [
+      8.9208,
+      53.9088
+     ],
+     "zoom": 3.901
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "BEL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DEU",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GRC",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "IRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ITA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GBR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRO",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "法羅群島",
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "101.61-移1-沒進去的那塊跟那一大塊要並在一起",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      8.9208,
+      53.9088
+     ],
+     "zoom": 3.901
+    },
+    "to": {
+     "center": [
+      -22.2932,
+      74.8157
+     ],
+     "zoom": 2.514
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "BEL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DEU",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GRC",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "IRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ITA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GBR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRO",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "法羅群島",
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "101.61-移2-沒進去的那塊跟那一大塊要並在一起",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -22.2932,
+      74.8157
+     ],
+     "zoom": 2.514
+    },
+    "to": {
+     "center": [
+      -22.2932,
+      74.8157
+     ],
+     "zoom": 2.514
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "BEL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DEU",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GRC",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "IRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ITA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GBR",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRO",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "法羅群島",
+     "coordinates": [
+      -7.0584,
+      62.1856
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "105.17-它被一起塗進那塊顏色裡",
+   "duration": 1.5333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -22.2932,
+      74.8157
+     ],
+     "zoom": 2.514
+    },
+    "to": {
+     "center": [
+      -22.2932,
+      74.8157
+     ],
+     "zoom": 2.514
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "BEL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "DEU",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRC",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "IRL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ITA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GBR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "106.70-角色插話，鏡頭收回它自己",
    "duration": 4.3,
    "camera": {
     "from": {
@@ -788,195 +4215,7 @@
    "labels": []
   },
   {
-   "id": "013.51-吐槽翻面，硬切回取名字的那批人",
-   "duration": 2.7,
-   "camera": {
-    "from": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "to": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "SWE",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "FIN",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "ISL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "016.21-1261 年換時代，主人是挪威國",
-   "duration": 1.2666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -20.9288,
-      78.7873
-     ],
-     "zoom": 2.475
-    },
-    "to": {
-     "center": [
-      -20.9288,
-      78.7873
-     ],
-     "zoom": 2.475
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "016.21-移1-1261 年換時代，主人是挪威國",
-   "duration": 1.4,
-   "camera": {
-    "from": {
-     "center": [
-      -20.9288,
-      78.7873
-     ],
-     "zoom": 2.475
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "016.21-移2-1261 年換時代，主人是挪威國",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "019.11-島自己開口，鏡頭滑回它身上",
-   "duration": 4.033333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "019.11-移1-島自己開口，鏡頭滑回它身上",
+   "id": "106.70-移1-角色插話，鏡頭收回它自己",
    "duration": 1.4,
    "camera": {
     "from": {
@@ -988,10 +4227,10 @@
     },
     "to": {
      "center": [
-      -20.9288,
-      78.7873
+      -22.2932,
+      74.8157
      ],
-     "zoom": 2.475
+     "zoom": 2.514
     },
     "easing": "easeInOut"
    },
@@ -1008,22 +4247,22 @@
    "labels": []
   },
   {
-   "id": "019.11-移2-島自己開口，鏡頭滑回它身上",
+   "id": "106.70-移2-角色插話，鏡頭收回它自己",
    "duration": 0.23333333333333334,
    "camera": {
     "from": {
      "center": [
-      -20.9288,
-      78.7873
+      -22.2932,
+      74.8157
      ],
-     "zoom": 2.475
+     "zoom": 2.514
     },
     "to": {
      "center": [
-      -20.9288,
-      78.7873
+      -22.2932,
+      74.8157
      ],
-     "zoom": 2.475
+     "zoom": 2.514
     },
     "easing": "linear"
    },
@@ -1040,389 +4279,117 @@
    "labels": []
   },
   {
-   "id": "024.77-鏡頭退開，空島頭上那個主權還亮著",
-   "duration": 0.7666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -20.9288,
-      78.7873
-     ],
-     "zoom": 2.475
-    },
-    "to": {
-     "center": [
-      -20.9288,
-      78.7873
-     ],
-     "zoom": 2.475
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "024.77-移1-鏡頭退開，空島頭上那個主權還亮著",
-   "duration": 1.0,
-   "camera": {
-    "from": {
-     "center": [
-      -20.9288,
-      78.7873
-     ],
-     "zoom": 2.475
-    },
-    "to": {
-     "center": [
-      17.8798,
-      65.8166
-     ],
-     "zoom": 4.305
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "024.77-移2-鏡頭退開，空島頭上那個主權還亮著",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      17.8798,
-      65.8166
-     ],
-     "zoom": 4.305
-    },
-    "to": {
-     "center": [
-      17.8798,
-      65.8166
-     ],
-     "zoom": 4.305
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "026.77-兩邊合成一塊顏色，島跟著走",
-   "duration": 1.1,
-   "camera": {
-    "from": {
-     "center": [
-      17.8798,
-      65.8166
-     ],
-     "zoom": 4.305
-    },
-    "to": {
-     "center": [
-      17.8798,
-      65.8166
-     ],
-     "zoom": 4.305
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "026.77-移1-兩邊合成一塊顏色，島跟著走",
-   "duration": 1.3333333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      17.8798,
-      65.8166
-     ],
-     "zoom": 4.305
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "026.77-移2-兩邊合成一塊顏色，島跟著走",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "029.44-船從丹麥這一頭往島上去",
-   "duration": 0.9666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0,
-      -56
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "029.44-移1-船從丹麥這一頭往島上去",
+   "id": "112.64-它從那塊顏色裡被拿掉",
    "duration": 1.2333333333333334,
    "camera": {
     "from": {
      "center": [
-      -28.8405,
-      77.7124
+      -22.2932,
+      74.8157
      ],
-     "zoom": 2.714
+     "zoom": 2.514
     },
     "to": {
      "center": [
-      -42.1218,
-      78.2006
+      -22.2932,
+      74.8157
      ],
-     "zoom": 3.035
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0,
-      -56
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "029.44-移2-船從丹麥這一頭往島上去",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
+     "zoom": 2.514
     },
     "easing": "linear"
    },
    "highlights": [
     {
+     "geoId": "BEL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
      "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DEU",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GRC",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "IRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ITA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "GBR",
      "fill": "#FF4B57",
      "opacity": 0.62,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.5
     }
    ],
-   "markers": [
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0,
-      -56
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
+   "markers": [],
+   "labels": []
   },
   {
-   "id": "031.88-找不到人也照樣塗色——對著空白宣",
-   "duration": 3.5,
+   "id": "113.85-吐槽收回它一個人身上",
+   "duration": 2.4,
    "camera": {
     "from": {
      "center": [
@@ -1453,7 +4420,1053 @@
    "labels": []
   },
   {
-   "id": "035.36-重建的那個點有名字，標出來",
+   "id": "113.85-移1-吐槽收回它一個人身上",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "113.85-移2-吐槽收回它一個人身上",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "117.90-國防外交的決定權在那個點上",
+   "duration": 5.433333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      12.568,
+      55.676
+     ],
+     "color": "#F7B82F",
+     "type": "pin",
+     "size": 40
+    },
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "哥本哈根",
+     "coordinates": [
+      12.568,
+      55.676
+     ],
+     "offset": [
+      0.0,
+      -156.0
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    },
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0.0,
+      -56.0
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "123.35-換角色講話，鏡頭交給出錢的那一邊",
+   "duration": 4.433333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "to": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      12.568,
+      55.676
+     ],
+     "color": "#F7B82F",
+     "type": "pin",
+     "size": 40
+    }
+   ],
+   "labels": [
+    {
+     "text": "哥本哈根",
+     "coordinates": [
+      12.568,
+      55.676
+     ],
+     "offset": [
+      0,
+      -52
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "127.76-時間跳到當下，先從被拿掉主意的那",
+   "duration": 1.5,
+   "camera": {
+    "from": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "to": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "127.76-移1-時間跳到當下，先從被拿掉主意的那",
+   "duration": 0.7,
+   "camera": {
+    "from": {
+     "center": [
+      11.6293,
+      56.758
+     ],
+     "zoom": 6.362
+    },
+    "to": {
+     "center": [
+      -63.1741,
+      61.8889
+     ],
+     "zoom": 2.168
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "127.76-移2-時間跳到當下，先從被拿掉主意的那",
+   "duration": 0.7,
+   "camera": {
+    "from": {
+     "center": [
+      -63.1741,
+      61.8889
+     ],
+     "zoom": 2.168
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "127.76-移3-時間跳到當下，先從被拿掉主意的那",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "130.91-所謂的對手是在它周圍那一圈海",
+   "duration": 1.1333333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "130.91-移1-所謂的對手是在它周圍那一圈海",
+   "duration": 1.3666666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      55.9621
+     ],
+     "zoom": 2.045
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "130.91-移2-所謂的對手是在它周圍那一圈海",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -54.7864,
+      55.9621
+     ],
+     "zoom": 2.045
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      55.9621
+     ],
+     "zoom": 2.045
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "133.65-關稅是打在這兩邊之間",
+   "duration": 0.9666666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      -54.7864,
+      55.9621
+     ],
+     "zoom": 2.045
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      55.9621
+     ],
+     "zoom": 2.045
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "134.64-賣方回話，兩邊同框",
+   "duration": 1.5666666666666667,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "134.64-移1-賣方回話，兩邊同框",
+   "duration": 1.4,
+   "camera": {
+    "from": {
+     "center": [
+      -28.8405,
+      77.7124
+     ],
+     "zoom": 2.714
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "134.64-移2-賣方回話，兩邊同框",
+   "duration": 0.23333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "137.84-被貼標籤的是哪一塊要看得到",
+   "duration": 0.3,
+   "camera": {
+    "from": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "137.84-移1-被貼標籤的是哪一塊要看得到",
+   "duration": 0.5,
+   "camera": {
+    "from": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "to": {
+     "center": [
+      -65.7229,
+      75.0628
+     ],
+     "zoom": 1.939
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "137.84-移2-被貼標籤的是哪一塊要看得到",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -65.7229,
+      75.0628
+     ],
+     "zoom": 1.939
+    },
+    "to": {
+     "center": [
+      -65.7229,
+      75.0628
+     ],
+     "zoom": 1.939
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
+    }
+   ],
+   "labels": [
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0,
+      -56
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    }
+   ]
+  },
+  {
+   "id": "138.90-兵是從聯盟那邊進到島上",
+   "duration": 3.433333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -65.7229,
+      75.0628
+     ],
+     "zoom": 1.939
+    },
+    "to": {
+     "center": [
+      -65.7229,
+      75.0628
+     ],
+     "zoom": 1.939
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "CAN",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "FRA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GBR",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ESP",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "ISL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "PRT",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "NLD",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "BEL",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "LUX",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "142.32-吵了一整年，鏡頭回到那塊冰本身",
+   "duration": 1.0333333333333334,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "142.32-移1-吵了一整年，鏡頭回到那塊冰本身",
    "duration": 1.3,
    "camera": {
     "from": {
@@ -1466,9 +5479,41 @@
     "to": {
      "center": [
       -42.1218,
-      78.2006
+      77.0356
      ],
-     "zoom": 3.035
+     "zoom": 4.187
+    },
+    "easing": "easeInOut"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "142.32-移2-吵了一整年，鏡頭回到那塊冰本身",
+   "duration": 0.26666666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
     },
     "easing": "linear"
    },
@@ -1481,27 +5526,127 @@
      "strokeWidth": 2.5
     }
    ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "144.92-這句話第二次出現，回到同一片冰上",
+   "duration": 2.433333333333333,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      77.0356
+     ],
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "147.38-三方簽約，三塊都要在場",
+   "duration": 2.1,
+   "camera": {
+    "from": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "to": {
+     "center": [
+      -54.7864,
+      74.6703
+     ],
+     "zoom": 2.045
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "DNK",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
    "markers": [
     {
      "coordinates": [
-      -51.721,
-      64.175
+      -74.006,
+      40.713
      ],
      "color": "#F7B82F",
      "type": "pin",
      "size": 40
+    },
+    {
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "color": "#FF4B57",
+     "type": "pin",
+     "size": 46
     }
    ],
    "labels": [
     {
-     "text": "努克",
+     "text": "紐約",
      "coordinates": [
-      -51.721,
-      64.175
+      -74.006,
+      40.713
      ],
      "offset": [
-      0,
-      -52
+      0.0,
+      -52.0
+     ],
+     "fontSize": 46,
+     "style": "tag"
+    },
+    {
+     "text": "丹麥",
+     "coordinates": [
+      9.0182,
+      55.967
+     ],
+     "offset": [
+      0.0,
+      -56.0
      ],
      "fontSize": 46,
      "style": "tag"
@@ -1509,231 +5654,53 @@
    ]
   },
   {
-   "id": "036.67-1814 換時代，硬切回歐洲看兩",
-   "duration": 1.6333333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      17.8798,
-      65.8166
-     ],
-     "zoom": 4.305
-    },
-    "to": {
-     "center": [
-      17.8798,
-      65.8166
-     ],
-     "zoom": 4.305
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "036.67-移1-1814 換時代，硬切回歐洲看兩",
+   "id": "147.38-移1-三方簽約，三塊都要在場",
    "duration": 1.4,
    "camera": {
     "from": {
      "center": [
-      17.8798,
-      65.8166
+      -54.7864,
+      74.6703
      ],
-     "zoom": 4.305
+     "zoom": 2.045
     },
     "to": {
      "center": [
-      -42.1218,
-      78.2006
+      -59.0048,
+      81.5684
      ],
-     "zoom": 3.035
+     "zoom": 4.187
     },
     "easing": "easeInOut"
    },
    "highlights": [
     {
-     "geoId": "DNK",
+     "geoId": "USA",
      "fill": "#43C8FF",
      "opacity": 0.5,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "036.67-移2-1814 換時代，硬切回歐洲看兩",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
     },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "linear"
-   },
-   "highlights": [
     {
      "geoId": "DNK",
      "fill": "#43C8FF",
      "opacity": 0.5,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "039.97-敗仗在幾千公里外，畫面上只剩被換",
-   "duration": 0.5333333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
     },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "linear"
-   },
-   "highlights": [
     {
      "geoId": "GRL",
      "fill": "#FF4B57",
      "opacity": 0.62,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "039.97-移1-敗仗在幾千公里外，畫面上只剩被換",
-   "duration": 0.8,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "to": {
-     "center": [
-      -20.9288,
-      78.1762
-     ],
-     "zoom": 2.475
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "039.97-移2-敗仗在幾千公里外，畫面上只剩被換",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -20.9288,
-      78.1762
-     ],
-     "zoom": 2.475
-    },
-    "to": {
-     "center": [
-      -20.9288,
-      78.1762
-     ],
-     "zoom": 2.475
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "041.55-退到三邊都看得見，丹麥先宣告整座",
-   "duration": 1.3666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -20.9288,
-      78.1762
-     ],
-     "zoom": 2.475
-    },
-    "to": {
-     "center": [
-      -20.9288,
-      78.1762
-     ],
-     "zoom": 2.475
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
     }
    ],
    "markers": [
     {
      "coordinates": [
-      12.568,
-      55.676
+      -74.006,
+      40.713
      ],
      "color": "#F7B82F",
      "type": "pin",
@@ -1751,14 +5718,14 @@
    ],
    "labels": [
     {
-     "text": "哥本哈根",
+     "text": "紐約",
      "coordinates": [
-      12.568,
-      55.676
+      -74.006,
+      40.713
      ],
      "offset": [
       0.0,
-      -156.0
+      -52.0
      ],
      "fontSize": 46,
      "style": "tag"
@@ -1779,64 +5746,32 @@
    ]
   },
   {
-   "id": "042.93-同一個畫面，顏色換到不服的那一邊",
-   "duration": 1.5333333333333334,
+   "id": "147.38-移2-三方簽約，三塊都要在場",
+   "duration": 0.26666666666666666,
    "camera": {
     "from": {
      "center": [
-      -20.9288,
-      78.1762
+      -59.0048,
+      81.5684
      ],
-     "zoom": 2.475
+     "zoom": 4.187
     },
     "to": {
      "center": [
-      -20.9288,
-      78.1762
+      -59.0048,
+      81.5684
      ],
-     "zoom": 2.475
+     "zoom": 4.187
     },
     "easing": "linear"
    },
    "highlights": [
     {
-     "geoId": "NOR",
+     "geoId": "USA",
      "fill": "#43C8FF",
      "opacity": 0.5,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "044.46-判決翻面，硬切；島和丹麥塗成同一",
-   "duration": 5.4,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
     },
     {
      "geoId": "DNK",
@@ -1844,13 +5779,20 @@
      "opacity": 0.5,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.0
+    },
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
     }
    ],
    "markers": [
     {
      "coordinates": [
-      12.568,
-      55.676
+      -74.006,
+      40.713
      ],
      "color": "#F7B82F",
      "type": "pin",
@@ -1868,14 +5810,14 @@
    ],
    "labels": [
     {
-     "text": "哥本哈根",
+     "text": "紐約",
      "coordinates": [
-      12.568,
-      55.676
+      -74.006,
+      40.713
      ],
      "offset": [
       0.0,
-      -156.0
+      -52.0
      ],
      "fontSize": 46,
      "style": "tag"
@@ -1896,987 +5838,104 @@
    ]
   },
   {
-   "id": "049.87-新角色插話，硬切到大西洋另一邊",
-   "duration": 2.6333333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "052.49-二戰換時代；本土被關住，島把話遞",
-   "duration": 0.8333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "to": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "052.49-移1-二戰換時代；本土被關住，島把話遞",
-   "duration": 1.1333333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "052.49-移2-二戰換時代；本土被關住，島把話遞",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "054.70-滑進被占住的首都，那裡沒有顏色，",
-   "duration": 0.8666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "054.70-移1-滑進被占住的首都，那裡沒有顏色，",
-   "duration": 1.1333333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "054.70-移2-滑進被占住的首都，那裡沒有顏色，",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "056.95-退開，決定落在島這一頭",
-   "duration": 2.3666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "059.30-1951 換時代，簽約的是這兩邊",
-   "duration": 2.7,
-   "camera": {
-    "from": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "to": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "USA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0,
-      -56
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "061.98-1953 換時代；併成同一個顏色",
-   "duration": 4.8,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0,
-      -56
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "066.79-同一個畫面，顏色只留在丹麥那一頭",
+   "id": "151.13-那座基地的位置有意義",
    "duration": 1.0,
    "camera": {
     "from": {
      "center": [
-      -28.8405,
-      77.7124
+      -59.0048,
+      81.5684
      ],
-     "zoom": 2.714
+     "zoom": 4.187
     },
     "to": {
      "center": [
-      -28.8405,
-      77.7124
+      -59.0048,
+      81.5684
      ],
-     "zoom": 2.714
+     "zoom": 4.187
     },
     "easing": "linear"
    },
    "highlights": [
     {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
      "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
+     "strokeWidth": 2.5
     }
    ],
-   "markers": [
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0,
-      -56
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
+   "markers": [],
+   "labels": []
   },
   {
-   "id": "066.79-移1-同一個畫面，顏色只留在丹麥那一頭",
-   "duration": 1.2333333333333334,
+   "id": "152.14-新的兩座在另外兩邊",
+   "duration": 0.43333333333333335,
    "camera": {
     "from": {
      "center": [
-      -28.8405,
-      77.7124
+      -25.2388,
+      70.1325
      ],
-     "zoom": 2.714
+     "zoom": 4.187
     },
     "to": {
      "center": [
-      11.6293,
-      56.758
+      -25.2388,
+      70.1325
      ],
-     "zoom": 6.362
+     "zoom": 4.187
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "152.14-移1-新的兩座在另外兩邊",
+   "duration": 0.7,
+   "camera": {
+    "from": {
+     "center": [
+      -25.2388,
+      70.1325
+     ],
+     "zoom": 4.187
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
     },
     "easing": "easeInOut"
    },
    "highlights": [
     {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
      "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
+     "strokeWidth": 2.5
     }
    ],
-   "markers": [
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0,
-      -56
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
+   "markers": [],
+   "labels": []
   },
   {
-   "id": "066.79-移2-同一個畫面，顏色只留在丹麥那一頭",
+   "id": "152.14-移2-新的兩座在另外兩邊",
    "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0,
-      -56
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "069.29-回嘴的是丹麥，鏡頭滑進去給它整個",
-   "duration": 4.133333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "073.43-1972 換時代；七成反對，顏色",
-   "duration": 2.4,
-   "camera": {
-    "from": {
-     "center": [
-      -22.2932,
-      74.8157
-     ],
-     "zoom": 2.514
-    },
-    "to": {
-     "center": [
-      -22.2932,
-      74.8157
-     ],
-     "zoom": 2.514
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "BEL",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "FRA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "DEU",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "GRC",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "IRL",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "ITA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "LUX",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "NLD",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "PRT",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "ESP",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "GBR",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "075.85-跳到隔著半個海的另一座島，它手上",
-   "duration": 0.9666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -6.9144,
-      61.9917
-     ],
-     "zoom": 8.53
-    },
-    "to": {
-     "center": [
-      -6.9144,
-      61.9917
-     ],
-     "zoom": 8.53
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "FRO",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "075.85-移1-跳到隔著半個海的另一座島，它手上",
-   "duration": 1.2,
-   "camera": {
-    "from": {
-     "center": [
-      -6.9144,
-      61.9917
-     ],
-     "zoom": 8.53
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "FRO",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "075.85-移2-跳到隔著半個海的另一座島，它手上",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "FRO",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "078.24-滑回格陵蘭；自治通過，島第一次靠",
-   "duration": 2.933333333333333,
    "camera": {
     "from": {
      "center": [
@@ -2903,974 +5962,125 @@
      "strokeWidth": 2.5
     }
    ],
-   "markers": [
-    {
-     "coordinates": [
-      -51.721,
-      64.175
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "努克",
-     "coordinates": [
-      -51.721,
-      64.175
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
+   "markers": [],
+   "labels": []
   },
   {
-   "id": "078.24-移1-滑回格陵蘭；自治通過，島第一次靠",
+   "id": "153.52-退回整座島，哪裡都算在內",
+   "duration": 5.066666666666666,
+   "camera": {
+    "from": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "158.61-沒有到期日的那份約把這兩邊綁在一",
+   "duration": 2.0,
+   "camera": {
+    "from": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "to": {
+     "center": [
+      -68.0677,
+      73.6532
+     ],
+     "zoom": 2.349
+    },
+    "easing": "linear"
+   },
+   "highlights": [
+    {
+     "geoId": "GRL",
+     "fill": "#FF4B57",
+     "opacity": 0.62,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
+    }
+   ],
+   "markers": [],
+   "labels": []
+  },
+  {
+   "id": "158.61-移1-沒有到期日的那份約把這兩邊綁在一",
    "duration": 1.4,
    "camera": {
     "from": {
      "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "to": {
-     "center": [
-      -22.2932,
-      74.8157
-     ],
-     "zoom": 2.514
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      -51.721,
-      64.175
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "努克",
-     "coordinates": [
-      -51.721,
-      64.175
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "078.24-移2-滑回格陵蘭；自治通過，島第一次靠",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -22.2932,
-      74.8157
-     ],
-     "zoom": 2.514
-    },
-    "to": {
-     "center": [
-      -22.2932,
-      74.8157
-     ],
-     "zoom": 2.514
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      -51.721,
-      64.175
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "努克",
-     "coordinates": [
-      -51.721,
-      64.175
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "082.83-退開看那一整片，島這一塊不在裡面",
-   "duration": 0.4666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -22.2932,
-      74.8157
-     ],
-     "zoom": 2.514
-    },
-    "to": {
-     "center": [
-      -22.2932,
-      74.8157
-     ],
-     "zoom": 2.514
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "BEL",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "FRA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "DEU",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "GRC",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "IRL",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "ITA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "LUX",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "NLD",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "PRT",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "ESP",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    },
-    {
-     "geoId": "GBR",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "083.31-走出來之後，畫面上只剩它自己",
-   "duration": 3.7333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "087.02-2008 換時代；權力往島這一頭",
-   "duration": 1.0333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "087.02-移1-2008 換時代；權力往島這一頭",
-   "duration": 1.2666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -28.8405,
-      77.7124
-     ],
-     "zoom": 2.714
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "087.02-移2-2008 換時代；權力往島這一頭",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "089.60-沒移走的那幾樣還在這個點上，鏡頭",
-   "duration": 2.8333333333333335,
-   "camera": {
-    "from": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "to": {
-     "center": [
-      11.6293,
-      56.758
-     ],
-     "zoom": 6.362
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "092.42-跳到現在，硬切到買家身上",
-   "duration": 1.4333333333333333,
-   "camera": {
-    "from": {
-     "center": [
-      -95.8485,
-      44.0977
-     ],
-     "zoom": 3.322
-    },
-    "to": {
-     "center": [
-      -95.8485,
-      44.0977
-     ],
-     "zoom": 3.322
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "092.42-移1-跳到現在，硬切到買家身上",
-   "duration": 1.4,
-   "camera": {
-    "from": {
-     "center": [
-      -95.8485,
-      44.0977
-     ],
-     "zoom": 3.322
-    },
-    "to": {
-     "center": [
       -68.0677,
       73.6532
      ],
      "zoom": 2.349
     },
+    "to": {
+     "center": [
+      -42.1218,
+      78.2006
+     ],
+     "zoom": 3.035
+    },
     "easing": "easeInOut"
    },
    "highlights": [
     {
-     "geoId": "USA",
+     "geoId": "GRL",
      "fill": "#FF4B57",
      "opacity": 0.62,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.5
+    },
+    {
+     "geoId": "USA",
+     "fill": "#43C8FF",
+     "opacity": 0.5,
+     "stroke": "#FFFFFF",
+     "strokeWidth": 2.0
     }
    ],
    "markers": [],
    "labels": []
   },
   {
-   "id": "092.42-移2-跳到現在，硬切到買家身上",
+   "id": "158.61-移2-沒有到期日的那份約把這兩邊綁在一",
    "duration": 0.23333333333333334,
    "camera": {
     "from": {
      "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "095.51-鏡頭滑開，把它要的東西一起放進畫",
-   "duration": 0.9,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "095.51-移1-鏡頭滑開，把它要的東西一起放進畫",
-   "duration": 1.1666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "095.51-移2-鏡頭滑開，把它要的東西一起放進畫",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "to": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "097.81-關稅打在丹麥那一頭，鏡頭滑過去",
-   "duration": 1.0333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "to": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    },
-    {
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "color": "#FF4B57",
-     "type": "pin",
-     "size": 46
-    }
-   ],
-   "labels": [
-    {
-     "text": "哥本哈根",
-     "coordinates": [
-      12.568,
-      55.676
-     ],
-     "offset": [
-      0.0,
-      -156.0
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    },
-    {
-     "text": "丹麥",
-     "coordinates": [
-      9.0182,
-      55.967
-     ],
-     "offset": [
-      0.0,
-      -56.0
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "098.83-丹麥回話，這次被塗成威脅的是對面",
-   "duration": 0.8,
-   "camera": {
-    "from": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "to": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "098.83-移1-丹麥回話，這次被塗成威脅的是對面",
-   "duration": 1.0333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -54.7864,
-      55.9621
-     ],
-     "zoom": 2.045
-    },
-    "to": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "098.83-移2-丹麥回話，這次被塗成威脅的是對面",
-   "duration": 0.23333333333333334,
-   "camera": {
-    "from": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "to": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "100.90-派兵的從歐洲這一邊過來，鏡頭跟著",
-   "duration": 1.6,
-   "camera": {
-    "from": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "to": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "SWE",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "FIN",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "ISL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "102.50-2026 換時代；收了手，擴編的",
-   "duration": 3.566666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#43C8FF",
-     "opacity": 0.5,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.0
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "106.06-抖包袱，硬切；一句話一格，停在整",
-   "duration": 5.666666666666667,
-   "camera": {
-    "from": {
-     "center": [
       -42.1218,
       78.2006
      ],
@@ -3892,346 +6102,21 @@
      "opacity": 0.62,
      "stroke": "#FFFFFF",
      "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "111.72-這次簽名的是島自己，標回它的首府",
-   "duration": 4.466666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
     },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "GRL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [
-    {
-     "coordinates": [
-      -51.721,
-      64.175
-     ],
-     "color": "#F7B82F",
-     "type": "pin",
-     "size": 40
-    }
-   ],
-   "labels": [
-    {
-     "text": "努克",
-     "coordinates": [
-      -51.721,
-      64.175
-     ],
-     "offset": [
-      0,
-      -52
-     ],
-     "fontSize": 46,
-     "style": "tag"
-    }
-   ]
-  },
-  {
-   "id": "116.19-硬切回一千年前那批取名字的人",
-   "duration": 1.5,
-   "camera": {
-    "from": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "to": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "SWE",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "FIN",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "ISL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "116.19-移1-硬切回一千年前那批取名字的人",
-   "duration": 1.4,
-   "camera": {
-    "from": {
-     "center": [
-      -20.6408,
-      78.1927
-     ],
-     "zoom": 2.467
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "SWE",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "FIN",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "ISL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "116.19-移2-硬切回一千年前那批取名字的人",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "DNK",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "NOR",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "SWE",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "FIN",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    },
-    {
-     "geoId": "ISL",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "119.36-這次來的是誰，鏡頭滑過大西洋",
-   "duration": 0.3,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "easing": "linear"
-   },
-   "highlights": [
     {
      "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
+     "fill": "#43C8FF",
+     "opacity": 0.5,
      "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
+     "strokeWidth": 2.0
     }
    ],
    "markers": [],
    "labels": []
   },
   {
-   "id": "119.36-移1-這次來的是誰，鏡頭滑過大西洋",
-   "duration": 0.5666666666666667,
-   "camera": {
-    "from": {
-     "center": [
-      -68.0677,
-      73.6532
-     ],
-     "zoom": 2.349
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "easeInOut"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "119.36-移2-這次來的是誰，鏡頭滑過大西洋",
-   "duration": 0.26666666666666666,
-   "camera": {
-    "from": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "to": {
-     "center": [
-      -42.1218,
-      78.2006
-     ],
-     "zoom": 3.035
-    },
-    "easing": "linear"
-   },
-   "highlights": [
-    {
-     "geoId": "USA",
-     "fill": "#FF4B57",
-     "opacity": 0.62,
-     "stroke": "#FFFFFF",
-     "strokeWidth": 2.5
-    }
-   ],
-   "markers": [],
-   "labels": []
-  },
-  {
-   "id": "120.50-最後停在島上，只剩它",
-   "duration": 1.6333333333333333,
+   "id": "162.24-收尾停在空蕩蕩的那塊冰上，對手始",
+   "duration": 1.9333333333333333,
    "camera": {
     "from": {
      "center": [
@@ -4265,438 +6150,948 @@
  "subtitles": [
   {
    "start": 0.036,
-   "end": 0.848,
-   "text": "歐洲小國，"
+   "end": 1.152,
+   "text": "地球上最大的島，"
   },
   {
-   "start": 0.848,
-   "end": 2.089,
-   "text": "握著世界最大的島。"
+   "start": 1.152,
+   "end": 2.018,
+   "text": "是丹麥的。"
   },
   {
-   "start": 2.089,
-   "end": 4.514,
-   "text": "而最強的國家想買走它。"
+   "start": 2.018,
+   "end": 3.232,
+   "text": "丹麥自己的本土呢，"
   },
   {
-   "start": 4.55,
-   "end": 5.639,
-   "text": "格陵蘭的故事，"
+   "start": 3.232,
+   "end": 4.312,
+   "text": "比它小五十倍。"
   },
   {
-   "start": 5.639,
-   "end": 6.648,
-   "text": "從名字說起。"
+   "start": 4.348,
+   "end": 6.232,
+   "text": "你看地圖右上角那塊白白的"
   },
   {
-   "start": 6.684,
-   "end": 8.371,
-   "text": "北歐人 986 年上岸，"
+   "start": 6.232,
+   "end": 7.223,
+   "text": "、沒什麼人住的，"
   },
   {
-   "start": 8.371,
-   "end": 9.193,
-   "text": "叫它綠地。"
+   "start": 7.223,
+   "end": 8.17,
+   "text": "就是格陵蘭。"
   },
   {
-   "start": 9.229,
-   "end": 10.479,
-   "text": "取個好聽的名字，"
+   "start": 8.205,
+   "end": 8.884,
+   "text": "而現在，"
   },
   {
-   "start": 10.479,
-   "end": 11.291,
-   "text": "人就會來。"
+   "start": 8.884,
+   "end": 10.027,
+   "text": "有個美國總統想把它"
   },
   {
-   "start": 11.327,
-   "end": 12.309,
-   "text": "島上早有人，"
+   "start": 10.027,
+   "end": 11.112,
+   "text": "買下來。"
   },
   {
-   "start": 12.309,
-   "end": 13.514,
-   "text": "住了四千五百年。"
+   "start": 11.147,
+   "end": 12.156,
+   "text": "我不是要搶啊，"
   },
   {
-   "start": 13.514,
-   "end": 16.207,
-   "text": "替它取名的人，來得算晚。"
+   "start": 12.156,
+   "end": 14.695,
+   "text": "我只是想把手續辦一辦。"
   },
   {
-   "start": 16.243,
-   "end": 17.93,
-   "text": "島民 1261 年向挪威"
+   "start": 14.731,
+   "end": 15.588,
+   "text": "要辦手續，"
   },
   {
-   "start": 17.93,
-   "end": 19.107,
-   "text": "王稱臣。"
+   "start": 15.588,
+   "end": 17.579,
+   "text": "那故事就得從九八六年講起"
   },
   {
-   "start": 19.107,
-   "end": 20.196,
-   "text": "換主人這件事，"
+   "start": 17.579,
+   "end": 18.437,
+   "text": "。北歐人上岸，"
   },
   {
-   "start": 20.196,
-   "end": 21.992,
-   "text": "就那一次是我自己開的口。"
+   "start": 18.437,
+   "end": 19.624,
+   "text": "管這片冰叫綠地，"
   },
   {
-   "start": 22.028,
-   "end": 23.269,
-   "text": "後代住了四百年，"
+   "start": 19.624,
+   "end": 20.553,
+   "text": "騙人搬過來。"
   },
   {
-   "start": 23.269,
-   "end": 24.064,
-   "text": "整個消失。"
+   "start": 20.588,
+   "end": 21.374,
+   "text": "最大的島，"
   },
   {
-   "start": 24.064,
-   "end": 26.774,
-   "text": "人沒了，主權還掛在島上。"
+   "start": 21.374,
+   "end": 22.883,
+   "text": "開場就是一句廣告——名字"
   },
   {
-   "start": 26.81,
-   "end": 28.265,
-   "text": "挪威跟丹麥合成一國，"
+   "start": 22.883,
+   "end": 24.429,
+   "text": "是取好聽的。"
   },
   {
-   "start": 28.265,
-   "end": 29.442,
-   "text": "島跟著走。"
+   "start": 24.465,
+   "end": 25.153,
+   "text": "其實喔，"
   },
   {
-   "start": 29.477,
-   "end": 30.906,
-   "text": "我派船去找人。"
+   "start": 25.153,
+   "end": 26.456,
+   "text": "他們還不是第一批。"
   },
   {
-   "start": 30.906,
-   "end": 31.745,
-   "text": "沒找到。"
+   "start": 26.456,
+   "end": 28.215,
+   "text": "四千五百年前這裡就有人，"
   },
   {
-   "start": 31.745,
-   "end": 34.313,
-   "text": "島照樣是我的。"
+   "start": 28.215,
+   "end": 29.964,
+   "text": "從加拿大走過來的。"
   },
   {
-   "start": 34.349,
-   "end": 35.867,
-   "text": "傳教士回來重建據點，"
+   "start": 29.964,
+   "end": 31.197,
+   "text": "我這裡老早就有人啦，"
   },
   {
-   "start": 35.867,
-   "end": 36.67,
-   "text": "就是努克。"
+   "start": 31.197,
+   "end": 32.868,
+   "text": "晚到的還替我取名字。"
   },
   {
-   "start": 36.706,
-   "end": 37.688,
-   "text": "丹麥挪威分家，"
+   "start": 32.904,
+   "end": 34.779,
+   "text": "後來北歐人向挪威國王臣服"
   },
   {
-   "start": 37.688,
-   "end": 38.617,
-   "text": "島歸了丹麥。"
+   "start": 34.779,
+   "end": 36.561,
+   "text": "，它第一次上了別人的紙。"
   },
   {
-   "start": 38.652,
-   "end": 39.822,
-   "text": "一場遠方的敗仗，"
+   "start": 36.561,
+   "end": 38.106,
+   "text": "四百年後，人沒了。"
   },
   {
-   "start": 39.822,
-   "end": 41.551,
-   "text": "它換了國王。"
+   "start": 38.142,
+   "end": 38.918,
+   "text": "紙還在。"
   },
   {
-   "start": 41.586,
-   "end": 42.926,
-   "text": "丹麥說整座島歸它，"
+   "start": 38.918,
+   "end": 40.258,
+   "text": "丹麥派隊回去找人，"
   },
   {
-   "start": 42.926,
-   "end": 44.463,
-   "text": "挪威告上法院。"
+   "start": 40.258,
+   "end": 40.972,
+   "text": "沒找到，"
   },
   {
-   "start": 44.463,
+   "start": 40.972,
+   "end": 42.579,
+   "text": "倒是傳教士就地蓋了據點，"
+  },
+  {
+   "start": 42.579,
+   "end": 43.892,
+   "text": "成了它今天的首都。"
+  },
+  {
+   "start": 43.927,
    "end": 45.293,
-   "text": "判決下來了，"
+   "text": "一趟找不到人的旅程，"
   },
   {
    "start": 45.293,
-   "end": 46.249,
-   "text": "島是丹麥的。"
+   "end": 47.226,
+   "text": "最後倒是留下一座首都。"
   },
   {
-   "start": 46.249,
-   "end": 47.534,
-   "text": "而我從頭到尾是標的，"
+   "start": 47.262,
+   "end": 48.717,
+   "text": "我去是去找人的嘛，"
   },
   {
-   "start": 47.534,
-   "end": 49.866,
-   "text": "不是當事人。"
+   "start": 48.717,
+   "end": 51.37,
+   "text": "蓋個首都算順手。"
   },
   {
-   "start": 49.902,
-   "end": 50.554,
-   "text": "這件事，"
+   "start": 51.405,
+   "end": 52.37,
+   "text": "哪那麼順手。"
   },
   {
-   "start": 50.554,
-   "end": 52.486,
-   "text": "我自己也承認過三次。"
+   "start": 52.37,
+   "end": 54.236,
+   "text": "挪威跟丹麥本來是共主聯邦"
   },
   {
-   "start": 52.486,
-   "end": 52.786,
-   "text": "丹麥被占了。"
+   "start": 54.236,
+   "end": 55.253,
+   "text": "，兩國分家時，"
   },
   {
-   "start": 52.786,
-   "end": 54.7,
-   "text": "美國，你進來。"
+   "start": 55.253,
+   "end": 56.45,
+   "text": "它就被留給了丹麥。"
   },
   {
-   "start": 54.906,
-   "end": 56.245,
-   "text": "哥本哈根沒批准。"
+   "start": 56.486,
+   "end": 56.786,
+   "text": "後來丹麥宣告整座島都歸自"
   },
   {
-   "start": 56.245,
-   "end": 56.95,
-   "text": "第二次，"
+   "start": 56.786,
+   "end": 59.316,
+   "text": "己，挪威不服，"
   },
   {
-   "start": 56.95,
-   "end": 59.297,
-   "text": "我自己做主。"
+   "start": 59.316,
+   "end": 60.637,
+   "text": "一路告上國際法院，"
   },
   {
-   "start": 59.333,
-   "end": 60.904,
-   "text": "丹麥跟美國簽防衛協定，"
+   "start": 60.637,
+   "end": 61.727,
+   "text": "結果判丹麥贏。"
   },
   {
-   "start": 60.904,
-   "end": 61.985,
-   "text": "美軍最多一萬。"
+   "start": 61.762,
+   "end": 62.062,
+   "text": "其實美國也不是現在才想要"
   },
   {
-   "start": 62.02,
-   "end": 62.886,
-   "text": "修憲之後，"
+   "start": 62.062,
+   "end": 65.339,
+   "text": "它。美國簽過三份條約，"
   },
   {
-   "start": 62.886,
-   "end": 64.467,
-   "text": "它從殖民地變成一個郡。"
+   "start": 65.339,
+   "end": 67.259,
+   "text": "每一份都承認它歸丹麥。"
   },
   {
-   "start": 64.502,
-   "end": 65.565,
-   "text": "島上的人因此成了丹"
+   "start": 67.294,
+   "end": 68.741,
+   "text": "我簽的時候是真心的啊，"
   },
   {
-   "start": 65.565,
-   "end": 66.791,
-   "text": "麥公民。"
+   "start": 68.741,
+   "end": 70.265,
+   "text": "我後來也是真心的。"
   },
   {
-   "start": 66.791,
-   "end": 67.648,
-   "text": "一樣的工作，"
+   "start": 70.301,
+   "end": 71.221,
+   "text": "都是真心的，"
   },
   {
-   "start": 67.648,
-   "end": 69.293,
-   "text": "丹麥來的領得比我多。"
+   "start": 71.221,
+   "end": 72.337,
+   "text": "那怎麼換過主人、"
   },
   {
-   "start": 69.328,
-   "end": 70.677,
-   "text": "你是併進來了。"
+   "start": 72.337,
+   "end": 73.203,
+   "text": "上過法院，"
   },
   {
-   "start": 70.677,
-   "end": 73.429,
-   "text": "沒說要併成一樣的。"
+   "start": 73.203,
+   "end": 74.31,
+   "text": "紙上寫的都是它，"
   },
   {
-   "start": 73.465,
-   "end": 74.286,
-   "text": "七成反對，"
+   "start": 74.31,
+   "end": 76.471,
+   "text": "簽名的沒一個是它？"
   },
   {
-   "start": 74.286,
-   "end": 75.849,
-   "text": "它還是進了歐洲共同體。"
+   "start": 76.506,
+   "end": 78.319,
+   "text": "二戰丹麥本土被納粹占了。"
   },
   {
-   "start": 75.884,
-   "end": 77.581,
-   "text": "法羅群島有自治可以不投，"
+   "start": 78.319,
+   "end": 79.908,
+   "text": "島上的官員沒問中央就請了"
   },
   {
-   "start": 77.581,
-   "end": 78.241,
-   "text": "它不行。"
+   "start": 79.908,
+   "end": 80.908,
+   "text": "美軍——它第一次自"
   },
   {
-   "start": 78.277,
-   "end": 79.768,
-   "text": "自治法交給它的選民，"
+   "start": 80.908,
+   "end": 82.792,
+   "text": "己決定。"
   },
   {
-   "start": 79.768,
-   "end": 81.081,
-   "text": "七成贊成。"
+   "start": 82.828,
+   "end": 84.203,
+   "text": "戰後丹麥加入北約，"
   },
   {
-   "start": 81.081,
-   "end": 81.381,
-   "text": "我再投一次。"
+   "start": 84.203,
+   "end": 85.569,
+   "text": "跟美國簽了防衛協定，"
   },
   {
-   "start": 81.381,
-   "end": 83.314,
-   "text": "過半數，退出。"
+   "start": 85.569,
+   "end": 87.577,
+   "text": "島上最多駐過一萬美軍。"
   },
   {
-   "start": 83.519,
-   "end": 84.269,
-   "text": "第一次，"
+   "start": 87.577,
+   "end": 88.925,
+   "text": "我一輩子沒這麼熱鬧過啊，"
   },
   {
-   "start": 84.269,
-   "end": 85.108,
-   "text": "我靠自己的票走出一"
+   "start": 88.925,
+   "end": 90.588,
+   "text": "可惜來的都不是找我。"
   },
   {
-   "start": 85.108,
-   "end": 87.024,
-   "text": "個組織。"
+   "start": 90.624,
+   "end": 92.392,
+   "text": "熱鬧的同時，丹麥修憲，"
   },
   {
-   "start": 87.06,
-   "end": 88.328,
-   "text": "權力再往島上移，"
+   "start": 92.392,
+   "end": 93.865,
+   "text": "它從殖民地變成一個郡，"
   },
   {
-   "start": 88.328,
-   "end": 89.596,
-   "text": "它被承認能自決。"
+   "start": 93.865,
+   "end": 95.624,
+   "text": "島上的人也成了丹麥公民。"
   },
   {
-   "start": 89.632,
-   "end": 91.453,
-   "text": "安全和外交還在哥本哈根，"
+   "start": 95.659,
+   "end": 97.115,
+   "text": "一個沒什麼人住的地方，"
   },
   {
-   "start": 91.453,
-   "end": 92.417,
-   "text": "補助占兩成。"
+   "start": 97.115,
+   "end": 98.436,
+   "text": "外國兵倒比好幾個村子的"
   },
   {
-   "start": 92.453,
-   "end": 94.114,
-   "text": "川普第一任就說要買它。"
+   "start": 98.436,
+   "end": 99.924,
+   "text": "人還多。"
   },
   {
-   "start": 94.114,
-   "end": 95.512,
-   "text": "憲法不准賣。"
+   "start": 99.959,
+   "end": 101.433,
+   "text": "法羅群島早就自治了，"
   },
   {
-   "start": 95.512,
-   "end": 95.812,
-   "text": "擁有它，絕對必要。"
+   "start": 101.433,
+   "end": 102.861,
+   "text": "可以不進歐洲共同體。"
   },
   {
-   "start": 95.812,
-   "end": 98.831,
-   "text": "不談，我就加關稅。"
+   "start": 102.861,
+   "end": 103.763,
+   "text": "可它沒得選，"
   },
   {
-   "start": 98.867,
-   "end": 99.465,
-   "text": "第一次，"
+   "start": 103.763,
+   "end": 105.174,
+   "text": "七成以上的人反對，"
   },
   {
-   "start": 99.465,
-   "end": 99.765,
-   "text": "我把你當威脅。"
+   "start": 105.174,
+   "end": 106.699,
+   "text": "還是照樣進去。"
   },
   {
-   "start": 99.765,
-   "end": 102.498,
-   "text": "盟國，來守。"
+   "start": 106.699,
+   "end": 107.342,
+   "text": "我投了，"
   },
   {
-   "start": 102.498,
-   "end": 104.248,
-   "text": "他收手。協議簽下來，"
+   "start": 107.342,
+   "end": 109.094,
+   "text": "我也不知道我投來幹嘛。"
   },
   {
-   "start": 104.248,
-   "end": 106.06,
-   "text": "美軍擴編，想降哪降哪。"
+   "start": 109.13,
+   "end": 109.853,
+   "text": "幾年後，"
   },
   {
-   "start": 106.06,
-   "end": 109.26,
-   "text": "這份協議，沒有終止日期。"
+   "start": 109.853,
+   "end": 111.505,
+   "text": "它自己表決通過了自治法，"
   },
   {
-   "start": 109.296,
-   "end": 110.465,
-   "text": "而島附近的對手活動幾"
+   "start": 111.505,
+   "end": 112.639,
+   "text": "接著又辦了公投，"
   },
   {
-   "start": 110.465,
-   "end": 111.718,
-   "text": "乎沒有。"
+   "start": 112.639,
+   "end": 113.853,
+   "text": "退出歐洲共同體。"
   },
   {
-   "start": 111.718,
-   "end": 112.906,
-   "text": "這次簽名的是我。"
+   "start": 113.889,
+   "end": 115.3,
+   "text": "同一件事投兩次票，"
   },
   {
-   "start": 112.906,
-   "end": 113.968,
-   "text": "非北約要進來，"
+   "start": 115.3,
+   "end": 116.157,
+   "text": "第一次不算，"
   },
   {
-   "start": 113.968,
-   "end": 116.185,
-   "text": "得我點頭。"
+   "start": 116.157,
+   "end": 117.903,
+   "text": "第二次才算。"
   },
   {
-   "start": 116.221,
-   "end": 117.471,
-   "text": "取個好聽的名字，"
+   "start": 117.939,
+   "end": 119.153,
+   "text": "而它的國防外交，"
   },
   {
-   "start": 117.471,
-   "end": 119.364,
-   "text": "人就會來。上次是綠地，"
+   "start": 119.153,
+   "end": 120.457,
+   "text": "還在哥本哈根手上，"
   },
   {
-   "start": 119.364,
-   "end": 120.766,
-   "text": "這次是防衛協定——沒說什"
+   "start": 120.457,
+   "end": 121.877,
+   "text": "補助超過兩成產值，"
   },
   {
-   "start": 120.766,
-   "end": 122.137,
-   "text": "麼時候走。"
+   "start": 121.877,
+   "end": 123.346,
+   "text": "多數人想獨立。"
+  },
+  {
+   "start": 123.382,
+   "end": 124.578,
+   "text": "我出錢養它，"
+  },
+  {
+   "start": 124.578,
+   "end": 127.757,
+   "text": "總得替它拿個主意吧。"
+  },
+  {
+   "start": 127.793,
+   "end": 129.248,
+   "text": "這主意丹麥拿不成了。"
+  },
+  {
+   "start": 129.248,
+   "end": 130.909,
+   "text": "川普在二〇二四年底說，"
+  },
+  {
+   "start": 130.909,
+   "end": 131.802,
+   "text": "北極有對手，"
+  },
+  {
+   "start": 131.802,
+   "end": 133.132,
+   "text": "美國非擁有它不可，"
+  },
+  {
+   "start": 133.132,
+   "end": 134.641,
+   "text": "還放話課兩成五關稅。"
+  },
+  {
+   "start": 134.677,
+   "end": 135.739,
+   "text": "丹麥說它不賣，"
+  },
+  {
+   "start": 135.739,
+   "end": 136.891,
+   "text": "憲法也不准賣。"
+  },
+  {
+   "start": 136.891,
+   "end": 137.191,
+   "text": "情報單位頭一次把美國當威"
+  },
+  {
+   "start": 137.191,
+   "end": 140.203,
+   "text": "脅，八個盟國派兵進島，"
+  },
+  {
+   "start": 140.203,
+   "end": 142.319,
+   "text": "川普這才收手。"
+  },
+  {
+   "start": 142.355,
+   "end": 143.73,
+   "text": "全世界搶一塊冰啊，"
+  },
+  {
+   "start": 143.73,
+   "end": 144.578,
+   "text": "搶了一整年，"
+  },
+  {
+   "start": 144.578,
+   "end": 147.377,
+   "text": "而它的名字是取好聽的。"
+  },
+  {
+   "start": 147.412,
+   "end": 149.001,
+   "text": "今年九月，它跟丹麥、"
+  },
+  {
+   "start": 149.001,
+   "end": 150.341,
+   "text": "美國在紐約簽了約。"
+  },
+  {
+   "start": 150.341,
+   "end": 152.144,
+   "text": "美國要擴建它西北角的基地"
+  },
+  {
+   "start": 152.144,
+   "end": 153.519,
+   "text": "，南邊東邊再加兩座，"
+  },
+  {
+   "start": 153.519,
+   "end": 154.962,
+   "text": "飛機隨便降。"
+  },
+  {
+   "start": 154.962,
+   "end": 155.935,
+   "text": "這次我有到場，"
+  },
+  {
+   "start": 155.935,
+   "end": 158.612,
+   "text": "我還親手簽了名呢。"
+  },
+  {
+   "start": 158.648,
+   "end": 159.576,
+   "text": "簽的那份約，"
+  },
+  {
+   "start": 159.576,
+   "end": 160.746,
+   "text": "沒有結束的一天。"
+  },
+  {
+   "start": 160.746,
+   "end": 162.242,
+   "text": "而它要防的那個對手，"
+  },
+  {
+   "start": 162.242,
+   "end": 164.161,
+   "text": "到現在幾乎沒出現過。"
+  }
+ ],
+ "lines": [
+  {
+   "from": [
+    3.5304,
+    62.8855
+   ],
+   "to": [
+    -39.3353,
+    74.3194
+   ],
+   "start": 17.58,
+   "duration": 1.4,
+   "end": 21.98,
+   "curve": "greatCircle",
+   "color": "#EE6E7A",
+   "width": 4,
+   "arrow": true,
+   "bow": 0.25,
+   "fadeOut": 0.4
+  },
+  {
+   "from": [
+    -101.9107,
+    60.3243
+   ],
+   "to": [
+    -39.3353,
+    74.3194
+   ],
+   "start": 28.21,
+   "duration": 1.4,
+   "end": 32.61,
+   "curve": "greatCircle",
+   "color": "#EE6E7A",
+   "width": 4,
+   "arrow": true,
+   "bow": 0.25,
+   "fadeOut": 0.4
+  },
+  {
+   "from": [
+    -97.4826,
+    39.5385
+   ],
+   "to": [
+    -39.3353,
+    74.3194
+   ],
+   "start": 79.58,
+   "duration": 0.88,
+   "end": 83.46,
+   "curve": "greatCircle",
+   "color": "#EE6E7A",
+   "width": 4,
+   "arrow": true,
+   "bow": 0.25,
+   "fadeOut": 0.4
+  }
+ ],
+ "faces": [
+  {
+   "at": [
+    -97.4826,
+    39.5385
+   ],
+   "start": 11.11,
+   "end": 13.31,
+   "keys": [
+    {
+     "at": 11.11,
+     "arms": "down",
+     "mood": "smug"
+    }
+   ],
+   "size": 320,
+   "refZoom": 3.0,
+   "minScale": 0.8,
+   "maxScale": 1.6,
+   "blend": 0.2,
+   "blink": true,
+   "fadeIn": 0.2,
+   "fadeOut": 0.25
+  },
+  {
+   "at": [
+    -39.3353,
+    74.3194
+   ],
+   "start": 29.96,
+   "end": 32.16,
+   "keys": [
+    {
+     "at": 29.96,
+     "arms": "down",
+     "mood": "smug"
+    }
+   ],
+   "size": 320,
+   "refZoom": 3.0,
+   "minScale": 0.8,
+   "maxScale": 1.6,
+   "blend": 0.2,
+   "blink": true,
+   "fadeIn": 0.2,
+   "fadeOut": 0.25
+  },
+  {
+   "at": [
+    9.0182,
+    55.967
+   ],
+   "start": 47.23,
+   "end": 49.43,
+   "keys": [
+    {
+     "at": 47.23,
+     "arms": "down",
+     "mood": "smug"
+    }
+   ],
+   "size": 320,
+   "refZoom": 3.0,
+   "minScale": 0.8,
+   "maxScale": 1.6,
+   "blend": 0.2,
+   "blink": true,
+   "fadeIn": 0.2,
+   "fadeOut": 0.25
+  },
+  {
+   "at": [
+    -97.4826,
+    39.5385
+   ],
+   "start": 67.26,
+   "end": 69.46,
+   "keys": [
+    {
+     "at": 67.26,
+     "arms": "down",
+     "mood": "happy"
+    }
+   ],
+   "size": 320,
+   "refZoom": 3.0,
+   "minScale": 0.8,
+   "maxScale": 1.6,
+   "blend": 0.2,
+   "blink": true,
+   "fadeIn": 0.2,
+   "fadeOut": 0.25
+  },
+  {
+   "at": [
+    -39.3353,
+    74.3194
+   ],
+   "start": 74.31,
+   "end": 76.47,
+   "keys": [
+    {
+     "at": 74.31,
+     "arms": "down",
+     "mood": "annoyed"
+    }
+   ],
+   "size": 320,
+   "refZoom": 3.0,
+   "minScale": 0.8,
+   "maxScale": 1.6,
+   "blend": 0.2,
+   "blink": true,
+   "fadeIn": 0.2,
+   "fadeOut": 0.25
+  },
+  {
+   "at": [
+    -39.3353,
+    74.3194
+   ],
+   "start": 106.7,
+   "end": 108.9,
+   "keys": [
+    {
+     "at": 106.7,
+     "arms": "down",
+     "mood": "curious"
+    }
+   ],
+   "size": 320,
+   "refZoom": 3.0,
+   "minScale": 0.8,
+   "maxScale": 1.6,
+   "blend": 0.2,
+   "blink": true,
+   "fadeIn": 0.2,
+   "fadeOut": 0.25
+  }
+ ],
+ "circles": [
+  {
+   "coordinates": [
+    -39.3353,
+    74.3194
+   ],
+   "start": 4.31,
+   "end": 7.11,
+   "width": 300,
+   "height": 180,
+   "color": "#E53935",
+   "strokeWidth": 8
+  },
+  {
+   "coordinates": [
+    -7.0584,
+    62.1856
+   ],
+   "start": 99.92,
+   "end": 102.72,
+   "width": 300,
+   "height": 180,
+   "color": "#E53935",
+   "strokeWidth": 8
+  }
+ ],
+ "cards": [
+  {
+   "title": "川普買格陵蘭",
+   "start": 0.0,
+   "end": 2.2,
+   "dim": 0.42,
+   "typewriter": 0.6,
+   "fontSize": 104,
+   "rotate": -3
+  }
+ ],
+ "dims": [
+  {
+   "start": 76.47,
+   "end": 77.97,
+   "opacity": 0.55,
+   "fadeIn": 0.3,
+   "fadeOut": 0.3
+  }
+ ],
+ "flashes": [
+  {
+   "at": 80.45,
+   "seconds": 0.14,
+   "colors": [
+    "#FFF3E0"
+   ],
+   "opacity": 0.8
+  }
+ ],
+ "shakes": [
+  {
+   "at": 133.65,
+   "seconds": 0.45,
+   "amount": 14
+  }
+ ],
+ "transitions": [
+  {
+   "at": 76.47,
+   "type": "wipe",
+   "seconds": 0.45,
+   "color": "#1A1A1A",
+   "shape": "curve"
+  },
+  {
+   "at": 127.76,
+   "type": "wipe",
+   "seconds": 0.45,
+   "color": "#1A1A1A",
+   "shape": "curve"
+  }
+ ],
+ "icons": [
+  {
+   "kind": "marker",
+   "at": [
+    -97.4826,
+    39.5385
+   ],
+   "start": 137.84,
+   "end": 138.9,
+   "size": 130,
+   "fadeIn": 0.25,
+   "fadeOut": 0.25
+  }
+ ],
+ "fields": [
+  {
+   "palette": "cold",
+   "keys": [
+    {
+     "at": 130.91,
+     "blobs": [
+      [
+       -39.3353,
+       74.3194,
+       22.0,
+       9.0,
+       1.0
+      ]
+     ]
+    }
+   ],
+   "start": 130.91,
+   "end": 133.41,
+   "on": "sea",
+   "strength": 0.8,
+   "noise": 0.3,
+   "fadeIn": 0.5,
+   "fadeOut": 0.5
+  }
+ ],
+ "highlights": [
+  {
+   "geoId": "NOR",
+   "start": 70.27,
+   "end": 76.32,
+   "fill": "#FF4B57",
+   "opacity": 0.72,
+   "stroke": "#FFFFFF",
+   "strokeWidth": 2.0,
+   "fadeIn": 0.3
+  },
+  {
+   "geoId": "DNK",
+   "start": 70.72,
+   "end": 76.32,
+   "fill": "#FF4B57",
+   "opacity": 0.72,
+   "stroke": "#FFFFFF",
+   "strokeWidth": 2.0,
+   "fadeIn": 0.3
+  },
+  {
+   "geoId": "USA",
+   "start": 147.38,
+   "end": 153.13,
+   "fill": "#FF4B57",
+   "opacity": 0.72,
+   "stroke": "#FFFFFF",
+   "strokeWidth": 2.0,
+   "fadeIn": 0.3
+  },
+  {
+   "geoId": "DNK",
+   "start": 147.83,
+   "end": 153.13,
+   "fill": "#FF4B57",
+   "opacity": 0.72,
+   "stroke": "#FFFFFF",
+   "strokeWidth": 2.0,
+   "fadeIn": 0.3
+  },
+  {
+   "geoId": "GRL",
+   "start": 148.28,
+   "end": 153.13,
+   "fill": "#FF4B57",
+   "opacity": 0.72,
+   "stroke": "#FFFFFF",
+   "strokeWidth": 2.0,
+   "fadeIn": 0.3
   }
  ]
 }

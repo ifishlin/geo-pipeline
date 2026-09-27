@@ -238,6 +238,32 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
             f"  吐槽總共 {sum(1 for x in lines if x['role'] == '吐槽')} 句，"
             f"數量夠了，問題是**它們擠在一起**。加 --again 重排")
 
+    # **一半認真、一半廢。** 使用者：「我要的是廢文，但是又不能太廢，
+    # 廢 50% 就可以了」。
+    #
+    # 全認真就變成新聞（觀眾為什麼不去看新聞），全廢就變成段子（沒有
+    # 東西可以學）。而這件事量得出來，因為 role 本來就分成兩邊
+    # （`rules.json` 每一種標了 `side`）。
+    #
+    # 上一版 65% 認真、35% 廢 —— 光「事件」一種就佔了 13/26 句。
+    light = [one for one in lines
+             if roles.get(one["role"], {}).get("side") == "廢"]
+    share = len(light) / len(lines)
+    low = float(got_shape.get("light_least", 0.40))
+    high = float(got_shape.get("light_most", 0.62))
+    if not low <= share <= high:
+        which = "太正經" if share < low else "太廢"
+        raise SystemExit(
+            f"廢的那一半佔 {share:.0%}（要 {low:.0%}–{high:.0%}）—— {which}。\n"
+            f"  廢：{'、'.join(k for k, v in roles.items() if v.get('side') == '廢')}"
+            f"　現在 {len(light)} 句\n"
+            f"  認真：{'、'.join(k for k, v in roles.items() if v.get('side') != '廢')}"
+            f"　現在 {len(lines) - len(light)} 句\n"
+            + ("  每講兩件事就該有一個反應 —— 更正自己、吐槽一句、"
+               "翻個面。加 --again 重排"
+               if share < low else
+               "  事實太少了，觀眾學不到東西。加 --again 重排"))
+
     bad = check(lines, roles)
     if bad:
         raise SystemExit("骨幹的形狀不對：\n  " + "\n  ".join(bad)

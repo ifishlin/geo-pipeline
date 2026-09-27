@@ -21,8 +21,9 @@ import json
 import sys
 from typing import Any
 
-from geo.pipe import camera as camera_module
+from geo.pipe import marks, camera as camera_module
 from geo.pipe import paths, story as story_module
+from geo.pipe import voice as voice_module
 
 THEME = paths.GEO / "data" / "theme.json"
 
@@ -112,8 +113,23 @@ def _legs(one: dict[str, Any], nxt: dict[str, Any] | None, span: float,
     hold = span - room - settle
     if hold < 0:                                  # 理論上不會，保險
         return ("cut", [(span, here, here)])
+
+    # **移動排在一格的哪裡，是設定檔決定的。**
+    #
+    # 本來寫死「後段」，理由是「不然這一句還在講，畫面已經在往別的地方
+    # 跑」—— 而那是一個**可以改的選擇**，不是事實。寫死在程式裡的話，
+    # 想試另一種就得改程式，而改程式的人不會知道原本為什麼那樣選。
+    #
+    #   late    停一下 → 走 → 停穩    下一句開口前就到位
+    #   early   走 → 停著看           一換格就出發，到了就停著
+    #   whole   整格都在走             沒有停，最連續但最暈
+    when = str(knobs.get("when", "late"))
     close = camera_module.overlap(here, there, wide, high)
     if close >= knobs["together"]:
+        if when == "whole":
+            return ("glide", [(span, here, there)])
+        if when == "early":
+            return ("glide", [(room, here, there), (hold + settle, there, there)])
         return ("glide", [(hold, here, here), (room, here, there),
                           (settle, there, there)])
 
@@ -128,6 +144,11 @@ def _legs(one: dict[str, Any], nxt: dict[str, Any] | None, span: float,
         out = camera_module.fit(both, wide, high, pad=0.03, hold=1.0, lift=0.0)
     except ValueError:
         return ("cut", [(span, here, here)])
+    if when == "whole":
+        return ("out", [(span / 2, here, out), (span / 2, out, there)])
+    if when == "early":
+        return ("out", [(room / 2, here, out), (room / 2, out, there),
+                        (hold + settle, there, there)])
     return ("out", [(hold, here, here), (room / 2, here, out),
                     (room / 2, out, there), (settle, there, there)])
 
@@ -273,7 +294,16 @@ ORPHAN = 4
 def caption_times(text: str, start: float, end: float,
                   words: list[dict[str, Any]], most: int
                   ) -> list[dict[str, Any]]:
-    """一句話的字幕：切成幾塊，每塊的起訖從逐字事件查。"""
+    """一句話的字幕：切成幾塊，每塊的起訖從逐字事件查。
+
+    **先脫掉就地標記。** `⏸0.3` 和 `⟪-10 …⟫` 是給合成器看的，不是台詞
+    —— 配音那邊脫了，字幕這邊沒脫，於是九塊字幕把符號燒進畫面：
+    觀眾看到「⏸0.3它每次都是最後一」。
+
+    而它**一路過了每一道門**：長度對、切點對、逐字時間對得上，成片壓得
+    完完全全成功。抽一格出來看才發現 —— 視覺的錯不會報錯。
+    """
+    text = marks.strip(text)
     pieces = chop(text, most)
     if len(pieces) == 1:
         return [{"start": round(start, 3), "end": round(end, 3),
@@ -329,6 +359,7 @@ def run(story: str, say=print) -> dict[str, Any]:
     heard = json.loads(
         (paths.at(story, "voice") / "said.json").read_text(encoding="utf-8"))
     cuts = board["cuts"]
+    hero = str(spec.get("hero") or "")
     whole = float(board["seconds"])
 
     wide, high = spec["video"]["width"], spec["video"]["height"]
@@ -339,7 +370,11 @@ def run(story: str, say=print) -> dict[str, Any]:
         until = cuts[at + 1]["at"] if at + 1 < len(cuts) else whole
         if until <= one["at"]:
             continue
-        lead = one["see"][0]
+        # 誰用主色。**主角固定是主角**，不是「模型把誰排第一」——
+        # 上一版用 `see[0]`，於是同一塊地在不同格會換顏色，而觀眾是靠
+        # 顏色認人的。主角沒被塗到的那幾格，才退回用排第一的。
+        lead = hero if hero in one["tint"] else (
+            one["tint"][0] if one["tint"] else one["see"][0])
         highlights = []
         for name in one["tint"]:
             style = look["subject"] if name == lead else look["other"]
@@ -432,11 +467,58 @@ def run(story: str, say=print) -> dict[str, Any]:
         "scenes": scenes,
         "subtitles": subtitles,
     }
+    # **分鏡挑的動作，在這裡變成真的疊加層。**
+    #
+    # 它們是「影片層」的 —— 秒數從影片開頭算起，所以一個動作可以跨過
+    # 切點（一條航線畫到一半換鏡頭，線還在）。那是渲染器的設計。
+    from geo import effects as fx
+    body.update(fx.build(cuts, {"atlas": atlas, "whole": whole,
+                                "spec": spec}, say))
+    # **燒進畫面的字裡不准有標記符號。**
+    #
+    # `⏸0.3` 和 `⟪-10 …⟫` 是給合成器看的。配音那邊脫掉了，字幕這邊漏了
+    # —— 九塊字幕把符號燒進成片，而每一道門都過（長度對、切點對、逐字
+    # 時間對得上），抽一格出來看才發現。
+    #
+    # 一個東西有兩條路會被用到（唸出來、印出來），就會有一條忘了處理。
+    dirty = [one["text"] for one in subtitles
+             if any(x in one["text"] for x in (marks.PAUSE, marks.OPEN,
+                                               marks.CLOSE))]
+    if dirty:
+        raise SystemExit(
+            f"{len(dirty)} 塊字幕裡有標記符號，那會被燒進畫面：\n  "
+            + "\n  ".join(dirty[:5])
+            + "\n  標記是給合成器看的，字幕要先 marks.strip()")
+
     paths.save(story, "scene", body)
+
+    # **寫完就驗。** 隔壁的 `npm run validate` 一秒鐘，而它抓到過兩個我
+    # 用推的推錯的欄位（`curve: "arc"` 而 enum 是 `greatCircle`、
+    # `fields` 的 blobs 要包在 `keys` 裡）。型別都是對的，schema 以外
+    # 看不出來。
+    #
+    # `render.py` 本來就會驗，但那是壓片那一步 —— 驗證該放在**寫檔的
+    # 那一步**，不然單跑 `scene` 的人以為沒事。
+    from geo.pipe import render as render_module
+    render_module.check(paths.at(story, "scene"), say)
+
     long = max((one["end"] - one["start"] for one in subtitles), default=0)
     say(f"鏡頭　切 {moves.get('cut', 0)}　滑 {moves.get('glide', 0)}　"
         f"拉遠再推進 {moves.get('out', 0)}"
         + f"　（{sum(moves.values())} 個切點 → {len(scenes)} 段）")
+    # **「滑幾格」不是「鏡頭在動多久」。**
+    #
+    # 這一行印了很久的「滑 38」，而量成片才發現鏡頭只有 26% 的時間在動
+    # —— 一格拆成「停 → 移動 → 停穩」，移動只佔一半。兩個數字都是真的，
+    # 而**只有後者是觀眾感覺得到的**，偏偏報告只印前者。
+    #
+    # 使用者的目標是「運鏡絲滑」，所以這一格要在畫面上。
+    busy = sum(one["duration"] for one in scenes
+               if one["camera"]["from"] != one["camera"]["to"])
+    whole_secs = sum(one["duration"] for one in scenes)
+    say(f"  鏡頭真的在動 {busy / whole_secs:.0%}"
+        f"（{busy:.0f} 秒，其餘 {whole_secs - busy:.0f} 秒停著）"
+        f"　camera.travel = {look['camera']['travel']}")
     say(f"{len(scenes)} 格、{len(subtitles)} 塊字幕　"
         f"共 {sum(one['duration'] for one in scenes):.1f} 秒")
     say(f"  字幕最長一塊 {long:.1f} 秒、最多 "

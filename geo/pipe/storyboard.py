@@ -61,8 +61,27 @@ AROUND = (7.0, 3.5)
 # 整支片至少要有這麼多種不同的畫面。參考頻道 72 秒用了 14 種。
 FEWEST = 8
 
-# 一格停超過這麼久就出聲。不擋 —— 長鏡頭是一種選擇，但要被看見。
-STARE = 8.0
+# A → B → A 這種來回，整支片最多幾次。
+#
+# **使用者：「鏡頭切換的次數要減少，頭都暈了。」** 量出來的：58 格裡有
+# 18 次來回，其中 44.7s 和 47.3s 那兩組疊在一起 —— 五格之內在兩個畫面
+# 之間跳了四次。
+#
+# 最常見的來源是「兩個角色來回講話」：丹麥說一句、格陵蘭回一句、丹麥再
+# 說一句，而分鏡跟著人跑。那是一段對話，不是三個場景 —— 找一個兩邊都
+# 看得到的取景停著就好，讓聲音去分誰在講。
+SWAP_MOST = 2
+
+# 一格停超過這麼久就出聲。長鏡頭是一種選擇，但要被看見。
+STARE = 6.0
+
+# 而超過這麼久就擋。**「出聲不擋」在這一項上不夠**：2026-09-27 那一份
+# 50 格裡有五格超過 6 秒，最長 11.8 秒 —— 十一秒盯著同一塊地不動，
+# 觀眾會以為片子卡住了，而那正是「視覺刺激」的反面。
+#
+# 五格全部停在主角身上，因為那幾句台詞沒提到別的地方，模型就不換畫面。
+# 它需要知道「沒有新地名也要動」——推近、拉遠、換個角度都算。
+STARE_MOST = 9.0
 
 
 def _around(spot: list[float]) -> list[float]:
@@ -119,6 +138,21 @@ def _places_table(atlas: dict[str, Any]) -> str:
     return "\n".join(rows)
 
 
+def moves() -> dict[str, Any]:
+    """特效目錄。**搬到 `geo/effects/` 了**，這裡只留一個轉接。
+
+    留著是因為 `board.py`、`look.py`、`scene.py` 都在叫它；直接改名的話
+    要同時改四個地方，而漏掉的那一個不會報錯。
+    """
+    from geo import effects
+    return effects.catalogue()
+
+
+def _moves_table() -> str:
+    from geo import effects
+    return effects.menu()
+
+
 def _word_time(words: list[dict[str, Any]], start: float, end: float,
                want: str, line: str) -> float:
     """那個詞在第幾秒被唸出來。
@@ -171,7 +205,19 @@ def offscreen(cuts: list[dict[str, Any]], heard: dict[str, Any],
             until = cuts[i + 1]["at"] if i + 1 < len(cuts) else whole
             if until > start + 0.15 and one["at"] < end - 0.15:
                 shown |= set(one["see"]) | set(one["mark"])
-        missing = [x for x in want if x not in shown]
+        # **集合裡的成員算看得到。** 這一格看的是「北約」，而北約包含
+        # 美國 —— 畫面上真的畫著美國那一塊，只是名字叫北約。門比的是
+        # 地名字面，不知道這件事，於是報「講美國而畫面上沒有」。
+        #
+        # 誤報的門會叫人去修沒有壞的東西，而修的方式是重問一趟（五分鐘、
+        # $0.8）。
+        inside = set(shown)
+        for one in shown:
+            for member in (atlas.get(one) or {}).get("draw") or []:
+                for name, got in atlas.items():
+                    if got.get("geoId") == member:
+                        inside.add(name)
+        missing = [x for x in want if x not in inside]
         if missing:
             bad.append(f"第 {at} 句講「{'、'.join(missing)}」而畫面上沒有"
                        f"：{text[:24]}")
@@ -205,18 +251,26 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
             title=spec["title"], turn=bones["turn"],
             ending=bones.get("ending", ""), nodes=nodes, lines=lines,
             seconds=f"{whole:.0f}", count=len(heard["lines"]),
-            aim=aim, most=round(aim * MOST_TIMES)), say))
+            aim=aim, most=round(aim * MOST_TIMES),
+            moves=_moves_table(),
+            stare_most=f"{STARE_MOST:.0f}",
+            swap_most=SWAP_MOST), say))
         raw_at.write_text(json.dumps(got, ensure_ascii=False, indent=1),
                           encoding="utf-8")
     else:
         say(f"沿用 {raw_at.name}（上游沒動過；要重問加 --again）")
         got = json.loads(raw_at.read_text(encoding="utf-8"))
 
+    menu = moves()
     rows = got.get("shots") or []
     if not rows:
         raise SystemExit("一格都沒有")
     wide, high = spec["video"]["width"], spec["video"]["height"]
     cuts: list[dict[str, Any]] = []
+    # **不要叫 `dropped`** —— 底下「併掉幾格」那段已經用了這個
+    # 名字，而它是整數。蓋掉之後 `len()` 當場炸，算好運；
+    # 反過來（整數被 list 蓋掉）就是安靜地算錯。
+    gaps: list[str] = []
     for one in rows:
         at = int(one.get("line", -1))
         if not 0 <= at < len(heard["lines"]):
@@ -235,9 +289,41 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
                 raise SystemExit(
                     f"第 {at} 句的 {key} 有 atlas 裡沒有的：{'、'.join(bad)}。"
                     f"有的是：{'、'.join(atlas)}")
-        boxes = [atlas[x]["bbox"] for x in see if atlas[x]["kind"] == "area"]
+        # **挑的動作要驗，而驗證是照目錄長出來的。**
+        # 加一種特效不用碰這裡 —— 要什麼欄位、可以填哪些值，
+        # 全部寫在 `geo/data/effects.json`。
+        from geo import effects as fx
+        acts = []
+        for act in (one.get("do") or []):
+            kind = act.get("type") or fx.by_name().get(act.get("move", ""))
+            try:
+                spec_ = fx.check(act, kind or str(act.get("move")), atlas,
+                                 f"第 {at} 句")
+            except fx.Incomplete as gap:
+                gaps.append(str(gap))
+                continue
+            spec_["move"] = fx.catalogue()[spec_["type"]]["名"]
+            acts.append(spec_)
+
+        # **推近改的是相機，不是疊加層。**
+        #
+        # 它不畫任何東西 —— 它讓這一格的取景變成那塊地的某一角，而「推」
+        # 那個動作是原本就有的滑鏡頭做的（上一格比較寬，滑過來就是推近）。
+        # 所以它在這裡處理，`geo/effects/builders.py` 那一支是空的。
+        #
+        # 「西北角」查不到座標，但算得出來：把框切成九宮格取一格。
+        closer = {one_["who"][0]: one_.get("方位", "整個")
+                  for one_ in acts if one_["type"] == "closeup"}
+        boxes = [camera_module.part_of(atlas[x]["bbox"], closer[x])
+                 if x in closer else atlas[x]["bbox"]
+                 for x in see if atlas[x]["kind"] == "area"]
         boxes += [_around(atlas[x]["at"]) for x in see
                   if atlas[x]["kind"] == "point"]
+        astray = [x for x in closer if x not in see]
+        if astray:
+            raise SystemExit(
+                f"第 {at} 句要推近「{'、'.join(astray)}」，"
+                f"而那一格看的是 {'＋'.join(see)} —— 推近的對象要在 see 裡面")
         shot = _fit(camera_module.merge(boxes), wide, high, spec, at, see, say)
         tint = [str(x) for x in (one.get("tint") or see)]
         cuts.append({
@@ -246,6 +332,7 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
             "tint": [x for x in tint if atlas[x]["kind"] == "area"],
             "cut": bool(one.get("cut")),
             "why": str(one.get("why") or ""), "camera": shot,
+            "do": acts,
             "faint": [x for x in tint
                       if atlas[x]["kind"] == "area"
                       and camera_module.too_small(shot, atlas[x]["bbox"])],
@@ -286,8 +373,100 @@ def run(story: str, say=print, again: bool = False) -> dict[str, Any]:
         say(f"⚠ {short} 格短於 1 秒 —— 那幾格滑不動，只能硬切")
     if len(look) < FEWEST:
         raise SystemExit(f"整支片只有 {len(look)} 種畫面（至少 {FEWEST} 種）")
-    if max(spans) > STARE:
-        say(f"⚠ 有一格停了 {max(spans):.1f} 秒沒換畫面")
+    slow = [(one["at"], got) for one, got in zip(cuts, spans) if got > STARE]
+    if slow:
+        say(f"⚠ {len(slow)} 格停超過 {STARE:.0f} 秒沒換畫面："
+            + "　".join(f"{a:.0f}s 停 {b:.1f}s" for a, b in slow[:5]))
+    # **來回切。** 前一格和後一格看的是同一組地方，而中間這一格不是。
+    # **推近的角落也算「看哪裡」。** 不算的話，「格陵蘭西北 → 格陵蘭
+    # 東南 → 格陵蘭整個」三格的 `see` 都是「格陵蘭」，門看不出它在島上
+    # 跳來跳去 —— 而那跟在兩個國家之間跳一樣暈。
+    def _where(one):
+        got = set(one["see"])
+        for act in one.get("do") or []:
+            if act["type"] == "closeup" and act.get("方位", "整個") != "整個":
+                got = {f"{x}的{act['方位']}" if x == act["who"][0] else x
+                       for x in got}
+        return got
+
+    sees = [_where(one) for one in cuts]
+    # **只算真的跳走的。** A→B→A 分兩種：
+    #
+    #   中間那格跟前後有交集   只是退開一點、或推近其中一個 —— 不會暈
+    #   中間那格完全是別的地方  跳到另一邊又跳回來 —— 這才是使用者說的那種
+    #
+    # 第一版兩種都算，於是「格陵蘭＋北歐 → 北歐＋挪威＋格陵蘭 → 北歐＋
+    # 格陵蘭」（只是多帶一個挪威入鏡）也被判成來回，而那一格很合理。
+    swaps = [i for i in range(1, len(sees) - 1)
+             if sees[i - 1] == sees[i + 1] and not (sees[i] & sees[i - 1])]
+    soft = [i for i in range(1, len(sees) - 1)
+            if sees[i - 1] == sees[i + 1] != sees[i] and (sees[i] & sees[i - 1])]
+    if soft:
+        say(f"⚠ {len(soft)} 次「退開再回來」（中間那格跟前後有交集，不擋）")
+    if len(swaps) > SWAP_MOST:
+        raise SystemExit(
+            f"來回切了 {len(swaps)} 次（最多 {SWAP_MOST}）—— "
+            f"A→B→A 那種，觀眾剛認得畫面就換回去了。\n  "
+            + "\n  ".join(
+                f"{cuts[i-1]['at']:.0f}s　{'＋'.join(cuts[i-1]['see'])}"
+                f" → {'＋'.join(cuts[i]['see'])}"
+                f" → {'＋'.join(cuts[i+1]['see'])}" for i in swaps[:5])
+            + "\n  兩個角色來回講話的時候，找一個兩邊都看得到的取景停著，"
+              "不要跟著人跑。加 --again 重排")
+    say(f"  來回切 {len(swaps)} 次（上限 {SWAP_MOST}）")
+
+    worst = [(one["at"], got) for one, got in zip(cuts, spans)
+             if got > STARE_MOST]
+    if worst:
+        raise SystemExit(
+            f"這幾格停太久了（上限 {STARE_MOST:.0f} 秒）：\n  "
+            + "\n  ".join(f"{a:.0f} 秒那一格停了 {b:.1f} 秒" for a, b in worst)
+            + f"\n  盯著同一塊地十秒不動，觀眾會以為片子卡住。\n"
+              f"  **沒有新地名也可以換畫面** —— 推近看細節、拉遠看它在哪、"
+              f"換一個一起看的對象。加 --again 重排")
+
+    # 少填欄位的丟掉了，但要出聲 —— 丟太多表示 prompt 沒講清楚，
+    # 那是該回頭修的，不是每次手動忽略。
+    if gaps:
+        asked = sum(len(x.get("do") or []) for x in rows)
+        say(f"⚠ {len(gaps)}/{asked} 個動作少了欄位，丟掉了：")
+        for one_ in gaps[:5]:
+            say(f"    {one_}")
+        if len(gaps) > max(2, asked // 3):
+            raise SystemExit(
+                f"{len(gaps)}/{asked} 個動作少欄位 —— 太多了，"
+                f"表示 prompt 沒把必填講清楚。加 --again 重問")
+
+    # **整支片的上限，要走完才數得出來。** 「閃一下」一支片最多兩次，
+    # 多了就像壞掉的燈 —— 而每一格各自看的時候都合法。
+    used: dict[str, int] = {}
+    for one in cuts:
+        for act in one["do"]:
+            used[act["type"]] = used.get(act["type"], 0) + 1
+    over = [(k, v) for k, v in used.items()
+            if menu[k].get("most_per_film")
+            and v > int(menu[k]["most_per_film"])]
+    if over:
+        raise SystemExit(
+            "這幾種用太多次了：\n  "
+            + "\n  ".join(f"「{k}」{v} 次（整支片最多 "
+                          f"{menu[k]['most_per_film']} 次）"
+                          for k, v in over)
+            + "\n加 --again 重排")
+    if used:
+        say("\n挑了這些動作：")
+        for name, one_ in menu.items():
+            if not one_.get("renders"):
+                continue
+            got_ = used.get(name, 0)
+            say(f"  {one_['名']:<5}{got_:>3}　{'▮' * got_ if got_ else '—'}")
+        never = [one_["名"] for name, one_ in menu.items()
+                 if one_.get("renders") and name not in used]
+        if never:
+            say(f"  （這幾種一次都沒挑：{'、'.join(never)}）")
+    else:
+        say("⚠ 一個動作都沒挑 —— 46 格全部只有塗色")
+
     paths.save(story, "storyboard", {"seconds": whole, "cuts": cuts})
     return {"cuts": cuts}
 

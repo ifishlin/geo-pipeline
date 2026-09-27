@@ -177,3 +177,47 @@ def covers(shot: dict[str, Any], bbox: Sequence[float],
         if not (0 <= x <= width and 0 <= y <= height):
             return False
     return True
+
+
+# 一塊地切成九宮格，取其中一格佔原本的多少。
+#
+# 0.45 是**重疊的**：九格加起來比原本大，所以「北」和「東北」之間有共通的
+# 部分，推近之後不會剛好切在邊界上、把要看的東西切成兩半。
+# 切成剛好三等分（0.333）的話，「西北角那個基地」很容易落在兩格中間。
+PART = 0.45
+
+# 哪一邊 → 那一格的中心落在原本框的哪裡（0 是西/南，1 是東/北）。
+WHERES: dict[str, tuple[float, float]] = {
+    "整個": (0.5, 0.5),
+    "北": (0.5, 1.0), "南": (0.5, 0.0),
+    "東": (1.0, 0.5), "西": (0.0, 0.5),
+    "東北": (1.0, 1.0), "西北": (0.0, 1.0),
+    "東南": (1.0, 0.0), "西南": (0.0, 0.0),
+    "中央": (0.5, 0.5),
+}
+
+
+def part_of(bbox: Sequence[float], where: str,
+            part: float = PART) -> list[float]:
+    """一塊地的某一邊，回一個小一點的外框。
+
+    **「西北角」不是一個有名字的地方**，所以查不到座標 —— 但它算得出來：
+    把那塊地的框切成九宮格，取其中一格。這樣模型只要說「推近這塊地的
+    西北」，不用（也不該）給座標。
+
+    緯度那一軸用**麥卡托**算，不是直接對緯度取中點 —— 高緯度的地方
+    直接對緯度切的話，「北邊那一格」在畫面上會比「南邊那一格」矮一截。
+    """
+    if where not in WHERES:
+        raise ValueError(f"不認得的方位：{where}。"
+                         f"可以用：{'、'.join(WHERES)}")
+    west, south, east, north = (float(one) for one in bbox)
+    if where == "整個":
+        return [west, south, east, north]
+    fx, fy = WHERES[where]
+    wide = (east - west) * part
+    x0 = west + (east - west - wide) * fx
+    ys, yn = merc_y(south), merc_y(north)          # merc_y 往南遞增
+    high = abs(ys - yn) * part
+    top = yn + (abs(ys - yn) - high) * (1 - fy)
+    return [x0, lat_of(top + high), x0 + wide, lat_of(top)]
