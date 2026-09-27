@@ -34,6 +34,7 @@ python3 -m geo.checks._effects  特效目錄和 builder 對不對得起來
 python3 -m geo.checks._parts    反應句那組門 —— 種了 8 個違規，它們都要叫
 python3 -m geo.checks._links    文件裡的連結指不指得到
 python3 -m geo.checks._web      網頁：開 job 的有沒有人盯著、鈕只有一份
+python3 -m geo.checks._hunt     找來源那十道門 —— 種違規給它們擋
 npm run validate <scene.json>   隔壁驗 schema（一秒，壓片十二分鐘）
 ```
 
