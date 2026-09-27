@@ -28,20 +28,25 @@ geo/reference/   參考片和字幕（54M，不進版控，只有 README 進）
 geo/refs/        參考片拆解和規格（三份 md）
 
 geo/README.md    這一份：整條路怎麼跑
-geo/MISTAKES.md  踩過的坑，29 條
+geo/MISTAKES.md  踩過的坑（不寫幾條 —— 引用一個數字的文字會過期）
 geo/HANDOVER.md  交接：現在停在哪（快照，每次收工整份改寫）
-                 （跟 `docs/HANDOVER.md` 同名不同目錄 —— 那是原本管線的）
 geo/TODO.md      待辦（累積的，做完劃掉不刪）
 ```
 
-**根目錄那幾個看起來像的，不是這一套的**，別搬進來：
+repo 的根只有三樣東西：`geo/`、`docs/VOICE.md`、`.gitignore`。
 
-```
-open_amination/      片頭動畫規格 —— `core/intro.py` 在用它做擦出動畫。
-                     素材取自地理參考片，但**誰在用它就屬於誰**
-animation_feedback/  卡片動畫的設計稿（漢堡／拉麵、Split 分岔），原本管線的
-docs/MISTAKES.md     原本管線的那一份，跟 `geo/MISTAKES.md` 是兩回事
-```
+**為什麼程式不攤在根目錄。** 這一套本來住在 `Video_pipeline/geo/`，
+2026-09-27 抽出來自己一個 repo（歷史用 `git subtree split` 帶過來了，
+十筆都在）。抽的時候可以順手把 `pipe/`、`data/` 攤到根目錄，沒有這樣做，
+理由是 `paths.ROOT` 的定義會跟著變：現在 `ROOT` 是 repo 的根、
+`ROOT.parent` 是 `personal/`，隔壁的 `Map_Animation` 就在那裡。攤平之後
+`ROOT.parent` 會變成 `/Volumes/Fish`，渲染器就找不到了。
+**搬家就只搬家，不要同時改 import。**
+
+`docs/VOICE.md` 是從原本管線帶過來的一份 —— 配音的心得全在那裡，
+`pipe/marks.py` 和 `data/rules.json` 都指著它。原本管線那邊還留著一份，
+**兩邊會分家**，而分家的那一份沒有人會發現：動到配音的時候，
+改完要問一句「另一邊是不是也該改」。
 
 ---
 

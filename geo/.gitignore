@@ -1,17 +1,35 @@
 # 產物不進版控：影片、音檔、抓回來的來源全文、送給模型的那幾份。
 # 進版控的是**程式、prompt、共用資料、和每一步的結構化產物**
 # —— 那幾個小、看得懂 diff，而且是「這支片長什麼樣」的真正紀錄。
+#
+# **這條路的產物全部寫在這裡一份**，根目錄那份只管 `__pycache__` 那種
+# 通用的 —— 兩個地方各寫一份會分家，而分家的那一份沒有人會發現。
 stories/*/0-sources/
-stories/*/4-voice/*.wav
-stories/*/4-voice/*.m4a
 stories/*/_ask/
-stories/*/*.mp4
-stories/*/*.png
 stories/_probe/
+stories/**/*.wav
+stories/**/*.m4a
+stories/**/*.mp4
+stories/**/*.png
+stories/**/*.jpg
+stories/*/*.part/
 # 每次跑都重產的頁面。**看的人要的是現在這一版**，而 diff 裡的
 # 是三天前那一版 —— 兩個都在版控裡只會讓人讀到舊的。
 stories/*/look.html
 stories/*/watch.html
+
+# 參考素材（別人的影片，1.1 GB）：只留說明，東西本身不進。
+reference/*
+!reference/README.md
+
+# work：跑出來的東西。**稿子（.tsv）進版控，其餘不進** ——
+# 那幾份是一路改過來的對照組，「這一版跟上一版差在哪」只有它們答得出來。
+work/logs/
+work/takes/*.mp4
+work/takes/*.wav
+work/takes/*.m4a
+work/takes/**/*.wav
+work/takes/**/*.m4a
 # 從成片截出來的畫格（`pipe/shot.py` 產的，一次 11 MB）。
 # 它們是**拿來看的**，不是紀錄 —— 成片和 scene.json 在，隨時再截一次。
 work/frames/
