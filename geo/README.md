@@ -41,6 +41,7 @@ docs/PROMPTS.md  動 geo/prompts/ 之前一定要讀 —— 這一層最貴
 docs/EFFECTS.md  特效函式庫：加一種要動哪兩個地方
 docs/CAMERA.md   鏡頭：投影、取景、切換
 docs/VOICE.md    配音：唸起來順不順
+docs/WEB.md      網頁：五頁、背景 job、影片要吃 Range
 geo/             這一整套
 ```
 
@@ -77,13 +78,8 @@ python3 -m geo.pipe.server        開在 http://127.0.0.1:8765/
 事實那一節永遠空的）在終端機上都長得像成功，所以這一頁每一格都印分母，
 零會自己叫出來（`⚠ 則事實 0`）。
 
-`look.html`（過程頁）和 `watch.html`（看片＋分鏡）沒有重做一遍 ——
-那一頁按下去就**現產一份再轉過去**。它們是離線打開就能看的單一檔案，
-關掉伺服器、寄給別人都還在。
-
-跑一步是**背景 job**：`/run` 只回一個 id，畫面接 `watch()` 一直問到跑完。
-舊專案在這裡印過「寫好了：undefined」——
-`python3 -m geo.checks._web` 就是在擋那件事。
+為什麼這樣做、守著哪幾道門、量過什麼，全在
+**[docs/WEB.md](../docs/WEB.md)** —— 這裡不再抄一份。
 
 ## 九步
 
